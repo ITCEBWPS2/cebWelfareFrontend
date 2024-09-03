@@ -1,0 +1,33 @@
+Group css
+
+.flex {
+    display: flex;
+  }
+
+.bg-image {
+    display: flex;
+    width:auto ;
+    height:auto;
+    opacity: 100%;
+    background-size: cover;
+ 
+  }
+
+  .container1{
+    display: flex;
+    justify-content:center;
+  }
+ 
+  .focus:outline-none {
+    outline: none;
+  }
+  .bg-no-repeat{
+    background-repeat: no-repeat;
+  }
+
+  .container{
+  display: flex;
+  justify-content:center;
+  background-size: cover;
+  width:auto ;
+  }

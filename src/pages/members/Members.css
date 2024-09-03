@@ -1,0 +1,13 @@
+/* Custom styles for your application */
+.table-header {
+    background-color: #670E10; /* Example custom header color */
+}
+/* Example custom styles for the table */
+.custom-table-header {
+    background-color: #f8f8f8; /* Example custom header color */
+    color: #333; /* Example custom header text color */
+}
+
+.custom-table-row:hover {
+    background-color: #f1f1f1; /* Example custom row hover color */
+}
