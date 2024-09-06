@@ -175,11 +175,8 @@
 
 // export default RegisterForm;
 
-
-
-
-import  { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 const RegisterForm = () => {
   // const[name,setName]=useState('')
@@ -202,7 +199,7 @@ const RegisterForm = () => {
   // const[aboutAdults,setAboutAdults]=useState('')
   // const[memberFee,setMemberFee]=useState('')
   // const contactNumber= {contactNo: {whatsappNo, number}}
-  // const [formData, setFormData] = useState({                      
+  // const [formData, setFormData] = useState({
   //   name: '',
   //   email: '',
   //   password: '',
@@ -225,39 +222,39 @@ const RegisterForm = () => {
   //   aboutAdults: '',
   // });
 
-  const [memberRegister,setMemberRegister]=useState({
-    name:'',
-    email:'',
-    password:'',
-    epf:'',
-    status:'',
-    dateOfJoined:'',
-    dateOfBirth:'',
-    dateOfRegistered:'',
-    welfareNo:'',
-    payroll:'',
-    division:'',
-    contactNo:{whatsappNo:'', number:''},
-    spouseName:'',
-    noOfChildren:'',
-    aboutChildren:'',
-    noOfAdults:'',
-    aboutAdults:'',
-    memberFee:''
-  })
+  const [memberRegister, setMemberRegister] = useState({
+    name: "",
+    email: "",
+    password: "",
+    epf: "",
+    status: "",
+    dateOfJoined: "",
+    dateOfBirth: "",
+    dateOfRegistered: "",
+    welfareNo: "",
+    payroll: "",
+    division: "",
+    contactNo: { whatsappNo: "", number: "" },
+    spouseName: "",
+    noOfChildren: "",
+    aboutChildren: "",
+    noOfAdults: "",
+    aboutAdults: "",
+    memberFee: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setMemberRegister((prevUser)=>({
+    setMemberRegister((prevUser) => ({
       ...prevUser,
-      [name]:value
+      [name]: value,
     }));
   };
   const handleContactChange = (e) => {
     const { name, value } = e.target;
-    setMemberRegister((prevUser)=>({
+    setMemberRegister((prevUser) => ({
       ...prevUser,
-      contactNo: { ...prevUser.contactNo, [name]: value }
+      contactNo: { ...prevUser.contactNo, [name]: value },
     }));
   };
 
@@ -282,7 +279,7 @@ const RegisterForm = () => {
   //   noOfChildren:noOfChildren,
   //   aboutChildren:aboutChildren,
   //   noOfAdults:noOfAdults,
-  //   aboutAdults:aboutAdults     
+  //   aboutAdults:aboutAdults
 
   // }
 
@@ -290,35 +287,37 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/members', memberRegister);
+      const response = await axios.post(
+        "http://13.61.8.102/api/members",
+        memberRegister
+      );
       console.log(response.data);
       // Handle success (e.g., redirect to another page, show success message)
-    
-    setMemberRegister({
-      name: '',
-      email: '',
-      password: '',
-      epf: '',
-      status: '',
-      dateOfJoined: '',
-      dateOfBirth: '',
-      dateOfRegistered: '',
-      welfareNo: '',
-      payroll: '',
-      division: '',
-      contactNo: { whatsappNo: '', number: '' },
-      spouseName: '',
-      noOfChildren: '',
-      aboutChildren: '',
-      noOfAdults: '',
-      aboutAdults: '',
-      memberFee: '',
-    });
-    
-    
-    window.location.reload();
-  }catch (error) {
-      console.error('There was an error!', error);
+
+      setMemberRegister({
+        name: "",
+        email: "",
+        password: "",
+        epf: "",
+        status: "",
+        dateOfJoined: "",
+        dateOfBirth: "",
+        dateOfRegistered: "",
+        welfareNo: "",
+        payroll: "",
+        division: "",
+        contactNo: { whatsappNo: "", number: "" },
+        spouseName: "",
+        noOfChildren: "",
+        aboutChildren: "",
+        noOfAdults: "",
+        aboutAdults: "",
+        memberFee: "",
+      });
+
+      window.location.reload();
+    } catch (error) {
+      console.error("There was an error!", error);
       // Handle error (e.g., show error message)
     }
   };
@@ -329,25 +328,44 @@ const RegisterForm = () => {
   // };
 
   return (
-    <div className="flex justify-center items-center min-h-screen  bg-cover bg-center " style={{ backgroundImage: 'url(../../../public/background.jpg)' }}>
+    <div
+      className="flex justify-center items-center min-h-screen  bg-cover bg-center "
+      style={{ backgroundImage: "url(../../../public/background.jpg)" }}
+    >
       {/* style={{ backgroundImage: 'url(../../../public/bulbs.jpg)' }} */}
       <div className="bg-yellow-50  p-8 rounded-lg shadow-lg max-w-4xl w-full">
         <h1 className="text-center text-2xl font-bold mb-6">Register</h1>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-6">
             {/* Left Column */}
             <div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">Name</label>
-                <input type="text" name="name" onChange={handleChange} className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
+                <input
+                  type="text"
+                  name="name"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
               </div>
               <div className="mb-4">
-                <label className="block font-bold text-gray-950">Date of birth</label>
-                <input type="date" name="dateOfBirth" onChange={handleChange} className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
+                <label className="block font-bold text-gray-950">
+                  Date of birth
+                </label>
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
               </div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">Status</label>
-                <select name="status" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 group-hover:bg-red-100">
+                <select
+                  name="status"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 group-hover:bg-red-100"
+                >
                   <option value="">Select Status</option>
                   <option value="active">Active</option>
                   <option value="retired">Retired</option>
@@ -355,84 +373,194 @@ const RegisterForm = () => {
                 </select>
               </div>
               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Date of joined</label>
-                 <input type="date" name="dateOfJoined" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-             <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Payroll</label>
-                 <input type="text" name="payroll"  onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Division</label>
-                 <input type="text" name="division" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Mobile number</label>
-                <input type="text" name="number" onChange={handleContactChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Whatsapp number</label>
-                 <input type="text" name="whatsappNo" onChange={handleContactChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Member fee</label>
-                 <input type="text" name="memberFee" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">EPF No</label>
-                 <input type="text" name="epf" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Date of registered</label>
-                 <input type="date" name="dateOfRegistered" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-             <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Welfare Number</label>
-                 <input type="text" name="welfareNo" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-             </div> 
-           
+                <label className="block font-bold text-gray-950">
+                  Date of joined
+                </label>
+                <input
+                  type="date"
+                  name="dateOfJoined"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">Payroll</label>
+                <input
+                  type="text"
+                  name="payroll"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Division
+                </label>
+                <input
+                  type="text"
+                  name="division"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Mobile number
+                </label>
+                <input
+                  type="text"
+                  name="number"
+                  onChange={handleContactChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Whatsapp number
+                </label>
+                <input
+                  type="text"
+                  name="whatsappNo"
+                  onChange={handleContactChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Member fee
+                </label>
+                <input
+                  type="text"
+                  name="memberFee"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">EPF No</label>
+                <input
+                  type="text"
+                  name="epf"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Date of registered
+                </label>
+                <input
+                  type="date"
+                  name="dateOfRegistered"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Welfare Number
+                </label>
+                <input
+                  type="text"
+                  name="welfareNo"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+            </div>
+
             {/* Right Column */}
             <div>
               <div className="mb-4">
-                <label className="block font-bold text-gray-950">Spouse name</label>
-                <input type="text" name="spouseName" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
+                <label className="block font-bold text-gray-950">
+                  Spouse name
+                </label>
+                <input
+                  type="text"
+                  name="spouseName"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
               </div>
               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Number of children</label>
-                 <input type="text" name="noOfChildren" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">About children</label>
-                 <input type="text" name="aboutChildren" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 placeholder:text-gray-800" placeholder="eg: Age, Name" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Number of adults</label>
-                 <input type="number" name="noOfAdults" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">About adults</label>
-                 <input type="text" name="aboutAdults" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 placeholder:text-gray-800" placeholder="eg: Age, Name" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Email</label>
-                 <input type="email" name="email" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-               <div className="mb-4">
-                 <label className="block font-bold text-gray-950">Password</label>
-                <input type="password" name="password" onChange={handleChange} className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500" />
-               </div>
-             </div> 
-           </div>
-           <div className="flex justify-center mt-6">
-             <button type="submit" className="bg-red-900 hover:bg-red-700 text-white font-medium rounded-lg px-5 py-2.5">
-               Register
-             </button>
-           </div>      
-         </form>
-       </div>
-     </div>
-    
+                <label className="block font-bold text-gray-950">
+                  Number of children
+                </label>
+                <input
+                  type="text"
+                  name="noOfChildren"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  About children
+                </label>
+                <input
+                  type="text"
+                  name="aboutChildren"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 placeholder:text-gray-800"
+                  placeholder="eg: Age, Name"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Number of adults
+                </label>
+                <input
+                  type="number"
+                  name="noOfAdults"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  About adults
+                </label>
+                <input
+                  type="text"
+                  name="aboutAdults"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 placeholder:text-gray-800"
+                  placeholder="eg: Age, Name"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  onChange={handleChange}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center mt-6">
+            <button
+              type="submit"
+              className="bg-red-900 hover:bg-red-700 text-white font-medium rounded-lg px-5 py-2.5"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
