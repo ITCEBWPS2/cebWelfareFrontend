@@ -13,7 +13,7 @@ const MembersTable = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/members");
+        const response = await axios.get("http://13.61.8.102/api/members");
         setMembers(response.data);
       } catch (error) {
         console.error("Error fetching members:", error);
