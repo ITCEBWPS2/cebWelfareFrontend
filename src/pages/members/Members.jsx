@@ -13,7 +13,7 @@ const MembersTable = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await axios.get("http://13.61.8.102/api/members");
+        const response = await axios.get("http://localhost:5000/api/members");
         setMembers(response.data);
       } catch (error) {
         console.error("Error fetching members:", error);
@@ -21,7 +21,7 @@ const MembersTable = () => {
     };
     fetchMembers();
   }, []);
-
+  //http://13.61.8.102/
   const deleteTask = async (memberId) => {
     if (window.confirm("Are you sure you want to delete this member?")) {
       try {
