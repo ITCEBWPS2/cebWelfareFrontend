@@ -25,7 +25,7 @@ const MembersTable = () => {
   const deleteTask = async (memberId) => {
     if (window.confirm("Are you sure you want to delete this member?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/members/${memberId}`);
+        await axios.delete(`http://13.61.8.102/api/members/${memberId}`);
         setMembers(members.filter((member) => member._id !== memberId));
       } catch (error) {
         console.error("Error deleting member:", error);

@@ -288,7 +288,7 @@ const RegisterForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/members",
+        "http://13.61.8.102/api/members",
         memberRegister
       );
       console.log(response.data);
