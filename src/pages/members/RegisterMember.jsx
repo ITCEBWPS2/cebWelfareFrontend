@@ -288,7 +288,7 @@ const RegisterForm = () => {
 
     try {
       const response = await axios.post(
-        "http://13.61.8.102/api/members",
+        "https://serverbackend-4wcf.onrender.com/api/members",
         memberRegister
       );
       console.log(response.data);

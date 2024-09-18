@@ -27,7 +27,9 @@ const MembersTable = () => {
   const deleteTask = async (memberId) => {
     if (window.confirm("Are you sure you want to delete this member?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/members/${memberId}`);
+        await axios.delete(
+          `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`
+        );
         setMembers(members.filter((member) => member._id !== memberId));
       } catch (error) {
         console.error("Error deleting member:", error);
@@ -51,7 +53,7 @@ const MembersTable = () => {
   const handleUpdate = async (memberId, updatedData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/members/${memberId}`,
+        `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`,
         updatedData
       );
       console.log("Member updated:", response.data);
