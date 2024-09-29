@@ -22,7 +22,8 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/members/auth",
+        "https://serverbackend-4wcf.onrender.com/api/members/auth",
+        // "http://localhost:5000/api/members/auth",
         {
           epf: epfNo,
           password,
@@ -32,7 +33,7 @@ const Login = () => {
       localStorage.setItem("token", data.token);
 
       console.log("User logged in successfully:", data);
-      navigate("/"); // Redirect to the home page or admin panel
+      navigate("/home"); // Redirect to the home page or admin panel
     } catch (err) {
       setError("Invalid EPF Number or Password");
     }

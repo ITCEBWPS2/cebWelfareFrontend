@@ -1,6 +1,11 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import {
   Home,
   Benefits,
@@ -17,7 +22,7 @@ import {
   ViewMember,
   AdminPanel,
   ViewUsers,
-} from "./pages"; // Ensure you import AdminPanel and ViewUsers
+} from "./pages";
 import MainLayout from "./components/MainLayout.jsx";
 import LoanApplication from "./pages/members/LoanApplication.jsx";
 import LoanApplicationForm from "./components/LoanApplicationForm.jsx";
@@ -28,6 +33,8 @@ function App() {
     <div className="appBackground">
       <Router>
         <Routes>
+          {/* Set Login page as the default */}
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/relatives" element={<Relatives />} />
           <Route path="/admin" element={<AdminPanel />} />
@@ -37,7 +44,7 @@ function App() {
             element={
               <MainLayout>
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/home" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/benefits" element={<Benefits />} />
                   <Route path="/contact" element={<Contact />} />
@@ -79,7 +86,9 @@ export default App;
 //   RegisterMember,
 //   Relatives,
 //   ViewMember,
-// } from "./pages";
+//   AdminPanel,
+//   ViewUsers,
+// } from "./pages"; // Ensure you import AdminPanel and ViewUsers
 // import MainLayout from "./components/MainLayout.jsx";
 // import LoanApplication from "./pages/members/LoanApplication.jsx";
 // import LoanApplicationForm from "./components/LoanApplicationForm.jsx";
@@ -92,6 +101,8 @@ export default App;
 //         <Routes>
 //           <Route path="/login" element={<Login />} />
 //           <Route path="/relatives" element={<Relatives />} />
+//           <Route path="/admin" element={<AdminPanel />} />
+//           <Route path="/viewusers" element={<ViewUsers />} />
 //           <Route
 //             path="*"
 //             element={
