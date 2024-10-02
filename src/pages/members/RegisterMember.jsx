@@ -116,7 +116,7 @@ const RegisterForm = () => {
         division: "", // Clear the division when custom is selected
       }));
     } else {
-      setCustomDevision(false);
+      setCustomDivision(false);
       setMemberRegister((prevUser) => ({
         ...prevUser,
         division: value,
@@ -174,6 +174,7 @@ const RegisterForm = () => {
                   name="name"
                   onChange={handleChange}
                   className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -185,6 +186,7 @@ const RegisterForm = () => {
                   name="dateOfBirth"
                   onChange={handleChange}
                   className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -193,6 +195,7 @@ const RegisterForm = () => {
                   name="status"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500 group-hover:bg-red-100"
+                  required
                 >
                   <option value="">Select Status</option>
                   <option value="active">Active</option>
@@ -209,6 +212,7 @@ const RegisterForm = () => {
                   name="dateOfJoined"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -218,11 +222,12 @@ const RegisterForm = () => {
                     name="payroll"
                     onChange={handlePayrollChange}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    required
                   >
                     <option value="">Select Payroll</option>
-                    <option value="Payroll 1">Payroll 1</option>
-                    <option value="Payroll 2">Payroll 2</option>
-                    <option value="Payroll 3">Payroll 3</option>
+                    <option value="WPS II">WPS II</option>
+                    <option value="SAB">SAB</option>
+                    <option value="AFMDD3">AFMDD3</option>
                     <option value="custom">Custom Payroll</option>
                   </select>
                 ) : (
@@ -233,6 +238,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     placeholder="Enter custom payroll"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    required
                   />
                 )}
               </div>
@@ -255,11 +261,12 @@ const RegisterForm = () => {
                     name="division"
                     onChange={handleDivisionChange}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    required
                   >
                     <option value="">Select Division</option>
-                    <option value="Payroll 1">Division 1</option>
-                    <option value="Payroll 2">Division 2</option>
-                    <option value="Payroll 3">Division 3</option>
+                    <option value="DD1">DD1</option>
+                    <option value="DD2">DD2</option>
+                    <option value="DD3">DD3</option>
                     <option value="custom">Custom Division</option>
                   </select>
                 ) : (
@@ -270,6 +277,7 @@ const RegisterForm = () => {
                     onChange={handleChange}
                     placeholder="Enter custom division"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    required
                   />
                 )}
               </div>
@@ -295,6 +303,7 @@ const RegisterForm = () => {
                   onChange={handleContactChange}
                   value={memberRegister.contactNo.number}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
                 {mobileMessage && (
                   <p
@@ -319,6 +328,7 @@ const RegisterForm = () => {
                   onChange={handleContactChange}
                   value={memberRegister.contactNo.whatsappNo}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
                 {whatsappMessage && (
                   <p
@@ -342,6 +352,7 @@ const RegisterForm = () => {
                   onChange={handleChange}
                   value={memberRegister.epf}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
                 {epfMessage && (
                   <p
@@ -364,6 +375,7 @@ const RegisterForm = () => {
                   name="welfareNo"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
             </div>
@@ -433,6 +445,7 @@ const RegisterForm = () => {
                   name="email"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -444,6 +457,7 @@ const RegisterForm = () => {
                   name="password"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -455,6 +469,7 @@ const RegisterForm = () => {
                   name="dateOfRegistered"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  required
                 />
               </div>
               <div className="mb-4">
@@ -467,6 +482,7 @@ const RegisterForm = () => {
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   placeholder="Rs.300.00"
+                  required
                 />
               </div>
             </div>
