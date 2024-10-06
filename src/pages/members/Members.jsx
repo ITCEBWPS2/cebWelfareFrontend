@@ -61,6 +61,7 @@ const MembersTable = () => {
     try {
       const response = await axios.put(
         `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`,
+        // "http://localhost:5000/members/${id}",
         updatedData
       );
       console.log("Member updated:", response.data);
@@ -127,9 +128,9 @@ const MembersTable = () => {
                 <th className="px-6 py-3 text-left text-sm font-semibold">
                   Payroll
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
+                {/* <th className="px-6 py-3 text-left text-sm font-semibold">
                   Status
-                </th>
+                </th> */}
                 <th className="px-6 py-3 text-left text-sm font-semibold">
                   Contact Number
                 </th>
@@ -218,7 +219,7 @@ const MembersTable = () => {
                             className="w-full border-gray-300 rounded-md"
                           />
                         </td>
-                        <td className="border px-6 py-4">
+                        {/* <td className="border px-6 py-4">
                           <input
                             type="text"
                             name="status"
@@ -226,7 +227,7 @@ const MembersTable = () => {
                             onChange={handleInputChange}
                             className="w-full border-gray-300 rounded-md"
                           />
-                        </td>
+                        </td> */}
                         <td className="border px-6 py-4">
                           <input
                             type="text"
@@ -279,7 +280,7 @@ const MembersTable = () => {
                           {member.dateOfJoined}
                         </td>
                         <td className="border px-6 py-4">{member.payroll}</td>
-                        <td className="border px-6 py-4">{member.status}</td>
+                        {/* <td className="border px-6 py-4">{member.status}</td> */}
                         <td className="border px-6 py-4">
                           {member.contactNo?.number || "N/A"}
                         </td>
