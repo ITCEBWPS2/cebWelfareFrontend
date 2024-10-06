@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const RegisterForm = () => {
+const RegisterMember = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,7 +12,7 @@ const RegisterForm = () => {
     dateOfBirth: "",
     dateOfRegistered: "",
     welfareNo: "",
-    role: "admin", // default value
+    role: "admin",
     payroll: "",
     division: "",
     branch: "",
@@ -21,13 +21,8 @@ const RegisterForm = () => {
       whatsappNo: "",
       number: "",
     },
-    benefits: [], // Assuming multiple benefits can be selected
     spouseName: "",
-    children: {
-      name: "",
-      age: "",
-      gender: "",
-    },
+    children: [{ name: "", age: "", gender: "" }],
     motherName: "",
     motherAge: "",
     fatherName: "",
@@ -36,36 +31,8 @@ const RegisterForm = () => {
     motherInLawAge: "",
     fatherInLawName: "",
     fatherInLawAge: "",
-    loans: [],
     memberFee: "",
   });
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [epf, setEpf] = useState("");
-  // const [dateOfJoined, setDateOfJoined] = useState("");
-  // const [dateOfBirth, setDateOfBirth] = useState("");
-  // const [dateOfRegistered, setDateOfRegistered] = useState("");
-  // const [welfareNo, setWelfareNo] = useState("");
-  // const [payroll, setPayroll] = useState("");
-  // const [division, setDivision] = useState("");
-  // const [branch, setBranch] = useState("");
-  // const [unit, setUnit] = useState("");
-  // const [whatsappNo, setWhatsappNo] = useState("");
-  // const [number, setNumber] = useState("");
-  // const [spouseName, setSpouseName] = useState("");
-  // const [childrenName, setChildrenName] = useState("");
-  // const [childrenAge, setChildrenAge] = useState("");
-  // const [childrenGender, setChildrenGender] = useState("");
-  // const [motherName, setAboutChildren] = useState("");
-  // const [motherAge, setMotherAge] = useState("");
-  // const [fatherName, setFatherName] = useState("");
-  // const [fatherAge, setFatherAge] = useState("");
-  // const [motherInLawName, setMotherInLawName] = useState("");
-  // const [motherInLawAge, setMotherInLawAge] = useState("");
-  // const [fatherInLawName, setFatherInLawName] = useState("");
-  // const [fatherInLawAge, setFatherInLawAge] = useState("");
-  // const [memberFee, setMemberFee] = useState("");
 
   const [customDivision, setCustomDivision] = useState(false);
   const [customBranch, setCustomBranch] = useState(false);
@@ -83,22 +50,57 @@ const RegisterForm = () => {
     });
   };
 
+  const handleNestedChange = (e, parentKey) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [parentKey]: {
+        ...formData[parentKey],
+        [name]: value,
+      },
+    });
+  };
+
+  const handleChildrenChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedChildren = formData.children.map((child, i) =>
+      i === index ? { ...child, [name]: value } : child
+    );
+    setFormData({
+      ...formData,
+      children: updatedChildren,
+    });
+  };
+
+  // Add child to the children array
+  const addChild = () => {
+    setFormData({
+      ...formData,
+      children: [...formData.children, { name: "", age: "", gender: "" }],
+    });
+  };
+
+  // Remove child from children array
+  const removeChild = (index) => {
+    const updatedChildren = formData.children.filter((_, i) => i !== index);
+    setFormData({
+      ...formData,
+      children: updatedChildren,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(
         "http://localhost:5000/api/members",
         formData
       );
-      console.log("Form submitted successfully:", response.data);
-      // Handle success (e.g., clear form, show success message, etc.)
+      console.log("Member created:", response.data);
+      toast.success(response.data.message);
     } catch (error) {
-      console.error(
-        "Error submitting the form:",
-        error.response?.data || error.message
-      );
-      // Handle error (e.g., show error message)
+      console.error("Error creating member:", error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -336,7 +338,7 @@ const RegisterForm = () => {
                   type="text"
                   name="number"
                   value={formData.contactNo.number}
-                  onChange={handleChange}
+                  onChange={(e) => handleNestedChange(e, "contactNo")}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
                 {mobileMessage && (
@@ -360,7 +362,7 @@ const RegisterForm = () => {
                   type="text"
                   name="whatsappNo"
                   value={formData.contactNo.whatsappNo}
-                  onChange={handleChange}
+                  onChange={(e) => handleNestedChange(e, "contactNo")}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
                 {whatsappMessage && (
@@ -425,113 +427,63 @@ const RegisterForm = () => {
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
               </div>
-              {/*
-              <div className="mb-4">
-                <label className="block font-bold text-gray-950">
-                  Child's Name, Age, and Gender
-                </label>
-                <input
-                  type="text"
-                  name="childDetails"
-                  placeholder="Enter Name, Age, Gender (e.g., John Doe, 10, Male)"
-                  onChange={handleChange}
-                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                />
-              </div> */}
 
-              {/* Child Details Section */}
-
-              {/* {childRegister.children.map((child, index) => ( */}
+              {/* Children Section */}
               <div>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.children.name}
-                  onChange={handleChange}
-                  placeholder="Enter Child's Name"
-                />
-                <input
-                  type="text"
-                  name="age"
-                  value={formData.children.age}
-                  onChange={handleChange}
-                  placeholder="Enter Child's Age"
-                />
-                <input
-                  type="text"
-                  name="gender"
-                  value={formData.children.gender}
-                  onChange={handleChange}
-                  placeholder="Enter Child's Gender"
-                />
-                {/* <button type="button" onClick={() => removeChild}>
-                  Remove Child
-                </button> */}
-              </div>
-              {/* ))} */}
+                <h2 className="text-xl font-semibold">Children</h2>
+                {formData.children.map((child, index) => (
+                  <div key={index} className="border p-4 mb-4 space-y-2">
+                    <div>
+                      <label className="block">Child Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={child.name}
+                        onChange={(e) => handleChildrenChange(e, index)}
+                        className="w-full p-2 border"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block">Child Age</label>
+                      <input
+                        type="number"
+                        name="age"
+                        value={child.age}
+                        onChange={(e) => handleChildrenChange(e, index)}
+                        className="w-full p-2 border"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block">Child Gender</label>
+                      <input
+                        type="text"
+                        name="gender"
+                        value={child.gender}
+                        onChange={(e) => handleChildrenChange(e, index)}
+                        className="w-full p-2 border"
+                        required
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeChild(index)}
+                      className="text-red-500 mt-2"
+                    >
+                      Remove Child
+                    </button>
+                  </div>
+                ))}
 
-              {/* <button type="button" onClick={addChild}>
-                Add Child
-              </button> */}
-
-              {/*
-              <div>
-                <h2 className="font-bold text-lg">Children Details</h2>
-
-                <div className="mb-4">
-                  <label className="block font-bold text-gray-950">
-                    Child Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={memberRegister.children.name}
-                    onChange={(e) => e.target.value}
-                    placeholder="Enter Child's Name"
-                    className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  />
-
-                  <label className="block font-bold text-gray-950">
-                    Child Age
-                  </label>
-                  <input
-                    type="text"
-                    name="age"
-                    value={memberRegister.children.age}
-                    onChange={(e) => e.target.value}
-                    placeholder="Enter Child's Age"
-                    className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  />
-
-                  <label className="block font-bold text-gray-950">
-                    Child Gender
-                  </label>
-                  <input
-                    type="text"
-                    name="gender"
-                    value={memberRegister.children.gender}
-                    onChange={(e) => e.target.value}
-                    placeholder="Enter Child's Gender"
-                    className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  />
-
-                  <button
-                    type="button"
-                    // onClick={() => removeChild}
-                    className="mt-2 text-red-600 hover:text-red-800"
-                  >
-                    Remove Child
-                  </button>
-                </div> */}
-
-              {/* <button
+                <button
                   type="button"
                   onClick={addChild}
-                  className="mt-2 bg-green-600 text-white py-1 px-3 rounded"
+                  className="w-full bg-green-500 text-white p-2"
                 >
-                  Add Another Child
-                </button> */}
-              {/* </div> */}
+                  Add Child
+                </button>
+              </div>
 
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
@@ -671,7 +623,7 @@ const RegisterForm = () => {
                 <input
                   type="date"
                   name="dateOfRegistered"
-                  value={formData.dateOfJoined}
+                  value={formData.dateOfRegistered}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   required
@@ -906,7 +858,7 @@ const RegisterForm = () => {
 //     {/* </div> */}
 //   </Layout>
 // );
-export default RegisterForm;
+export default RegisterMember;
 
 // import { useState } from "react";
 // import axios from "axios";
