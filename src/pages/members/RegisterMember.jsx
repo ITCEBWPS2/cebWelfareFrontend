@@ -41,6 +41,9 @@ const RegisterMember = () => {
   const [mobileMessage, setMobileMessage] = useState(false);
   const [whatsappMessage, setWhatsappMessage] = useState(false);
   const [epfMessage, setEpfMessage] = useState("");
+  const [childRegister, setChildRegister] = useState({
+    children: [{ name: "", age: "", gender: "" }],
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,6 +51,74 @@ const RegisterMember = () => {
       ...formData,
       [name]: value,
     });
+
+    // Handle EPF field validation
+    if (name === "epf") {
+      const epfRegex = /^0\d{5}$/;
+      setEpfMessage(
+        epfRegex.test(value)
+          ? "EPF number is valid."
+          : "EPF number must be exactly 6 digits and start with 0."
+      );
+    }
+
+    // Handle Mother In Law's Name and Age
+    else if (name === "motherInLawDetails") {
+      const [motherInLawName, motherInLawAge] = value.split(","); // Split input by comma
+      setFormData((prevData) => ({
+        ...prevData,
+        motherInLawName: motherInLawName ? motherInLawName.trim() : "",
+        motherInLawAge: motherInLawAge ? motherInLawAge.trim() : "",
+      }));
+    }
+
+    // Handle Father's Name and Age
+    else if (name === "fatherDetails") {
+      const [fatherName, fatherAge] = value.split(",");
+      setFormData((prevData) => ({
+        ...prevData,
+        fatherName: fatherName ? fatherName.trim() : "",
+        fatherAge: fatherAge ? fatherAge.trim() : "",
+      }));
+    }
+
+    // Handle Mother's Name and Age
+    else if (name === "motherDetails") {
+      const [motherName, motherAge] = value.split(",");
+      setFormData((prevData) => ({
+        ...prevData,
+        motherName: motherName ? motherName.trim() : "",
+        motherAge: motherAge ? motherAge.trim() : "",
+      }));
+    }
+
+    // Handle Father In Law's Name and Age
+    else if (name === "fatherInLawDetails") {
+      // Note: corrected 'fatherDetails' to 'fatherInLawDetails' to avoid duplication
+      const [fatherInLawName, fatherInLawAge] = value.split(",");
+      setFormData((prevData) => ({
+        ...prevData,
+        fatherInLawName: fatherInLawName ? fatherInLawName.trim() : "",
+        fatherInLawAge: fatherInLawAge ? fatherInLawAge.trim() : "",
+      }));
+    }
+
+    // Handle Child's Name, Age, and Gender
+    else if (name === "childDetails") {
+      const [childName, childAge, genderChild] = value.split(",");
+      setFormData((prevData) => ({
+        ...prevData,
+        childName: childName ? childName.trim() : "",
+        childAge: childAge ? childAge.trim() : "",
+        genderChild: genderChild ? genderChild.trim() : "",
+      }));
+    } else {
+      // For other fields
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleNestedChange = (e, parentKey) => {
@@ -103,58 +174,6 @@ const RegisterMember = () => {
       toast.error("Something went wrong");
     }
   };
-
-  // form function
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const res = await axios.post(
-  //       "http://localhost:5000/api/members",
-  //       //  "https://serverbackend-4wcf.onrender.com/api/members",
-  //       {
-  //         name,
-  //         email,
-  //         password,
-  //         epf,
-  //         dateOfJoined,
-  //         dateOfBirth,
-  //         dateOfRegistered,
-  //         welfareNo,
-  //         payroll,
-  //         division,
-  //         branch,
-  //         unit,
-  //         whatsappNo,
-  //         number,
-  //         spouseName,
-  //         childrenName,
-  //         childrenAge,
-  //         childrenGender,
-  //         motherName,
-  //         motherAge,
-  //         fatherName,
-  //         fatherAge,
-  //         motherInLawName,
-  //         motherInLawAge,
-  //         fatherInLawName,
-  //         fatherInLawAge,
-  //         memberFee,
-  //       }
-  //     );
-
-  //     if (res && res.data.success) {
-  //       toast.success(res.data.message);
-  //       localStorage.setItem("special", specialization);
-  //       // navigate(`/dashboard/user/my-group?specialization=${specialization}`);
-  //       navigate("/dashboard/user/my-group");
-  //     } else {
-  //       toast.error(res.data.message);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast.error("Something went wrong");
-  //   }
-  // };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-cover bg-center">
@@ -659,321 +678,90 @@ const RegisterMember = () => {
     </div>
   );
 };
-// return (
-//   <Layout>
-//     {/* <div className="container-fluid m-3 b-3"> */}
-//     <div className="container-fluid">
-//       <div className="row">
-//         <div className="col-md-3">
-//           <UserMenu />
-//         </div>
-//         <div className="col-md-9">
-//           <div className="wrap">
-//             {/* <div className="wrap2"> */}
-//             <form onSubmit={handleSubmit} action="">
-//               <h3>Register Group</h3>
-//               <div className="divide">
-//                 <div className="col1">
-//                   <div className="subTitle">
-//                     <h6>Your Details</h6>
-//                   </div>
 
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={userName}
-//                       onChange={(e) => setUserName(e.target.value)}
-//                       placeholder="Username"
-//                       required
-//                     ></input>
-//                     <HiIdentification className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={regNo}
-//                       onChange={(e) => setRegNo(e.target.value)}
-//                       placeholder="Registration Number"
-//                       required
-//                     ></input>
-//                     <FaUser className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={contactNo}
-//                       onChange={(e) => setContactNo(e.target.value)}
-//                       placeholder="Mobile Number"
-//                       required
-//                     ></input>
-//                     <MdEmail className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <input
-//                       type="email"
-//                       value={email}
-//                       onChange={(e) => setEmail(e.target.value)}
-//                       placeholder="Email Address"
-//                       required
-//                     ></input>
-//                     <PiIdentificationBadgeFill className="icon" />
-//                   </div>
-//                   <div className="radioBtn">
-//                     <h6>Select your group type</h6>
-//                     <input
-//                       className="m"
-//                       type="radio"
-//                       value="REGULAR"
-//                       id="REGULAR"
-//                       onChange={(e) => setGroupType(e.target.value)}
-//                       name={groupType}
-//                     />
-//                     <label for="regular">Regular</label>
-//                     <input
-//                       type="radio"
-//                       value="JUNE"
-//                       id="JUNE"
-//                       onChange={(e) => setGroupType(e.target.value)}
-//                       name={groupType}
-//                     />
-//                     <label for="june">June</label>
-//                   </div>
-
-//                   {/* <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={groupType}
-//                       onChange={(e) => setGroupType(e.target.value)}
-//                       placeholder="Your Group Type"
-//                       required
-//                     ></input>
-//                     <FaPhoneVolume className="icon" />
-//                   </div> */}
-//                   <div className="inputBox">
-//                     <select
-//                       // ref={special}
-//                       value={specialization}
-//                       onChange={(e) => setSpecialization(e.target.value)}
-//                     >
-//                       <option>--select your specialization--</option>
-//                       <option>IT</option>
-//                       <option>SE</option>
-//                       <option>IS</option>
-//                       <option>CS</option>
-//                       <option>DS</option>
-//                       <option>CSNE</option>
-//                     </select>
-//                   </div>
-//                 </div>
-//                 <div className="col1">
-//                   <h6>Group Details</h6>
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={projectLeaderName}
-//                       onChange={(e) => setProjectLeaderName(e.target.value)}
-//                       placeholder="Enter Your Project Leader Name"
-//                       required
-//                     ></input>
-//                     <RiLockPasswordFill className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={projectLeaderRegNo}
-//                       onChange={(e) => setProjectLeaderRegNo(e.target.value)}
-//                       placeholder="Enter Your Project Leader Registration Number"
-//                       required
-//                     ></input>
-//                     <RiLockPasswordFill className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={projectTitle}
-//                       onChange={(e) => setProjectTitle(e.target.value)}
-//                       placeholder="Project Title Here"
-//                       required
-//                     ></input>
-//                     <RiLockPasswordFill className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <input
-//                       type="text"
-//                       value={researchArea}
-//                       onChange={(e) => setResearchArea(e.target.value)}
-//                       placeholder="Research Area"
-//                       required
-//                     ></input>
-//                     <RiLockPasswordFill className="icon" />
-//                   </div>
-//                   <div className="inputBox">
-//                     <select
-//                       value={researchGroup}
-//                       onChange={(e) => setResearchGroup(e.target.value)}
-//                     >
-//                       <option>--select research group--</option>
-//                       <option>Machine Learning</option>
-//                       <option>Natural Language Processing</option>
-//                       <option>Interlligent System</option>
-//                       <option>Robotics</option>
-//                     </select>
-//                   </div>
-
-//                   <div className="inputBox">
-//                     <select
-//                       value={supervisorName}
-//                       onChange={(e) => setSupervisorName(e.target.value)}
-//                     >
-//                       <option>--select supervisor name--</option>
-//                       {users.map((supervisor, index) => {
-//                         if (supervisor.role === "Supervisor") {
-//                           return (
-//                             <option key={index}>{supervisor.fullName}</option>
-//                           );
-//                         }
-//                       })}
-//                     </select>
-//                   </div>
-//                 </div>
-
-//                 {/* <div className="login-link"> */}
-//                 {/* <p>
-//                     have an account please{' '}
-//                     <Link to="/login" className="login">
-//                       login
-//                     </Link>
-//                   </p> */}
-//                 {/* </div> */}
-//               </div>
-//               <div className="reg-btn">
-//                 <Button>Register Group</Button>
-//               </div>
-//               {/* <button type="submit">Register</button> */}
-//             </form>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//     {/* </div> */}
-//   </Layout>
-// );
 export default RegisterMember;
 
-// import { useState } from "react";
-// import axios from "axios";
+// const [customDivision, setCustomDivision] = useState(false);
+// const [customBranch, setCustomBranch] = useState(false);
+// const [customPayroll, setCustomPayroll] = useState(false);
+// const [customUnit, setCustomUnit] = useState(false);
+// const [mobileMessage, setMobileMessage] = useState("");
+// const [whatsappMessage, setWhatsappMessage] = useState("");
+// const [epfMessage, setEpfMessage] = useState("");
+// const [childRegister, setChildRegister] = useState({
+//   children: [{ name: "", age: "", gender: "" }],
+// });
 
-// const RegisterForm = () => {
-//   const [memberRegister, setMemberRegister] = useState({
-//     name: "",
-//     email: "",
-//     password: "",
-//     epf: "",
-//     // status: "",
-//     dateOfJoined: "",
-//     dateOfBirth: "",
-//     dateOfRegistered: "",
-//     welfareNo: "",
-//     payroll: "",
-//     division: "",
-//     branch: "",
-//     area: "",
-//     unit: "",
-//     contactNo: { whatsappNo: "", number: "" },
-//     spouseName: "",
-//     children: { name: "", age: "", gender: "" }, // Array to hold multiple children
-//     motherName: "",
-//     motherAge: "",
-//     fatherName: "",
-//     fatherAge: "",
-//     motherInLawName: "",
-//     motherInLawAge: "",
-//     fatherInLawName: "",
-//     fatherInLawAge: "",
-//     memberFee: "300.00",
-//   });
+// const handleChange = (e) => {
+//   const { name, value } = e.target;
 
-//   const [customDivision, setCustomDivision] = useState(false);
-//   const [customBranch, setCustomBranch] = useState(false);
-//   const [customPayroll, setCustomPayroll] = useState(false);
-//   const [customUnit, setCustomUnit] = useState(false);
-//   const [mobileMessage, setMobileMessage] = useState("");
-//   const [whatsappMessage, setWhatsappMessage] = useState("");
-//   const [epfMessage, setEpfMessage] = useState("");
-//   // const [childRegister, setChildRegister] = useState({
-//   //   children: [{ name: "", age: "", gender: "" }],
-//   // });
+//   // Handle EPF field validation
+//   if (name === "epf") {
+//     const epfRegex = /^0\d{5}$/;
+//     setEpfMessage(
+//       epfRegex.test(value)
+//         ? "EPF number is valid."
+//         : "EPF number must be exactly 6 digits and start with 0."
+//     );
+//   }
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
+//   // Handle Mother In Law's Name and Age
+//   if (name === "motherInLawDetails") {
+//     const [motherInLawName, motherInLawAge] = value.split(","); // Split input by comma
+//     setMemberRegister((prevUser) => ({
+//       ...prevUser,
+//       motherInLawName: motherInLawName ? motherInLawName.trim() : "",
+//       motherInLawAge: motherInLawAge ? motherInLawAge.trim() : "",
+//     }));
+//   }
 
-//     // Handle EPF field validation
-//     if (name === "epf") {
-//       const epfRegex = /^0\d{5}$/;
-//       setEpfMessage(
-//         epfRegex.test(value)
-//           ? "EPF number is valid."
-//           : "EPF number must be exactly 6 digits and start with 0."
-//       );
-//     }
+//   // Handle Father's Name and Age
+//   else if (name === "fatherDetails") {
+//     const [fatherName, fatherAge] = value.split(",");
+//     setMemberRegister((prevUser) => ({
+//       ...prevUser,
+//       fatherName: fatherName ? fatherName.trim() : "",
+//       fatherAge: fatherAge ? fatherAge.trim() : "",
+//     }));
+//   }
 
-//     // Handle Mother In Law's Name and Age
-//     if (name === "motherInLawDetails") {
-//       const [motherInLawName, motherInLawAge] = value.split(","); // Split input by comma
-//       setMemberRegister((prevUser) => ({
-//         ...prevUser,
-//         motherInLawName: motherInLawName ? motherInLawName.trim() : "",
-//         motherInLawAge: motherInLawAge ? motherInLawAge.trim() : "",
-//       }));
-//     }
+//   // Handle mother's Name and Age
+//   else if (name === "motherDetails") {
+//     const [motherName, motherAge] = value.split(",");
+//     setMemberRegister((prevUser) => ({
+//       ...prevUser,
+//       motherName: motherName ? motherName.trim() : "",
+//       motherAge: motherAge ? motherAge.trim() : "",
+//     }));
+//   }
 
-//     // Handle Father's Name and Age
-//     else if (name === "fatherDetails") {
-//       const [fatherName, fatherAge] = value.split(",");
-//       setMemberRegister((prevUser) => ({
-//         ...prevUser,
-//         fatherName: fatherName ? fatherName.trim() : "",
-//         fatherAge: fatherAge ? fatherAge.trim() : "",
-//       }));
-//     }
+//   // Handle Father In Law's Name and Age
+//   else if (name === "fatherDetails") {
+//     const [fatherInLawName, fatherInLawAge] = value.split(",");
+//     setMemberRegister((prevUser) => ({
+//       ...prevUser,
+//       fatherInLawName: fatherInLawName ? fatherInLawName.trim() : "",
+//       fatherInLawAge: fatherInLawAge ? fatherInLawAge.trim() : "",
+//     }));
+//   }
 
-//     // Handle mother's Name and Age
-//     else if (name === "motherDetails") {
-//       const [motherName, motherAge] = value.split(",");
-//       setMemberRegister((prevUser) => ({
-//         ...prevUser,
-//         motherName: motherName ? motherName.trim() : "",
-//         motherAge: motherAge ? motherAge.trim() : "",
-//       }));
-//     }
-
-//     // Handle Father In Law's Name and Age
-//     else if (name === "fatherDetails") {
-//       const [fatherInLawName, fatherInLawAge] = value.split(",");
-//       setMemberRegister((prevUser) => ({
-//         ...prevUser,
-//         fatherInLawName: fatherInLawName ? fatherInLawName.trim() : "",
-//         fatherInLawAge: fatherInLawAge ? fatherInLawAge.trim() : "",
-//       }));
-//     }
-
-//     //   Handle Child's Name, Age, and Gender
-//     // else if (name === "childDetails") {
-//     //   const [childName, childAge, genderChild] = value.split(",");
-//     //   setMemberRegister((prevUser) => ({
-//     //     ...prevUser,
-//     //     childName: childName ? childName.trim() : "",
-//     //     childAge: childAge ? childAge.trim() : "",
-//     //     genderChild: genderChild ? genderChild.trim() : "",
-//     //   }));
-//     // } else {
-//     //   // For other fields
-//     //   setMemberRegister((prevUser) => ({
-//     //     ...prevUser,
-//     //     [name]: value,
-//     //   }));
-//     // }
-//   };
+//   // Handle Child's Name, Age, and Gender
+//   else if (name === "childDetails") {
+//     const [childName, childAge, genderChild] = value.split(",");
+//     setMemberRegister((prevUser) => ({
+//       ...prevUser,
+//       childName: childName ? childName.trim() : "",
+//       childAge: childAge ? childAge.trim() : "",
+//       genderChild: genderChild ? genderChild.trim() : "",
+//     }));
+//   } else {
+//     // For other fields
+//     setMemberRegister((prevUser) => ({
+//       ...prevUser,
+//       [name]: value,
+//     }));
+//   }
+// };
 
 //   // Function to handle child details change
 //   // const handleChildChange = (index, e) => {
@@ -1412,16 +1200,17 @@ export default RegisterMember;
 //                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
 //                   required
 //                 />
-//                 {epfMessage && (
-//                   <p
-//                     style={{
-//                       color:
-//                         epfMessage === "EPF number is valid." ? "green" : "red",
-//                     }}
-//                   >
-//                     {epfMessage}
-//                   </p>
-//                 )}
+// {
+//   epfMessage && (
+//     <p
+//       style={{
+//         color: epfMessage === "EPF number is valid." ? "green" : "red",
+//       }}
+//     >
+//       {epfMessage}
+//     </p>
+//   );
+// }
 //               </div>
 
 //               <div className="mb-4">
