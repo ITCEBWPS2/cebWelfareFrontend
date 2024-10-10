@@ -115,7 +115,7 @@ const RegisterMember = () => {
     }
 
     // Handle custom payroll selection
-    else if (name === "payroll") {
+    if (name === "payroll") {
       if (value === "custom") {
         setCustomPayroll(true);
         setFormData((prevData) => ({
@@ -126,13 +126,13 @@ const RegisterMember = () => {
         setCustomPayroll(false);
         setFormData((prevData) => ({
           ...prevData,
-          payroll: value,
+          unit: value, // Set the selected payroll
         }));
       }
     }
 
     // Handle custom division selection
-    else if (name === "division") {
+    if (name === "division") {
       if (value === "custom") {
         setCustomDivision(true);
         setFormData((prevData) => ({
@@ -149,7 +149,7 @@ const RegisterMember = () => {
     }
 
     // Handle custom branch selection
-    else if (name === "branch") {
+    if (name === "branch") {
       if (value === "custom") {
         setCustomBranch(true);
         setFormData((prevData) => ({
@@ -160,13 +160,13 @@ const RegisterMember = () => {
         setCustomBranch(false);
         setFormData((prevData) => ({
           ...prevData,
-          branch: value,
+          branch: value, // Set the selected branch
         }));
       }
     }
 
     // Handle custom unit selection
-    else if (name === "unit") {
+    if (name === "unit") {
       if (value === "custom") {
         setCustomUnit(true);
         setFormData((prevData) => ({
@@ -177,7 +177,7 @@ const RegisterMember = () => {
         setCustomUnit(false);
         setFormData((prevData) => ({
           ...prevData,
-          unit: value,
+          unit: value, // Set the selected unit
         }));
       }
     }
@@ -210,7 +210,7 @@ const RegisterMember = () => {
       }
     }
   };
-
+  // mobile number validation
   const validateMobile = (value) => {
     if (!/^\d+$/.test(value)) {
       setMobileMessage("Only digits are allowed.");
@@ -222,7 +222,7 @@ const RegisterMember = () => {
       setMobileMessage("Mobile number is valid.");
     }
   };
-
+  // whatsapp number validation
   const validateWhatsApp = (value) => {
     if (!/^\d+$/.test(value)) {
       setWhatsappMessage("Only digits are allowed.");
@@ -234,7 +234,7 @@ const RegisterMember = () => {
       setWhatsappMessage("WhatsApp number is valid.");
     }
   };
-
+  // children validation
   const handleChildrenChange = (e, index) => {
     const { name, value } = e.target;
     const updatedChildren = formData.children.map((child, i) =>
@@ -381,7 +381,12 @@ const RegisterMember = () => {
                     type="text"
                     name="payroll"
                     value={formData.payroll}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        payroll: e.target.value, // Update custom payroll input
+                      }))
+                    }
                     placeholder="Enter custom payroll"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                     required
@@ -413,7 +418,12 @@ const RegisterMember = () => {
                     type="text"
                     name="division"
                     value={formData.division}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        division: e.target.value, // Update custom division input
+                      }))
+                    }
                     placeholder="Enter custom division"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                     required
@@ -444,14 +454,19 @@ const RegisterMember = () => {
                     type="text"
                     name="branch"
                     value={formData.branch}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        branch: e.target.value, // Update custom branch input
+                      }))
+                    }
                     placeholder="Enter custom branch"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                     required
                   />
                 )}
               </div>
-              {/* unit */}
+
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">Unit</label>
                 {!customUnit ? (
@@ -469,7 +484,7 @@ const RegisterMember = () => {
                     <option value="acc rev">Acc Rev</option>
                     <option value="acc exp">Acc Exp</option>
                     <option value="p&d">P&D</option>
-                    <option value="construction">construction</option>
+                    <option value="construction">Construction</option>
                     <option value="dm">DM</option>
                     <option value="it">IT</option>
                     <option value="custom">Other Unit</option>
@@ -479,7 +494,12 @@ const RegisterMember = () => {
                     type="text"
                     name="unit"
                     value={formData.unit}
-                    onChange={handleChange}
+                    onChange={(e) =>
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        unit: e.target.value, // Update custom unit input
+                      }))
+                    }
                     placeholder="Enter custom unit"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                     required
@@ -646,13 +666,12 @@ const RegisterMember = () => {
 
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
-                  Mother's Name and Age
+                  Mother's Name
                 </label>
                 <input
                   type="text"
                   name="motherName"
                   value={formData.motherName}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -665,7 +684,6 @@ const RegisterMember = () => {
                   type="text"
                   name="motherAge"
                   value={formData.motherAge}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -675,13 +693,12 @@ const RegisterMember = () => {
             <div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
-                  Father's Name and Age
+                  Father's Name
                 </label>
                 <input
                   type="text"
                   name="fatherName"
                   value={formData.fatherName}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -694,7 +711,6 @@ const RegisterMember = () => {
                   type="text"
                   name="fatherAge"
                   value={formData.fatherAge}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -707,7 +723,6 @@ const RegisterMember = () => {
                   type="text"
                   name="motherInLawName"
                   value={formData.motherInLawName}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -720,7 +735,6 @@ const RegisterMember = () => {
                   type="text"
                   name="motherInLawAge"
                   value={formData.motherInLawAge}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -734,7 +748,6 @@ const RegisterMember = () => {
                   type="text"
                   name="fatherInLawName"
                   value={formData.fatherInLawName}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
@@ -747,7 +760,6 @@ const RegisterMember = () => {
                   type="text"
                   name="fatherInLawAge"
                   value={formData.fatherInLawAge}
-                  placeholder="Enter Name, Age (e.g., Jane Doe, 65)"
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
