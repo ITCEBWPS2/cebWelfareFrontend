@@ -343,7 +343,7 @@ const RegisterMember = () => {
                   value={formData.dateOfBirth}
                   onChange={handleChange}
                   className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  required
+                  // required
                 />
               </div>
 
@@ -357,7 +357,7 @@ const RegisterMember = () => {
                   value={formData.dateOfJoined}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  required
+                  // required
                 />
               </div>
               <div className="mb-4">
@@ -404,7 +404,7 @@ const RegisterMember = () => {
                     value={formData.division}
                     onChange={handleChange}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    required
+                    // required
                   >
                     <option value="">Select Division</option>
                     <option value="DD1">DD1</option>
@@ -439,7 +439,7 @@ const RegisterMember = () => {
                     value={formData.branch}
                     onChange={handleChange}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    required
+                    // required
                   >
                     <option value="">Select Branch</option>
                     <option value="agm">AGM</option>
@@ -475,7 +475,6 @@ const RegisterMember = () => {
                     value={formData.unit}
                     onChange={handleChange}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    required
                   >
                     <option value="">Select Unit</option>
                     <option value="dgm">DGM</option>
@@ -502,7 +501,7 @@ const RegisterMember = () => {
                     }
                     placeholder="Enter custom unit"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    required
+                    // required
                   />
                 )}
               </div>
@@ -566,7 +565,7 @@ const RegisterMember = () => {
                   value={formData.epf}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  required
+                  // required
                 />
                 {epfMessage && (
                   <p
@@ -590,7 +589,7 @@ const RegisterMember = () => {
                   value={formData.welfareNo}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  required
+                  // required
                 />
               </div>
 
@@ -620,7 +619,7 @@ const RegisterMember = () => {
                         value={child.name}
                         onChange={(e) => handleChildrenChange(e, index)}
                         className="w-full p-2 border"
-                        required
+                        // required
                       />
                     </div>
                     <div>
@@ -631,7 +630,7 @@ const RegisterMember = () => {
                         value={child.age}
                         onChange={(e) => handleChildrenChange(e, index)}
                         className="w-full p-2 border"
-                        required
+                        // required
                       />
                     </div>
                     <div>
@@ -642,7 +641,7 @@ const RegisterMember = () => {
                         value={child.gender}
                         onChange={(e) => handleChildrenChange(e, index)}
                         className="w-full p-2 border"
-                        required
+                        // required
                       />
                     </div>
                     <button
@@ -797,7 +796,7 @@ const RegisterMember = () => {
                   value={formData.dateOfRegistered}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  required
+                  // required
                 />
               </div>
               <div className="mb-4">
