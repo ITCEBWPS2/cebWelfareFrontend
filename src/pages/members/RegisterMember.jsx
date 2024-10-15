@@ -22,7 +22,7 @@ const RegisterMember = () => {
       number: "",
     },
     spouseName: "",
-    children: [{ name: "", age: "", gender: "" }],
+    test: [{ name: "", age: "", gender: "" }],
     motherName: "",
     motherAge: "",
     fatherName: "",
@@ -237,12 +237,12 @@ const RegisterMember = () => {
   // children validation
   const handleChildrenChange = (e, index) => {
     const { name, value } = e.target;
-    const updatedChildren = formData.children.map((child, i) =>
+    const updatedChildren = formData.test.map((child, i) =>
       i === index ? { ...child, [name]: value } : child
     );
     setFormData({
       ...formData,
-      children: updatedChildren,
+      test: updatedChildren,
     });
   };
 
@@ -250,16 +250,16 @@ const RegisterMember = () => {
   const addChild = () => {
     setFormData({
       ...formData,
-      children: [...formData.children, { name: "", age: "", gender: "" }],
+      test: [...formData.test, { name: "", age: "", gender: "" }],
     });
   };
 
   // Remove child from children array
   const removeChild = (index) => {
-    const updatedChildren = formData.children.filter((_, i) => i !== index);
+    const updatedChildren = formData.test.filter((_, i) => i !== index);
     setFormData({
       ...formData,
-      children: updatedChildren,
+      test: updatedChildren,
     });
   };
 
@@ -293,7 +293,7 @@ const RegisterMember = () => {
             number: "",
           },
           spouseName: "",
-          children: [{ name: "", age: "", gender: "" }],
+          test: [{ name: "", age: "", gender: "" }],
           motherName: "",
           motherAge: "",
           fatherName: "",
@@ -426,7 +426,7 @@ const RegisterMember = () => {
                     }
                     placeholder="Enter custom division"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    required
+                    // required
                   />
                 )}
               </div>
@@ -462,7 +462,7 @@ const RegisterMember = () => {
                     }
                     placeholder="Enter custom branch"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    required
+                    // required
                   />
                 )}
               </div>
@@ -475,6 +475,7 @@ const RegisterMember = () => {
                     value={formData.unit}
                     onChange={handleChange}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    // required
                   >
                     <option value="">Select Unit</option>
                     <option value="dgm">DGM</option>
@@ -565,7 +566,7 @@ const RegisterMember = () => {
                   value={formData.epf}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  // required
+                  required
                 />
                 {epfMessage && (
                   <p
@@ -589,7 +590,7 @@ const RegisterMember = () => {
                   value={formData.welfareNo}
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                  // required
+                  required
                 />
               </div>
 
@@ -609,7 +610,7 @@ const RegisterMember = () => {
               {/* Children Section */}
               <div>
                 <h2 className="text-xl font-semibold">Children</h2>
-                {formData.children.map((child, index) => (
+                {formData.test.map((child, index) => (
                   <div key={index} className="border p-4 mb-4 space-y-2">
                     <div>
                       <label className="block">Child Name</label>
