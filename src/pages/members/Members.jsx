@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../pages/members/Members.css";
 import HorizontalCarousel from "../../components/HorizontalCarousel";
+import { Link } from "react-router-dom";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
@@ -99,8 +100,8 @@ const MembersTable = () => {
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full bg-white rounded-lg shadow-lg">
+        <div className="overflow-x-auto h-screen">
+          <table className="w-full bg-white rounded-lg h-screen shadow-lg">
             <thead className="bg-red-900 text-white">
               <tr>
                 {/* <th className="px-6 py-3 text-left text-sm font-semibold">
@@ -158,7 +159,7 @@ const MembersTable = () => {
                         <td className="border px-6 py-4">
                           <input
                             type="text"
-                            name="epf"
+                            // name="epf"
                             value={editedMember.epf}
                             onChange={handleInputChange}
                             className="w-full border-gray-300 rounded-md"
@@ -167,7 +168,7 @@ const MembersTable = () => {
                         <td className="border px-6 py-4">
                           <input
                             type="text"
-                            name="welfareNo"
+                            // name="welfareNo"
                             value={editedMember.welfareNo}
                             onChange={handleInputChange}
                             className="w-full border-gray-300 rounded-md"
@@ -176,7 +177,7 @@ const MembersTable = () => {
                         <td className="border px-6 py-4">
                           <input
                             type="text"
-                            name="name"
+                            // name="name"
                             value={editedMember.name}
                             onChange={handleInputChange}
                             className="w-full border-gray-300 rounded-md"
@@ -245,6 +246,7 @@ const MembersTable = () => {
                             className="w-full border-gray-300 rounded-md"
                           />
                         </td>
+
                         <td className="border px-6 py-4 flex justify-center space-x-2">
                           <button
                             onClick={() =>
@@ -299,6 +301,13 @@ const MembersTable = () => {
                           >
                             Delete
                           </button>
+                        </td>
+                        <td className="border px-6 py-4">
+                          <Link to={`/member/${member._id}`}>
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                              View Details
+                            </button>
+                          </Link>
                         </td>
                       </>
                     )}

@@ -6,7 +6,7 @@ const RegisterMember = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
+    // password: "",
     epf: "",
     dateOfJoined: "",
     dateOfBirth: "",
@@ -277,7 +277,7 @@ const RegisterMember = () => {
         setFormData({
           name: "",
           email: "",
-          password: "",
+          // password: "",
           epf: "",
           dateOfJoined: "",
           dateOfBirth: "",
@@ -312,7 +312,7 @@ const RegisterMember = () => {
     } catch (error) {
       console.error("Error creating member:", error);
       toast.error("Something went wrong");
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   };
 
@@ -776,7 +776,7 @@ const RegisterMember = () => {
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Password
                 </label>
@@ -787,7 +787,7 @@ const RegisterMember = () => {
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
-              </div>
+              </div> */}
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Date of registered
