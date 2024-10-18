@@ -77,7 +77,7 @@ const MembersTable = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
-      <HorizontalCarousel />
+      {/* <HorizontalCarousel /> */}
       <div className="bg-white p-8 shadow-md rounded-lg mx-4 my-8">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center space-x-2">
@@ -92,7 +92,7 @@ const MembersTable = () => {
             />
           </div>
           <button
-            className="bg-red-900 hover:bg-red-700 text-white font-semibold rounded-lg px-5 py-2.5 transition duration-300"
+            className="bg-red-900 hover:bg-red-700 text-yellow-200 text-3xl font-semibold rounded-lg px-60 py-2.5 transition duration-300"
             onClick={() => navigate("/registermember")}
           >
             Register a New Member

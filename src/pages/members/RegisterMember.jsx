@@ -312,6 +312,7 @@ const RegisterMember = () => {
     } catch (error) {
       console.error("Error creating member:", error);
       toast.error("Something went wrong");
+      window.location.reload(false);
     }
   };
 
