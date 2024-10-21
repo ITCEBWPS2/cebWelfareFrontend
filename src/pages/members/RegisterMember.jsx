@@ -361,20 +361,54 @@ const RegisterMember = () => {
                   // required
                 />
               </div>
+
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">Payroll</label>
                 {!customPayroll ? (
                   <select
                     value={formData.payroll}
                     name="payroll"
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      if (e.target.value === "custom") {
+                        setCustomPayroll(true); // Switch to input for custom payroll
+                      }
+                    }}
+                    onClick={(e) => {
+                      // Expand dropdown on click
+                      e.target.size = 5;
+                      // Collapse all other select dropdowns
+                      document.querySelectorAll("select").forEach((select) => {
+                        if (select !== e.target) select.size = 1;
+                      });
+                    }}
+                    onBlur={(e) => {
+                      // Collapse dropdown on blur
+                      e.target.size = 1;
+                    }}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    style={{ maxHeight: "10rem", overflowY: "auto" }}
                     required
                   >
                     <option value="">Select Payroll</option>
+                    <option value="WPS I">WPS I</option>
                     <option value="WPS II">WPS II</option>
                     <option value="SAB">SAB</option>
-                    <option value="AFMDD3">UVA</option>
+                    <option value="AFM">AFM</option>
+                    <option value="WPN">WPN</option>
+                    <option value="NWP 1">NWP 1</option>
+                    <option value="NWP 2">NWP 2</option>
+                    <option value="CP 1">CP 1</option>
+                    <option value="CP 2">CP 2</option>
+                    <option value="SP 1">SP 1</option>
+                    <option value="SP 2">SP 2</option>
+                    <option value="LAKVIJAYA">LAKVIJAYA</option>
+                    <option value="NCP">NCP</option>
+                    <option value="PAYROLL AM">PAYROLL AM</option>
+                    <option value="TRANSMISSION">TRANSMISSION</option>
+                    <option value="FM HQ">FM HQ</option>
+                    <option value="TCP">TCP</option>
+                    <option value="COLCITY">COLCITY</option>
                     <option value="custom">Custom Payroll</option>
                   </select>
                 ) : (
@@ -403,15 +437,32 @@ const RegisterMember = () => {
                   <select
                     name="division"
                     value={formData.division}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      if (e.target.value === "custom") {
+                        setCustomDivision(true); // Switch to input for custom division
+                      }
+                    }}
+                    onClick={(e) => {
+                      // Expand dropdown on click
+                      e.target.size = 5;
+                      // Collapse all other select dropdowns
+                      document.querySelectorAll("select").forEach((select) => {
+                        if (select !== e.target) select.size = 1;
+                      });
+                    }}
+                    onBlur={(e) => {
+                      // Collapse dropdown on blur
+                      e.target.size = 1;
+                    }}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    // required
+                    style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Division</option>
                     <option value="DD1">DD1</option>
                     <option value="DD2">DD2</option>
                     <option value="DD3">DD3</option>
-                    <option value="DD3">DD4</option>
+                    <option value="DD4">DD4</option>
                     <option value="custom">Custom Division</option>
                   </select>
                 ) : (
@@ -427,7 +478,6 @@ const RegisterMember = () => {
                     }
                     placeholder="Enter custom division"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    // required
                   />
                 )}
               </div>
@@ -438,9 +488,26 @@ const RegisterMember = () => {
                   <select
                     name="branch"
                     value={formData.branch}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      if (e.target.value === "custom") {
+                        setCustomBranch(true); // Switch to input for custom branch
+                      }
+                    }}
+                    onClick={(e) => {
+                      // Expand dropdown on click
+                      e.target.size = 5;
+                      // Collapse all other select dropdowns
+                      document.querySelectorAll("select").forEach((select) => {
+                        if (select !== e.target) select.size = 1;
+                      });
+                    }}
+                    onBlur={(e) => {
+                      // Collapse dropdown on blur
+                      e.target.size = 1;
+                    }}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    // required
+                    style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Branch</option>
                     <option value="agm">AGM</option>
@@ -463,7 +530,6 @@ const RegisterMember = () => {
                     }
                     placeholder="Enter custom branch"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    // required
                   />
                 )}
               </div>
@@ -474,9 +540,26 @@ const RegisterMember = () => {
                   <select
                     name="unit"
                     value={formData.unit}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      if (e.target.value === "custom") {
+                        setCustomUnit(true); // Switch to input for custom unit
+                      }
+                    }}
+                    onClick={(e) => {
+                      // Expand dropdown on click
+                      e.target.size = 5;
+                      // Collapse all other select dropdowns
+                      document.querySelectorAll("select").forEach((select) => {
+                        if (select !== e.target) select.size = 1;
+                      });
+                    }}
+                    onBlur={(e) => {
+                      // Collapse dropdown on blur
+                      e.target.size = 1;
+                    }}
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    // required
+                    style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Unit</option>
                     <option value="dgm">DGM</option>
@@ -503,13 +586,10 @@ const RegisterMember = () => {
                     }
                     placeholder="Enter custom unit"
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                    // required
                   />
                 )}
               </div>
-            </div>
-            {/* Second column */}
-            <div>
+
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Mobile number
@@ -558,7 +638,6 @@ const RegisterMember = () => {
                   </p>
                 )}
               </div>
-
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">EPF No</label>
                 <input
@@ -594,7 +673,9 @@ const RegisterMember = () => {
                   required
                 />
               </div>
-
+            </div>
+            {/* Second column */}
+            <div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Spouse name
@@ -635,7 +716,7 @@ const RegisterMember = () => {
                         // required
                       />
                     </div>
-                    <div>
+                    {/* <div>
                       <label className="block">Child Gender</label>
                       <input
                         type="text"
@@ -645,6 +726,19 @@ const RegisterMember = () => {
                         className="w-full p-2 border"
                         // required
                       />
+                    </div> */}
+                    <div>
+                      <label className="block">Child Gender</label>
+                      <select
+                        name="gender"
+                        value={child.gender}
+                        onChange={(e) => handleChildrenChange(e, index)}
+                        className="w-full p-2 border"
+                      >
+                        <option value="">Select Gender</option>
+                        <option value="Son">Son</option>
+                        <option value="Daughter">Daughter</option>
+                      </select>
                     </div>
                     <button
                       type="button"
@@ -664,7 +758,9 @@ const RegisterMember = () => {
                   Add Child
                 </button>
               </div>
-
+            </div>
+            {/* Column 3 */}
+            <div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Mother's Name
@@ -689,9 +785,6 @@ const RegisterMember = () => {
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
               </div>
-            </div>
-            {/* Column 3 */}
-            <div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Father's Name
@@ -815,16 +908,15 @@ const RegisterMember = () => {
                   required
                 />
               </div>
+              <div className="flex justify-center mt-6">
+                <button
+                  type="submit"
+                  className="bg-red-900 hover:bg-red-700 text-white font-medium text-3xl rounded-lg px-40 py-1.5"
+                >
+                  Register
+                </button>
+              </div>
             </div>
-          </div>
-
-          <div className="flex justify-center mt-6">
-            <button
-              type="submit"
-              className="bg-red-900 hover:bg-red-700 text-white font-medium rounded-lg px-5 py-2.5"
-            >
-              Register
-            </button>
           </div>
         </form>
       </div>
