@@ -403,6 +403,7 @@ const RegisterMember = () => {
                     <option value="CP 2">CP 2</option>
                     <option value="SP 1">SP 1</option>
                     <option value="SP 2">SP 2</option>
+                    <option value="TRANSMISSION">TRANSMISSION</option>
                     <option value="LAKVIJAYA">LAKVIJAYA</option>
                     <option value="NCP">NCP</option>
                     <option value="FM HQ">FM HQ</option>
