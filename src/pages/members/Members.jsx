@@ -19,7 +19,9 @@ const MembersTable = () => {
         );
         // Sorting members by name in ascending order
 
-        const sortedMembers = response.data.sort((a, b) => a.epf - b.epf);
+        const sortedMembers = response.data.sort(
+          (a, b) => a.welfareNo - b.welfareNo
+        );
 
         // const sortedMembers = response.data.sort((a, b) =>
         //   a.name.localeCompare(b.name)
