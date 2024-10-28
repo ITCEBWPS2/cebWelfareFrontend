@@ -404,8 +404,6 @@ const RegisterMember = () => {
                     <option value="SP 2">SP 2</option>
                     <option value="LAKVIJAYA">LAKVIJAYA</option>
                     <option value="NCP">NCP</option>
-                    <option value="PAYROLL AM">PAYROLL AM</option>
-                    <option value="TRANSMISSION">TRANSMISSION</option>
                     <option value="FM HQ">FM HQ</option>
                     <option value="TCP">TCP</option>
                     <option value="COLCITY">COLCITY</option>
@@ -463,6 +461,7 @@ const RegisterMember = () => {
                     <option value="DD2">DD2</option>
                     <option value="DD3">DD3</option>
                     <option value="DD4">DD4</option>
+                    <option value="TRANSMISSION">TRANSMISSION</option>
                     <option value="custom">Custom Division</option>
                   </select>
                 ) : (
@@ -510,11 +509,13 @@ const RegisterMember = () => {
                     style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Branch</option>
-                    <option value="agm">AGM</option>
-                    <option value="afm">AFM</option>
-                    <option value="c&c">C&C</option>
-                    <option value="phm">PHM</option>
-                    <option value="p&d">P&D</option>
+                    <option value="Avissawella">Avissawella</option>
+                    <option value="Homagama">Homagama</option>
+                    <option value="Horana">Horana</option>
+                    <option value="Bandaragama">Bandaragama</option>
+                    <option value="Sri Jayawardhanapura">
+                      Sri Jayawardhanapura
+                    </option>
                     <option value="custom">Other Branch</option>
                   </select>
                 ) : (
@@ -571,6 +572,10 @@ const RegisterMember = () => {
                     <option value="construction">Construction</option>
                     <option value="dm">DM</option>
                     <option value="it">IT</option>
+                    <option value="C&C">C&C</option>
+                    <option value="PHM">PHM</option>
+                    <option value="AGM">AGM</option>
+                    <option value="AFM">AFM</option>
                     <option value="custom">Other Unit</option>
                   </select>
                 ) : (

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const MemberDetails = () => {
+const ViewMember = () => {
   const { memberId } = useParams();
   const [member, setMember] = useState(null);
 
   useEffect(() => {
-    const fetchMemberDetails = async () => {
+    const fetchViewMember = async () => {
       try {
         const response = await axios.get(
           `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`
@@ -18,7 +18,7 @@ const MemberDetails = () => {
       }
     };
 
-    fetchMemberDetails();
+    fetchViewMember();
   }, [memberId]);
 
   if (!member) {
@@ -60,7 +60,7 @@ const MemberDetails = () => {
   );
 };
 
-export default MemberDetails;
+export default ViewMember;
 
 // import React, { useEffect, useState } from 'react';
 // import { useParams, useNavigate } from 'react-router-dom';
