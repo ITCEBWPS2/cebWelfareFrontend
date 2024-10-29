@@ -23,10 +23,10 @@
 //   AdminPanel,
 //   ViewUsers,
 // } from "./pages";
-// import MainLayout from "./components/MainLayout";
-// import LoanApplicationForm from "./components/LoanApplicationForm";
-// import ProfileCard from "./pages/members/ProfileCard";
-// import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
+// import MainLayout from "./components/MainLayout.jsx";
+// import LoanApplication from "./pages/members/LoanApplication.jsx";
+// import LoanApplicationForm from "./components/LoanApplicationForm.jsx";
+// import ProfileCard from "./pages/members/ProfileCard.jsx";
 
 // function App() {
 //   return (
@@ -34,93 +34,36 @@
 //       <Router>
 //         <Routes>
 //           {/* Set Login page as the default */}
-//           <Route path="/" element={<Navigate to="/login" />} />
-//           <Route path="/login" element={<Login />} />
-//           <Route path="/register" element={<Register />} />
+//           <Route path="/" element={<Login />} />
+//           {/* <Route path="/login" element={<Login />} /> */}
 
-//           {/* Protected Routes */}
-//           <Route element={<MainLayout />}>
-//             <Route
-//               path="/home"
-//               element={
-//                 <ProtectedRoute>
-//                   <Home />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/about"
-//               element={
-//                 <ProtectedRoute>
-//                   <About />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/benefits"
-//               element={
-//                 <ProtectedRoute>
-//                   <Benefits />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/contact"
-//               element={
-//                 <ProtectedRoute>
-//                   <Contact />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/loans"
-//               element={
-//                 <ProtectedRoute>
-//                   <Loans />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/registermember"
-//               element={
-//                 <ProtectedRoute>
-//                   <RegisterMember />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/members"
-//               element={
-//                 <ProtectedRoute>
-//                   <Members />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/viewmember"
-//               element={
-//                 <ProtectedRoute>
-//                   <ViewMember />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/loanapplicationform"
-//               element={
-//                 <ProtectedRoute>
-//                   <LoanApplicationForm />
-//                 </ProtectedRoute>
-//               }
-//             />
-//             <Route
-//               path="/profilecard"
-//               element={
-//                 <ProtectedRoute>
-//                   <ProfileCard />
-//                 </ProtectedRoute>
-//               }
-//             />
-//           </Route>
+//           <Route path="/relatives" element={<Relatives />} />
+//           <Route path="/admin" element={<AdminPanel />} />
+//           <Route path="/viewusers" element={<ViewUsers />} />
+//           <Route
+//             path="*"
+//             element={
+//               <MainLayout>
+//                 <Routes>
+//                   <Route path="/home" element={<Home />} />
+//                   <Route path="/about" element={<About />} />
+//                   <Route path="/benefits" element={<Benefits />} />
+//                   <Route path="/contact" element={<Contact />} />
+//                   <Route path="/loans" element={<Loans />} />
+//                   <Route path="/registermember" element={<RegisterMember />} />
+//                   <Route path="/members" element={<Members />} />
+//                   <Route path="/viewmember" element={<ViewMember />} />
+//                   <Route path="/member/:memberId" element={<ViewMember />} />
+
+//                   <Route
+//                     path="/loanapplicationform"
+//                     element={<LoanApplicationForm />}
+//                   />
+//                   <Route path="/profilecard" element={<ProfileCard />} />
+//                 </Routes>
+//               </MainLayout>
+//             }
+//           />
 //         </Routes>
 //       </Router>
 //     </div>
@@ -144,59 +87,50 @@ import {
   About,
   Loans,
   Login,
-  Register,
-  MemberBenefits,
-  MemberLoans,
-  Members,
   RegisterMember,
-  Relatives,
+  Members,
   ViewMember,
-  AdminPanel,
-  ViewUsers,
 } from "./pages";
-import MainLayout from "./components/MainLayout.jsx";
-import LoanApplication from "./pages/members/LoanApplication.jsx";
-import LoanApplicationForm from "./components/LoanApplicationForm.jsx";
-import ProfileCard from "./pages/members/ProfileCard.jsx";
+import MainLayout from "./components/MainLayout";
 
-function App() {
+const App = () => {
+  // A wrapper to handle redirection based on authentication
+  const PrivateRoute = ({ children }) => {
+    const isAuthenticated = localStorage.getItem("token"); // Check authentication status
+    //return isAuthenticated ? children : <Navigate to="/login" />;
+    return children;
+  };
+
   return (
-    <div className="appBackground">
-      <Router>
-        <Routes>
-          {/* Set Login page as the default */}
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
+    <Router>
+      <Routes>
+        {/* Route for login page without MainLayout */}
+        <Route path="/login" element={<Login />} />
 
-          <Route path="/relatives" element={<Relatives />} />
-          <Route path="/admin" element={<AdminPanel />} />
-          <Route path="/viewusers" element={<ViewUsers />} />
-          <Route
-            path="*"
-            element={
+        {/* Routes that use MainLayout for authenticated users */}
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
               <MainLayout>
                 <Routes>
-                  <Route path="/home" element={<Home />} />
+                  <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/benefits" element={<Benefits />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/registermember" element={<RegisterMember />} />
                   <Route path="/members" element={<Members />} />
+                  <Route path="/members/:memberId" element={<ViewMember />} />
                   <Route path="/viewmember" element={<ViewMember />} />
-                  <Route
-                    path="/loanapplicationform"
-                    element={<LoanApplicationForm />}
-                  />
-                  <Route path="/profilecard" element={<ProfileCard />} />
                 </Routes>
               </MainLayout>
-            }
-          />
-        </Routes>
-      </Router>
-    </div>
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
