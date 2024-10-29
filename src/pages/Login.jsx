@@ -26,14 +26,13 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "https://serverbackend-4wcf.onrender.com/api/members/auth",
-        {
-          epf: epfNo,
-          password,
-        }
+        // "https://serverbackend-4wcf.onrender.com/api/members/auth",
+        "http://localhost:5000/api/members/auth",
+        { epf: epfNo, password },
+        { withCredentials: true }
       );
 
-      localStorage.setItem("token", data.token); // Save token in localStorage
+      //localStorage.setItem("token", data.token); // Save token in localStorage
 
       console.log("User logged in successfully:", data);
       navigate("/"); // Redirect to the home page

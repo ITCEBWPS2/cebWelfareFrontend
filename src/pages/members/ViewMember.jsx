@@ -6,13 +6,18 @@ const ViewMember = () => {
   const { memberId } = useParams();
   const [member, setMember] = useState(null);
 
+  console.log(memberId);
+
   useEffect(() => {
     const fetchViewMember = async () => {
       try {
         const response = await axios.get(
-          `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`
+          `http://localhost:5000/api/members/${memberId}`
+
+          // `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`
         );
         setMember(response.data);
+        console.log("member data: ", response.data);
       } catch (error) {
         console.error("Error fetching member details:", error);
       }

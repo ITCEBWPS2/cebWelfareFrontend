@@ -97,7 +97,8 @@ const App = () => {
   // A wrapper to handle redirection based on authentication
   const PrivateRoute = ({ children }) => {
     const isAuthenticated = localStorage.getItem("token"); // Check authentication status
-    return isAuthenticated ? children : <Navigate to="/login" />;
+    //return isAuthenticated ? children : <Navigate to="/login" />;
+    return children;
   };
 
   return (
@@ -120,6 +121,7 @@ const App = () => {
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/registermember" element={<RegisterMember />} />
                   <Route path="/members" element={<Members />} />
+                  <Route path="/members/:memberId" element={<ViewMember />} />
                   <Route path="/viewmember" element={<ViewMember />} />
                 </Routes>
               </MainLayout>
