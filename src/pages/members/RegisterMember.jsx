@@ -598,6 +598,48 @@ const RegisterMember = () => {
               </div>
 
               <div className="mb-4">
+                <label className="block font-bold text-gray-950">Unit</label>
+                {!customUnit ? (
+                  <select
+                    name="unit"
+                    value={formData.unit}
+                    onChange={handleChange}
+                    className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    // required
+                  >
+                    <option value="">Select Unit</option>
+                    <option value="dgm">DGM</option>
+                    <option value="ce">CE</option>
+                    <option value="hr">HR</option>
+                    <option value="acc rev">Acc Rev</option>
+                    <option value="acc exp">Acc Exp</option>
+                    <option value="p&d">P&D</option>
+                    <option value="construction">Construction</option>
+                    <option value="dm">DM</option>
+                    <option value="it">IT</option>
+                    <option value="custom">Other Unit</option>
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    name="unit"
+                    value={formData.unit}
+                    onChange={(e) =>
+                      setFormData((prevData) => ({
+                        ...prevData,
+                        unit: e.target.value, // Update custom unit input
+                      }))
+                    }
+                    placeholder="Enter custom unit"
+                    className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                    // required
+                  />
+                )}
+              </div>
+            </div>
+            {/* Second column */}
+            <div>
+              <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Mobile number
                 </label>
@@ -723,6 +765,7 @@ const RegisterMember = () => {
                         // required
                       />
                     </div>
+
                     {/* <div>
                       <label className="block">Child Gender</label>
                       <input
@@ -792,6 +835,7 @@ const RegisterMember = () => {
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
               </div>
+
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Father's Name
