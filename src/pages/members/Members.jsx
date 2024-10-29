@@ -31,30 +31,30 @@ const MembersTable = () => {
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-
-    // Find the member that matches the search term in epf or welfareNo
-    const matchingMember = members.find(
-      (member) =>
-        (member.epf && member.epf.toString().includes(term)) ||
-        (member.welfareNo && member.welfareNo.toString().includes(term))
-    );
-
-    if (matchingMember) {
-      setHighlightedMemberId(matchingMember._id);
-    } else {
-      setHighlightedMemberId(null);
-    }
   };
 
+  // Filtered members list based on search term
+  const filteredMembers = members.filter(
+    (member) =>
+      member.epf?.toString().includes(searchTerm) ||
+      member.welfareNo?.toString().includes(searchTerm)
+  );
+
   useEffect(() => {
-    // Scroll to the highlighted member if found
-    if (highlightedMemberId && memberRefs.current[highlightedMemberId]) {
-      memberRefs.current[highlightedMemberId].scrollIntoView({
+    // Scroll to the first highlighted member if found
+    if (
+      filteredMembers.length > 0 &&
+      memberRefs.current[filteredMembers[0]._id]
+    ) {
+      setHighlightedMemberId(filteredMembers[0]._id);
+      memberRefs.current[filteredMembers[0]._id].scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
+    } else {
+      setHighlightedMemberId(null);
     }
-  }, [highlightedMemberId]);
+  }, [filteredMembers]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100">
@@ -115,7 +115,7 @@ const MembersTable = () => {
               </tr>
             </thead>
             <tbody>
-              {members.map((member, index) => (
+              {filteredMembers.map((member, index) => (
                 <tr
                   key={member._id}
                   ref={(el) => (memberRefs.current[member._id] = el)}
@@ -166,6 +166,175 @@ const MembersTable = () => {
 };
 
 export default MembersTable;
+
+//import React, { useEffect, useState, useRef } from "react";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import "../../pages/members/Members.css";
+// import { Link } from "react-router-dom";
+
+// const MembersTable = () => {
+//   const [members, setMembers] = useState([]);
+//   const [searchTerm, setSearchTerm] = useState("");
+//   const [highlightedMemberId, setHighlightedMemberId] = useState(null);
+//   const navigate = useNavigate();
+//   const memberRefs = useRef({});
+
+//   useEffect(() => {
+//     const fetchMembers = async () => {
+//       try {
+//         const response = await axios.get(
+//           "https://serverbackend-4wcf.onrender.com/api/members"
+//         );
+//         const sortedMembers = response.data.sort(
+//           (a, b) => a.welfareNo - b.welfareNo
+//         );
+//         setMembers(sortedMembers);
+//       } catch (error) {
+//         console.error("Error fetching members:", error);
+//       }
+//     };
+//     fetchMembers();
+//   }, []);
+
+//   const handleSearchChange = (e) => {
+//     const term = e.target.value;
+//     setSearchTerm(term);
+
+//     // Find the member that matches the search term in epf or welfareNo
+//     const matchingMember = members.find(
+//       (member) =>
+//         (member.epf && member.epf.toString().includes(term)) ||
+//         (member.welfareNo && member.welfareNo.toString().includes(term))
+//     );
+
+//     if (matchingMember) {
+//       setHighlightedMemberId(matchingMember._id);
+//     } else {
+//       setHighlightedMemberId(null);
+//     }
+//   };
+
+//   useEffect(() => {
+//     // Scroll to the highlighted member if found
+//     if (highlightedMemberId && memberRefs.current[highlightedMemberId]) {
+//       memberRefs.current[highlightedMemberId].scrollIntoView({
+//         behavior: "smooth",
+//         block: "center",
+//       });
+//     }
+//   }, [highlightedMemberId]);
+
+//   return (
+//     <div className="flex flex-col min-h-screen bg-gray-100">
+//       <div className="bg-white p-8 shadow-md rounded-lg mx-4 my-8">
+//         <div className="flex justify-between items-center mb-6">
+//           <div className="flex items-center space-x-2">
+//             <label htmlFor="search" className="text-gray-700 font-semibold">
+//               Search:
+//             </label>
+//             <input
+//               type="text"
+//               id="search"
+//               value={searchTerm}
+//               onChange={handleSearchChange}
+//               className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+//               placeholder="Search by EPF or Welfare No..."
+//             />
+//           </div>
+//           <button
+//             className="bg-red-900 hover:bg-red-700 text-yellow-200 text-3xl font-semibold rounded-lg px-60 py-2.5 transition duration-300"
+//             onClick={() => navigate("/registermember")}
+//           >
+//             Register a New Member
+//           </button>
+//         </div>
+
+//         <div className="overflow-x-auto h-screen">
+//           <table className="w-full bg-white rounded-lg h-screen shadow-lg">
+//             <thead className="bg-red-900 text-white">
+//               <tr>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   EPF no
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Welfare no
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Name
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Date of Birth
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Date of Registered
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Date of Joined
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Payroll
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Contact Number
+//                 </th>
+//                 <th className="px-6 py-3 text-left text-sm font-semibold">
+//                   Whatsapp Number
+//                 </th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {members.map((member, index) => (
+//                 <tr
+//                   key={member._id}
+//                   ref={(el) => (memberRefs.current[member._id] = el)}
+//                   className={`${
+//                     highlightedMemberId === member._id
+//                       ? "bg-yellow-200"
+//                       : index % 2 === 0
+//                       ? "bg-yellow-50"
+//                       : "bg-red-50"
+//                   }`}
+//                 >
+//                   <td className="border px-6 py-4">{member.epf}</td>
+//                   <td className="border px-6 py-4">{member.welfareNo}</td>
+//                   <td className="border px-6 py-4">{member.name}</td>
+//                   <td className="border px-6 py-4">{member.dateOfBirth}</td>
+//                   <td className="border px-6 py-4">
+//                     {member.dateOfRegistered}
+//                   </td>
+//                   <td className="border px-6 py-4">{member.dateOfJoined}</td>
+//                   <td className="border px-6 py-4">{member.payroll}</td>
+//                   <td className="border px-6 py-4">
+//                     {member.contactNo?.number || "N/A"}
+//                   </td>
+//                   <td className="border px-6 py-4">
+//                     {member.contactNo?.whatsappNo || "N/A"}
+//                   </td>
+//                   <td className="border px-6 py-4 flex justify-center space-x-2">
+//                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+//                       Edit
+//                     </button>
+//                     <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+//                       Delete
+//                     </button>
+//                     <Link to={`/member/${member._id}`}>
+//                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+//                         View Details
+//                       </button>
+//                     </Link>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MembersTable;
 
 // import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
