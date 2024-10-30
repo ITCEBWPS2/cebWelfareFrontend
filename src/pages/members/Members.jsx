@@ -29,18 +29,31 @@ const MembersTable = () => {
     }
   };
 
-  const handleDelete = async (memberId) => {
-    try {
-      await axios.delete(
-        `https://serverbackend-4wcf.onrender.com/api/users/${memberId}`
-      );
-      setMembers(members.filter((member) => member._id !== memberId)); // Remove deleted member from state
-      alert("Member deleted successfully.");
-    } catch (error) {
-      console.error("Error deleting member:", error);
-      alert("Failed to delete member.");
+  const deleteTask = async (memberId) => {
+    if (window.confirm("Are you sure you want to delete this member?")) {
+      try {
+        await axios.delete(
+          `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`
+        );
+        setMembers(members.filter((member) => member._id !== memberId));
+      } catch (error) {
+        console.error("Error deleting member:", error);
+      }
     }
   };
+
+  // const handleDelete = async (memberId) => {
+  //   try {
+  //     await axios.delete(
+  //       `https://serverbackend-4wcf.onrender.com/api/users/${memberId}`
+  //     );
+  //     setMembers(members.filter((member) => member._id !== memberId)); // Remove deleted member from state
+  //     alert("Member deleted successfully.");
+  //   } catch (error) {
+  //     console.error("Error deleting member:", error);
+  //     alert("Failed to delete member.");
+  //   }
+  // };
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -160,10 +173,10 @@ const MembersTable = () => {
                   <td className="border px-6 py-4 flex justify-center space-x-2">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                       Edit
-                    </button>
+                    </button>{" "}
                     <button
+                      onClick={() => deleteTask(member._id)}
                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => handleDelete(member._id)}
                     >
                       Delete
                     </button>
