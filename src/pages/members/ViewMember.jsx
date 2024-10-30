@@ -10,7 +10,9 @@ const ViewMember = () => {
     const fetchViewMember = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/members/${memberId}`
+          //`http://localhost:5000/api/members/${memberId}`
+
+          `https://ceb-welfare-backend.onrender.com/api/members/${memberId}`
 
           // `https://serverbackend-4wcf.onrender.com/api/members/${memberId}`
         );
