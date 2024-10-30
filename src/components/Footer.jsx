@@ -152,7 +152,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="container p-4 flex gap-x-9 justify-between items-center text-white">
+        <div className="py-4 flex gap-x-9 justify-between items-center text-white">
           <div className="space-x-2 p-4 grid rounded-3xl w-35 bg-red-900">
             <a
               href="https://www.powermin.gov.lk"

@@ -3,25 +3,23 @@ import "../../public/1681549012528.jpg";
 
 const slides = [
   {
-    image: "../../public/1681549012528.jpg",
+    image: "/1681549012528.jpg",
     text: "Welfare Society CEB (WPS II)",
-    // buttonText: 'READ FULL STORY',
-    // buttonLink: '/full-story-1'
   },
   {
-    image: "../../public/Poson.JPG",
+    image: "/Poson.JPG",
     text: "Poson poya day 2024",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-1",
   },
   {
-    image: "../../public/annual_meeting.JPG",
-    text: "ANNUAL MEETING",
+    image: "/annual_meeting.JPG",
+    text: "Annual Meeting",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
   },
   {
-    image: "../../public/blood.JPG",
+    image: "/blood.JPG",
     text: "Blood Donation",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
@@ -78,7 +76,7 @@ const HorizontalCarousel = () => {
         onClick={() =>
           setCurrent((current - 1 + slides.length) % slides.length)
         }
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 p-4 bg-gray-700 bg-opacity-50 hover:bg-opacity-75 text-white rounded-full"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +95,7 @@ const HorizontalCarousel = () => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 p-4 bg-gray-700 bg-opacity-50 hover:bg-opacity-75 text-white rounded-full"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

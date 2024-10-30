@@ -1,21 +1,22 @@
 import React from "react";
 import HorizontalCarousel from "../components/HorizontalCarousel";
+import LinesImage from "@/components/Lines";
 
 const Home = () => {
   return (
     <div>
       <HorizontalCarousel />
-      <div className="mx-auto px-4 py-8">
-        <div className="flex">
+      <div className="wrapper py-8">
+        <div className="flex flex-col gap-4 md:flex-row">
           {/* Left Sidebar */}
-          <div className="w-1/4 bg-red-200 p-4 shadow-lg">
+          <div className="bg-red-200 h-fit p-4 rounded-lg md:w-1/4">
             <div>
               <input
                 type="text"
                 placeholder="Search ..."
-                className="w-full border rounded-3xl px-4 py-2 mb-4"
+                className="w-full border rounded-3xl px-4 py-2 mb-6"
               />
-              <ul className="text-red-700 font-bold">
+              <ul className="text-red-700 font-medium text-sm">
                 <li>
                   The Blood Donation Camp was successfully completed on
                   31-10-2023 by the Welfare Association for the 54th Anniversary
@@ -29,24 +30,17 @@ const Home = () => {
               </ul>
             </div>
           </div>
+
           {/* Main Content */}
-          <div className="w-3/4 ml-4">
-            {/* Carousel */}
-            <div className="bg-red-900 p-4 rounded-2xl shadow-lg mb-4">
-              <img
-                src="../../../Cover photo.jpg"
-                alt="Banner 1"
-                className="w-full h-100 object-cover rounded mb-4"
-              />
-              <img
-                src="/banner2.jpg"
-                alt="Banner 2"
-                className="w-full h-64 object-cover rounded hidden"
-              />
-            </div>
+          <div className="md:w-3/4">
+            <img
+              src="../../../Cover photo.jpg"
+              alt="Banner 1"
+              className="w-full h-100 object-cover rounded-lg mb-4"
+            />
 
             {/* Article Section */}
-            <section className="bg-white p-4 shadow-lg">
+            <section className="bg-gray-100 p-4 rounded-lg">
               <h3 className="text-xl font-bold text-red-700">
                 Ceylon Electricity Board Welfare Society
               </h3>
