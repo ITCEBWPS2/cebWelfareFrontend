@@ -15,7 +15,8 @@ const MembersTable = () => {
     const fetchMembers = async () => {
       try {
         const response = await axios.get(
-          "https://serverbackend-4wcf.onrender.com/api/members"
+          "https://ceb-welfare-backend.onrender.com/api/members"
+          //"http://localhost:5000/api/members"
         );
         const sortedMembers = response.data.sort(
           (a, b) => a.welfareNo - b.welfareNo
