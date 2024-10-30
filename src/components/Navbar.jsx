@@ -15,12 +15,17 @@ const Navbar = () => {
 
   return (
     <nav className="bg-red-900 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <img src="/Picture2.jpg" alt="CEB Logo" className="h-12 w-12" />
-        <div className="text-yellow-300 text-lg font-semibold">
-          <Link to="/">Welfare Society CEB (WPS II)</Link>
+      <div className="wrapper-nav flex-between">
+        {/* Logo Section */}
+        <div className="flex-center gap-3">
+          <img src="/Picture2.jpg" alt="CEB Logo" className="h-12 w-12" />
+          <div className="text-yellow-300 text-lg font-semibold">
+            <Link to="/">Welfare Society CEB (WPS II)</Link>
+          </div>
         </div>
-        <div className="space-x-4">
+
+        {/* Navigation Links */}
+        <div className="space-x-6 font-medium">
           <Link to="/" className="text-white hover:text-yellow-300">
             Home
           </Link>
@@ -40,11 +45,8 @@ const Navbar = () => {
             Contact
           </Link>
           {/* Logout button */}
-          <button
-            onClick={handleLogout}
-            className="text-white hover:text-yellow-300"
-          >
-            Logout
+          <button onClick={handleLogout} className="button-yellow-outline">
+            Login
           </button>
         </div>
       </div>

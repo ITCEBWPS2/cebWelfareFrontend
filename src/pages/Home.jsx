@@ -1,14 +1,11 @@
-// import { Carousel } from 'bootstrap';
 import React from "react";
 import HorizontalCarousel from "../components/HorizontalCarousel";
 
-const Homepage = () => {
+const Home = () => {
   return (
-    // <div className=" justify-center items-center min-h-screen bg-yellow-50">
     <div>
       <HorizontalCarousel />
-      {/* <div className="bg-gray-100 font-sans min-h-screen"> */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="mx-auto px-4 py-8">
         <div className="flex">
           {/* Left Sidebar */}
           <div className="w-1/4 bg-red-200 p-4 shadow-lg">
@@ -66,4 +63,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Home;
