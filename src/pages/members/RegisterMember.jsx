@@ -597,7 +597,7 @@ const RegisterMember = () => {
                 )}
               </div>
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">Unit</label>
                 {!customUnit ? (
                   <select
@@ -635,7 +635,7 @@ const RegisterMember = () => {
                     // required
                   />
                 )}
-              </div>
+              </div> */}
             </div>
             {/* Second column */}
             <div>
