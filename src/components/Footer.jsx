@@ -5,14 +5,14 @@ const Footer = () => {
   return (
     <div>
       <div
-        className="relative bg-cover bg-center w-full min-h-[600px]" // Adjust min-h to increase height
+        className="wrapper-nav relative bg-cover bg-center w-full min-h-[600px]" // Adjust min-h to increase height
         style={{
           backgroundImage: 'url("/footer.jpg")',
           backgroundRepeat: "no-repeat",
         }}
       >
         {/* Text content overlay */}
-        <div className="container mx-auto py-12 text-black">
+        <div className="py-12 text-black">
           <div className="flex flex-cols-1 sm:flex-cols-2 md:flex-cols-3 lg:flex-cols-4 gap-6">
             {/* Corporate Profile */}
             {/* <div>
