@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-red-900 py-4">
-      <div className="wrapper-nav flex-between">
+      <div className="wrapper flex-between">
         {/* Logo Section */}
         <Link to="/">
           <div className="flex-center gap-2">

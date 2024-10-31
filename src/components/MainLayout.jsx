@@ -1,14 +1,14 @@
 // src/components/MainLayout.jsx
 import React from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import BottomBar from "./BottomBar";
 
 const MainLayout = ({ children }) => {
   return (
     <div>
       <Navbar />
       {children}
-      <Footer />
+      <BottomBar />
     </div>
   );
 };
