@@ -15,8 +15,8 @@ const Home = () => {
             <img className="max-w-full rounded-lg" src={cover} alt="CEB" />
           </div>
           <div className="flex-1">
-            <h2 className="text-4xl font-extrabold text-primary mb-4 md:text-5xl md:mb-8">
-              ABOUT.
+            <h2 className="font-header text-4xl font-extrabold text-primary mb-4 md:text-5xl">
+              About
             </h2>
             <p className="text-base text-justify">
               Welcome to our organization! We are committed to providing the
