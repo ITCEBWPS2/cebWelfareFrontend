@@ -42,14 +42,14 @@ const HorizontalCarousel = () => {
   }, [current]);
 
   return (
-    <div className="relative min-h-96 w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map((slide, index) => (
           <div key={index} className="flex-shrink-0 w-full relative">
-            <div className="absolute h-96 inset-0 bg-black bg-opacity-50">
+            <div className="absolute h-screen inset-0 bg-black bg-opacity-50">
               <img
                 src={slide.image}
                 alt={slide.text}
