@@ -1,11 +1,12 @@
 import React from "react";
 import HorizontalCarousel from "../components/HorizontalCarousel";
 import LinesImage from "@/components/Lines";
+import MainCarousel from "@/components/MainCarousel";
 
 const Home = () => {
   return (
     <div>
-      <HorizontalCarousel />
+      <MainCarousel />
       <div className="wrapper py-8">
         <div className="flex flex-col gap-4 md:flex-row">
           {/* Left Sidebar */}

@@ -5,29 +5,29 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     image: "/1681549012528.jpg",
-    text: "Welfare Society CEB (WPS II)",
+    text: "WELOCME TO WELFARE SOCIETY CEB (WPS II)",
   },
   {
     image: "/Poson.JPG",
-    text: "Poson poya day 2024",
+    text: "POSON POYA DAY 2024",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-1",
   },
   {
     image: "/annual_meeting.JPG",
-    text: "Annual Meeting",
+    text: "ANNUAL MEETING",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
   },
   {
     image: "/blood.JPG",
-    text: "Blood Donation",
+    text: "BLOOD DONATION",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
   },
 ];
 
-const HorizontalCarousel = () => {
+const MainCarousel = () => {
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => {
@@ -56,18 +56,18 @@ const HorizontalCarousel = () => {
                 alt={slide.text}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-red-900 to-transparent opacity-100"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-70"></div>
               <div
                 key={current}
-                className="absolute inset-0 flex flex-col justify-center items-center text-center text-white font-extrabold"
+                className="wrapper-header absolute inset-0 flex flex-col justify-center items-center text-center text-white font-extrabold"
               >
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
+                <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in">
                   {slide.text}
                 </h1>
                 {slide.buttonText && (
                   <a
                     href={slide.buttonLink}
-                    className="bg-white text-black py-2 px-4 rounded-lg shadow-lg animate-fade-in-delay"
+                    className="bg-yellow-300 text-black py-2 px-4 rounded-lg shadow-lg animate-fade-in-delay"
                   >
                     {slide.buttonText}
                   </a>
@@ -81,13 +81,13 @@ const HorizontalCarousel = () => {
         onClick={() =>
           setCurrent((current - 1 + slides.length) % slides.length)
         }
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full hidden md:block"
       >
         <ChevronLeft />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full hidden md:block"
       >
         <ChevronRight />
       </button>
@@ -95,4 +95,4 @@ const HorizontalCarousel = () => {
   );
 };
 
-export default HorizontalCarousel;
+export default MainCarousel;
