@@ -18,7 +18,7 @@
   }
 
   .wrapper-header {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
   }
 
   .flex-center {
