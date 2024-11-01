@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../public/1681549012528.jpg";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { annual_meeting, boold_donation, main_header_1 } from "@/assets";
+import { annual_meeting, blood_donation, main_header_1 } from "@/assets";
 
 const slides = [
   {
@@ -16,15 +16,15 @@ const slides = [
     subText:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius.",
     buttonText: "READ FULL STORY",
-    buttonLink: "/full-story-2",
+    buttonLink: "#news",
   },
   {
-    image: boold_donation,
+    image: blood_donation,
     text: "BLOOD DONATION",
     subText:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius.",
     buttonText: "READ FULL STORY",
-    buttonLink: "/full-story-2",
+    buttonLink: "#news",
   },
   {
     image: main_header_1,

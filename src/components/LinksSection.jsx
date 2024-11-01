@@ -9,7 +9,9 @@ const Card = ({ image, text, link }) => {
           <div className="w-8 flex-shrink-0">
             <img src={image} alt={text} className="w-full h-full object-fill" />
           </div>
-          <p className="text-base text-white font-semibold">{text}</p>
+          <p className="font-header text-base text-white font-semibold">
+            {text}
+          </p>
         </div>
       </Link>
     </>
@@ -36,9 +38,9 @@ const LinksSection = () => {
   ];
 
   return (
-    <div className="bg-white py-12 flex items-center justify-center">
+    <div className="bg-gray-100 mt-14 py-12 flex items-center justify-center">
       <div className="wrapper">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-14">
           {cardData.map((card, index) => (
             <Card
               key={index}
