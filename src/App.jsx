@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Home,
@@ -13,8 +13,18 @@ import {
   ViewMember,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const App = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 100,
+    });
+  }, []);
+
   // A wrapper to handle redirection based on authentication
   const PrivateRoute = ({ children }) => {
     const isAuthenticated = localStorage.getItem("token"); // Check authentication status

@@ -11,10 +11,13 @@ const Home = () => {
       <MainCarousel />
       <div className="wrapper">
         <section className="flex flex-col md:flex-row items-center justify-between bg-soft-green rounded-xl gap-8 py-14 md:py-20 md:gap-28">
-          <div className="flex-1 flex justify-center items-center">
+          <div
+            className="flex-1 flex justify-center items-center"
+            data-aos="slide-in"
+          >
             <img className="max-w-full rounded-lg" src={cover} alt="CEB" />
           </div>
-          <div className="flex-1">
+          <div className="flex-1" data-aos="slide-in">
             <h2 className="font-header text-4xl font-extrabold text-primary mb-4 md:text-5xl">
               About
             </h2>

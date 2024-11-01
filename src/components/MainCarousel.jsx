@@ -72,7 +72,7 @@ const MainCarousel = () => {
                   {slide.text}
                 </h1>
                 {slide.subText && (
-                  <p className="text-lg md:text-xl font-light mb-4 animate-fade-in-delay">
+                  <p className="text-lg md:text-xl font-normal mb-4 animate-fade-in-delay">
                     {slide.subText}
                   </p>
                 )}
@@ -104,6 +104,12 @@ const MainCarousel = () => {
       >
         <ChevronRight />
       </button>
+
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+        <div className="flex flex-center w-6 h-10 border-2 border-white rounded-full relative animate-bounce">
+          <div className="w-2 h-2 bg-white rounded-full absolute top-2 animate-move-up-down"></div>
+        </div>
+      </div>
     </div>
   );
 };
