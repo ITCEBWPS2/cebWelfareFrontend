@@ -4,7 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const BottomBar = () => {
   return (
-    <div className="mt-4">
+    <div className="">
       <div className="bg-red-900 text-white py-8 w-full">
         <div className="wrapper flex justify-between items-center space-y-4 flex-col md:flex-row md:space-y-0">
           <div className="flex-1">
