@@ -11,8 +11,8 @@ export default {
       },
       colors: {},
       fontFamily: {
-        body: ["Open Sans", "sans-serif"],
-        header: ["DM Sans", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+        heading: ["DM Sans", "sans-serif"],
       },
       keyframes: {
         "fade-in": {

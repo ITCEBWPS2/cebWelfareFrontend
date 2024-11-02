@@ -68,7 +68,7 @@ const MainCarousel = () => {
                 key={current}
                 className="wrapper-header absolute inset-0 flex flex-col justify-center items-center text-center text-white"
               >
-                <h1 className="font-header text-5xl font-extrabold mb-4 animate-fade-in md:text-7xl">
+                <h1 className="font-heading text-5xl font-extrabold mb-4 animate-fade-in md:text-7xl">
                   {slide.text}
                 </h1>
                 {slide.subText && (
@@ -94,13 +94,13 @@ const MainCarousel = () => {
         onClick={() =>
           setCurrent((current - 1 + slides.length) % slides.length)
         }
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full hidden md:block"
+        className="absolute left-8 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full hidden md:block"
       >
         <ChevronLeft />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full hidden md:block"
+        className="absolute right-8 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full hidden md:block"
       >
         <ChevronRight />
       </button>

@@ -25,10 +25,8 @@ const NewsCard = ({ image, title, description }) => {
               className="w-full h-full object-cover transition-transform duration-300 hover:scale-110 "
             />
           </div>
-          <h3 className="font-header text-2xl font-bold mb-3">{title}</h3>
-          <p className="text-sm text-justify text-secondary">
-            {truncatedDescription}
-          </p>
+          <h3 className="font-heading text-2xl font-bold mb-3">{title}</h3>
+          <p className="text-sm">{truncatedDescription}</p>
         </DialogTrigger>
         <DialogContent className="w-2xl max-w-2xl bg-white border-none">
           <div className="flex flex-col gap-5 text-left">
@@ -39,8 +37,8 @@ const NewsCard = ({ image, title, description }) => {
                 className="w-full h-full object-cover rounded-md"
               />
             </div>
-            <h3 className="font-header text-2xl font-bold">{title}</h3>
-            <p className="text-sm text-justify">{description}</p>
+            <h3 className="font-heading text-2xl font-bold">{title}</h3>
+            <p className="text-sm">{description}</p>
           </div>
         </DialogContent>
       </Dialog>
@@ -68,28 +66,10 @@ const NewsSection = () => {
       description:
         "The NEIC is organizing various initiatives to disseminate environmental information and knowledge to local and overseas users. These include user awareness programs, exhibitions, reading month and literacy month programs, and storytelling sessions for children. Additionally, the NEIC provides numerous current awareness news. It has developed into a fully automated library, ensuring the dissemination and preservation of environmental information for future generations. By participating in these programs, users can enhance their understanding of environmental issues and contribute to global sustainability efforts. The NEIC’s commitment to education and automation makes it a vital resource for environmental knowledge.",
     },
-    {
-      image: annual_meeting,
-      title: "Development of environmental libraries",
-      description:
-        "The NEIC is actively involved in the development of school libraries. It has established 36 environmental libraries across all districts island-wide. Additionally, a program is underway to create environmental libraries for all provincial and district offices of the CEA, with libraries already established in Kandy, Galle, Kilinochchi, Gampaha, and Ampara. These efforts aim to enhance access to environmental information and resources for students and professionals alike. By fostering educational opportunities and promoting environmental awareness, NEIC's initiatives play a crucial role in building a more informed and environmentally conscious society. These libraries are essential resources for nurturing a sustainable future.",
-    },
-    {
-      image: annual_meeting,
-      title: "Providing EIA/IEE Report purchase news",
-      description:
-        "The NEIC collects and maintains Environmental Impact Assessment (EIA) and Initial Environmental Examination (IEE) reports for its users, including those in construction, research, and consulting fields. These reports are essential for meeting various informational needs. The NEIC also offers a digitized EIA and IEE collection through the CEA E-Repository(http://cea.nsf.ac.lk/), accessible to everyone via online searches. Additionally, users can obtain this EIA and IEE reports as soft copies through online payment, and the NEIC provides facilities for purchasing these reports. By offering comprehensive access and purchasing options, the NEIC ensures that vital environmental information is readily available to support informed decision-making and research.",
-    },
-    {
-      image: annual_meeting,
-      title: "Photocopy service",
-      description:
-        "The NEIC offers photocopying and scanning facilities to its users, aiding them in making notes and collecting information for their studies. These news are invaluable for students and researchers who need to access and reproduce important documents. Additionally, CEA customers can utilize the library’s photocopying news after paying the applicable charges. For distance learners, NEIC provides scanning news via email and WhatsApp, ensuring that even remote users have access to necessary materials. By offering these comprehensive and convenient news, the NEIC supports users in effectively gathering and managing information crucial for their academic and professional pursuits.",
-    },
   ];
   return (
     <div id="news" className="py-7 md:py-14">
-      <h1 className="font-header font-bold text-center mb-12 text-4xl md:text-6xl md:text-left">
+      <h1 className="font-heading font-bold text-center mb-12 text-4xl md:text-6xl md:text-left">
         Latest Events
       </h1>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-14">

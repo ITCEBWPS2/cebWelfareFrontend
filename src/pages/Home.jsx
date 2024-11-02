@@ -5,6 +5,7 @@ import MainCarousel from "@/components/MainCarousel";
 import LinksSection from "@/components/LinksSection";
 import { cover } from "@/assets";
 import NewsSection from "@/components/NewsSection";
+import Benefits from "@/components/Benefits";
 
 const Home = () => {
   return (
@@ -19,10 +20,10 @@ const Home = () => {
             <img className="max-w-full rounded-lg" src={cover} alt="CEB" />
           </div>
           <div className="flex-1" data-aos="slide-in">
-            <h2 className="hidden font-header text-4xl font-bold text-center mb-4 md:text-6xl md:mb-8 md:text-left md:block">
+            <h2 className="hidden font-heading text-4xl font-bold text-center mb-4 md:text-6xl md:mb-8 md:text-left md:block">
               About
             </h2>
-            <p className="text-base text-justify">
+            <p className="text-base">
               Welcome to our organization! We are committed to providing the
               best services to our members. Our mission is to support and
               enhance the well-being of our community through various programs
@@ -35,6 +36,7 @@ const Home = () => {
         </section>
 
         <NewsSection />
+        <Benefits />
       </div>
       <LinksSection />
     </div>
