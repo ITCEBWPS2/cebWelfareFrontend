@@ -50,8 +50,8 @@ const Benefits = () => {
   }, [current]);
 
   return (
-    <section className="mt-14 min-h-[30rem]">
-      <h1 className="main-heading">Benefits</h1>
+    <section id="benefits" className="my-14 min-h-[30rem]">
+      <h2 className="main-heading">Benefits</h2>
       <div className="relative h-[30rem] w-full overflow-hidden rounded-lg">
         <div
           className="flex transition-transform duration-500 h-full"

@@ -6,13 +6,17 @@ import LinksSection from "@/components/LinksSection";
 import { cover } from "@/assets";
 import NewsSection from "@/components/NewsSection";
 import Benefits from "@/components/Benefits";
+import Contact from "@/components/Contact";
 
 const Home = () => {
   return (
     <div>
       <MainCarousel />
       <div className="wrapper">
-        <section className="mt-14 flex flex-col md:flex-row items-center justify-between bg-soft-green rounded-xl gap-8 py-7 md:py-14 md:gap-28">
+        <section
+          id="about"
+          className="mt-14 flex flex-col md:flex-row items-center justify-between bg-soft-green rounded-xl gap-8 py-7 md:py-14 md:gap-28"
+        >
           <div
             className="flex-1 flex justify-center items-center"
             data-aos="slide-in"
@@ -37,6 +41,7 @@ const Home = () => {
 
         <NewsSection />
         <Benefits />
+        <Contact />
       </div>
       <LinksSection />
     </div>

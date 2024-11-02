@@ -60,21 +60,21 @@ const Navbar = () => {
             <Link to="/" className="text-white hover:text-yellow-300">
               Home
             </Link>
-            <Link to="/members" className="text-white hover:text-yellow-300">
-              Members
-            </Link>
-            <Link to="/Benefits" className="text-white hover:text-yellow-300">
-              Benefits
-            </Link>
-            <Link to="/loans" className="text-white hover:text-yellow-300">
-              Loans
-            </Link>
-            <Link to="/about" className="text-white hover:text-yellow-300">
+            <a href="#about" className="text-white hover:text-yellow-300">
               About
-            </Link>
-            <Link to="/contact" className="text-white hover:text-yellow-300">
+            </a>
+            <a href="#news" className="text-white hover:text-yellow-300">
+              Events
+            </a>
+            <a href="/members" className="text-white hover:text-yellow-300">
+              Members
+            </a>
+            <a href="#benefits" className="text-white hover:text-yellow-300">
+              Benefits
+            </a>
+            <a href="#contact" className="text-white hover:text-yellow-300">
               Contact
-            </Link>
+            </a>
             {/* Logout button */}
             <button onClick={handleLogout} className="button-yellow-outline">
               Login
@@ -112,36 +112,30 @@ const Navbar = () => {
                   <Link to="/" className="text-white hover:text-yellow-300">
                     Home
                   </Link>
-                  <Link
-                    to="/members"
+                  <a to="#about" className="text-white hover:text-yellow-300">
+                    About
+                  </a>
+                  <a href="#news" className="text-white hover:text-yellow-300">
+                    Events
+                  </a>
+                  <a
+                    href="/members"
                     className="text-white hover:text-yellow-300"
                   >
                     Members
-                  </Link>
-                  <Link
-                    to="/Benefits"
+                  </a>
+                  <a
+                    href="#benefits"
                     className="text-white hover:text-yellow-300"
                   >
                     Benefits
-                  </Link>
-                  <Link
-                    to="/loans"
-                    className="text-white hover:text-yellow-300"
-                  >
-                    Loans
-                  </Link>
-                  <Link
-                    to="/about"
-                    className="text-white hover:text-yellow-300"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to="/contact"
+                  </a>
+                  <a
+                    href="#contact"
                     className="text-white hover:text-yellow-300"
                   >
                     Contact
-                  </Link>
+                  </a>
                   {/* Logout button */}
                   <button
                     onClick={handleLogout}
