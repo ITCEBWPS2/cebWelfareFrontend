@@ -121,8 +121,11 @@ const App = () => {
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/registermember" element={<RegisterMember />} />
                   <Route path="/members" element={<Members />} />
-                  <Route path="/members/:memberId" element={<ViewMember />} />
-                  <Route path="/viewmember" element={<ViewMember />} />
+                  <Route
+                    path="/viewmember/:memberId"
+                    element={<ViewMember />}
+                  />
+                  {/* <Route path="/viewmember" element={<ViewMember />} /> */}
                 </Routes>
               </MainLayout>
             </PrivateRoute>
