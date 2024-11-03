@@ -73,7 +73,7 @@ const MembersTable = () => {
         alert("Member deleted successfully.");
       } catch (error) {
         console.error("Error deleting member:", error);
-        alert("Failed to delete member.");
+        alert("Failed to delete member!!!");
       }
     }
   };
