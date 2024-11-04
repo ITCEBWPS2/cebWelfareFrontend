@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../../public/1681549012528.jpg";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { annual_meeting, blood_donation, main_header_1 } from "@/assets";
 
