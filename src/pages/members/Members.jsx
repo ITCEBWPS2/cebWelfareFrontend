@@ -18,10 +18,10 @@ const MembersTable = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await axios.get(
-        "https://cebwps2welfare.netlify.app/api/members"
-      );
-      // const response = await axios.get("http://localhost:5000/api/members");
+      // const response = await axios.get(
+      //   "https://cebwps2welfare.netlify.app/api/members"
+      // );
+      const response = await axios.get("http://localhost:5000/api/members");
       const sortedMembers = response.data.sort(
         (a, b) => a.welfareNo - b.welfareNo
       );
@@ -39,8 +39,8 @@ const MembersTable = () => {
   const handleSaveClick = async (memberId) => {
     try {
       await axios.put(
-        `https://cebwps2welfare.netlify.app/api/members/${memberId}`,
-        // `http://localhost:5000/api/members/${memberId}`,
+        // `https://cebwps2welfare.netlify.app/api/members/${memberId}`,
+        `http://localhost:5000/api/members/${memberId}`,
 
         editedMember
       );
@@ -50,7 +50,7 @@ const MembersTable = () => {
         )
       );
       setEditingMemberId(null);
-      alert("Member details updated successfully.");
+      alert("Member details updated successfully !");
     } catch (error) {
       console.error("Error updating member:", error);
       alert("Failed to update member details.");
@@ -63,12 +63,12 @@ const MembersTable = () => {
   };
 
   const handleDelete = async (memberId) => {
-    if (window.confirm("Are you sure you want to delete this member?")) {
+    if (window.confirm("Are you sure you want to delete this member ?")) {
       try {
-        await axios.delete(
-          `https://cebwps2welfare.netlify.app/api/members/${memberId}`
-        );
-        // await axios.delete(`http://localhost:5000/api/members/${memberId}`);
+        // await axios.delete(
+        //   `https://cebwps2welfare.netlify.app/api/members/${memberId}`
+        // );
+        await axios.delete(`http://localhost:5000/api/members/${memberId}`);
         setMembers(members.filter((member) => member._id !== memberId));
         alert("Member deleted successfully.");
       } catch (error) {

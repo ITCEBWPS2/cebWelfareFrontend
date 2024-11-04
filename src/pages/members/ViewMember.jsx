@@ -14,8 +14,8 @@ const ViewMember = () => {
     const fetchViewMember = async () => {
       try {
         const response = await axios.get(
-          // `http://localhost:5000/api/members/${memberId}`
-          `https://cebwps2welfare.netlify.app/api/members/${memberId}`
+          `http://localhost:5000/api/members/${memberId}`
+          // `https://cebwps2welfare.netlify.app/api/members/${memberId}`
         );
         setMember(response.data);
       } catch (error) {
