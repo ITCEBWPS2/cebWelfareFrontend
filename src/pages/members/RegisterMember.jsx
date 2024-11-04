@@ -392,23 +392,44 @@ const RegisterMember = () => {
                     required
                   >
                     <option value="">Select Payroll</option>
-                    <option value="WPS I">WPS I</option>
-                    <option value="WPS II">WPS II</option>
-                    <option value="SAB">SAB</option>
+                    <option value="Western Province South I">
+                      Western Province South I
+                    </option>
+                    <option value="Western Province South II">
+                      Western Province South II
+                    </option>
+                    <option value="Sabaragamuwa Province">
+                      Sabaragamuwa Province
+                    </option>
                     <option value="AFM">AFM</option>
                     <option value="WPN">WPN</option>
-                    <option value="NWP 1">NWP 1</option>
-                    <option value="NWP 2">NWP 2</option>
-                    <option value="CP 1">CP 1</option>
-                    <option value="CP 2">CP 2</option>
-                    <option value="SP 1">SP 1</option>
-                    <option value="SP 2">SP 2</option>
+                    <option value="North Western Province 1">
+                      North Western Province 1
+                    </option>
+                    <option value="North Western Province 2">
+                      North Western Province 2
+                    </option>
+                    <option value="Central Province 1">
+                      Central Province 1
+                    </option>
+                    <option value="Central Province 2">
+                      Central Province 2
+                    </option>
+                    <option value="Southern Province 1">
+                      Southern Province 1
+                    </option>
+                    <option value="Southern Province 2">
+                      Southern Province 2
+                    </option>
                     <option value="TRANSMISSION">TRANSMISSION</option>
                     <option value="LAKVIJAYA">LAKVIJAYA</option>
-                    <option value="NCP">NCP</option>
-                    <option value="FM HQ">FM HQ</option>
-                    <option value="TCP">TCP</option>
-                    <option value="COLCITY">COLCITY</option>
+                    <option value="North Central Province">
+                      North Central Province
+                    </option>
+                    <option value="Finance Management Head Quarters">
+                      Finance Management Head Quarters
+                    </option>
+                    <option value="COLOMBO CITY">COLOMBO CITY</option>
                     <option value="custom">Custom Payroll</option>
                   </select>
                 ) : (
@@ -459,11 +480,20 @@ const RegisterMember = () => {
                     style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Division</option>
-                    <option value="DD1">DD1</option>
-                    <option value="DD2">DD2</option>
-                    <option value="DD3">DD3</option>
-                    <option value="DD4">DD4</option>
+                    <option value="Distribution Division (Region 1)">
+                      Distribution Division (Region 1)
+                    </option>
+                    <option value="Distribution Division (Region 2)">
+                      Distribution Division (Region 2)
+                    </option>
+                    <option value="Distribution Division (Region 3)">
+                      Distribution Division (Region 3)
+                    </option>
+                    <option value="Distribution Division (Region 4)">
+                      Distribution Division (Region 4)
+                    </option>
                     <option value="TRANSMISSION">TRANSMISSION</option>
+                    <option value="GENERATION">GENERATION</option>
                     <option value="custom">Custom Division</option>
                   </select>
                 ) : (
@@ -565,19 +595,35 @@ const RegisterMember = () => {
                     style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Unit</option>
-                    <option value="dgm">DGM</option>
-                    <option value="ce">CE</option>
-                    <option value="hr">HR</option>
-                    <option value="acc rev">Acc Rev</option>
-                    <option value="acc exp">Acc Exp</option>
-                    <option value="p&d">P&D</option>
+                    <option value="DGM's office">DGM's OFFICE</option>
+                    <option value="Chief Engineer">Chief Engineer</option>
+                    <option value="Human Resource">Human Resource</option>
+                    <option value="Account Revenue">Account Revenue</option>
+                    <option value="Account Expenditure">
+                      Account Expenditure
+                    </option>
+                    <option value="Planning & Development">
+                      Planning & Development
+                    </option>
                     <option value="construction">Construction</option>
-                    <option value="dm">DM</option>
+                    <option value="Distribution Maintenance">
+                      Distribution Maintenance
+                    </option>
                     <option value="it">IT</option>
-                    <option value="C&C">C&C</option>
-                    <option value="PHM">PHM</option>
-                    <option value="AGM">AGM</option>
-                    <option value="AFM">AFM</option>
+                    <option value="Commarcial & Corporate ">
+                      Commarcial & Corporate{" "}
+                    </option>
+                    <option value="Project & Heavy Maintenance">
+                      Project & Heavy Maintenance
+                    </option>
+                    <option value="Additional General Manager">
+                      Additional General Manager
+                    </option>
+                    <option value="Additional Finance Manager">
+                      Additional Finance Manager
+                    </option>
+                    <option value="Finance">Finance</option>
+                    <option value="Meter Testing Lab">Meter Testing Lab</option>
                     <option value="custom">Other Unit</option>
                   </select>
                 ) : (
