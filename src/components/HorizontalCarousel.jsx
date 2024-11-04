@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
-import "../../public/1681549012528.jpg";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import "../../public/1681549012528.webp";
 
 const slides = [
   {
-    image: "/1681549012528.jpg",
+    image: "../../public/1681549012528.webp",
     text: "Welfare Society CEB (WPS II)",
+    // buttonText: 'READ FULL STORY',
+    // buttonLink: '/full-story-1'
   },
   {
-    image: "/Poson.JPG",
+    image: "../../public/Poson.webp",
     text: "Poson poya day 2024",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-1",
   },
   {
-    image: "/annual_meeting.JPG",
-    text: "Annual Meeting",
+    image: "../../public/annual_meeting.webp",
+    text: "ANNUAL MEETING",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
   },
   {
-    image: "/blood.JPG",
+    image: "../../public/blood.webp",
     text: "Blood Donation",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
@@ -43,7 +44,7 @@ const HorizontalCarousel = () => {
   }, [current]);
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-96 w-full overflow-hidden">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${current * 100}%)` }}
@@ -51,23 +52,20 @@ const HorizontalCarousel = () => {
         {slides.map((slide, index) => (
           <div key={index} className="flex-shrink-0 w-full relative">
             <div className="absolute h-screen inset-0 bg-black bg-opacity-50">
+            <div className="absolute h-60 inset-0 bg-black bg-opacity-50">
               <img
                 src={slide.image}
                 alt={slide.text}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-red-900 to-transparent opacity-100"></div>
-              <div
-                key={current}
-                className="absolute inset-0 flex flex-col justify-center items-center text-center text-white font-extrabold"
-              >
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
+              <div className="absolute inset-0 flex flex-col justify-center items-center text-balance text-white font-extrabold">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">
                   {slide.text}
                 </h1>
                 {slide.buttonText && (
                   <a
                     href={slide.buttonLink}
-                    className="bg-white text-black py-2 px-4 rounded-lg shadow-lg animate-fade-in-delay"
+                    className="bg-white text-black py-2 px-4 rounded-lg shadow-lg"
                   >
                     {slide.buttonText}
                   </a>
@@ -81,18 +79,121 @@ const HorizontalCarousel = () => {
         onClick={() =>
           setCurrent((current - 1 + slides.length) % slides.length)
         }
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full"
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 p-4 bg-gray-700 bg-opacity-50 hover:bg-opacity-75 text-white rounded-full"
       >
-        <ChevronLeft />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-white bg-opacity-25 hover:bg-opacity-35 text-white rounded-full"
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 p-4 bg-gray-700 bg-opacity-50 hover:bg-opacity-75 text-white rounded-full"
       >
-        <ChevronRight />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
       </button>
     </div>
   );
 };
 
 export default HorizontalCarousel;
+
+// // src/components/HorizontalCarousel.jsx
+// import React, { useState } from 'react';
+// import '../../public/1681549012528.jpg';
+
+// const slides = [
+//   {
+//     image: '../../public/1681549012528.jpg',
+//     text: 'Welfare Society CEB (WPS II)',
+//     // buttonText: 'READ FULL STORY',
+//     // buttonLink: '/full-story-1'
+//   },
+//   {
+//     image: '../../public/Poson.JPG',
+//     text: 'Poson poya day 2024',
+//     buttonText: 'READ FULL STORY',
+//     buttonLink: '/full-story-1'
+//   },
+//   {
+//     image: '../../public/annual_meeting.JPG',
+//     text: 'ANNUAL MEETING',
+//     buttonText: 'READ FULL STORY',
+//     buttonLink: '/full-story-2'
+//   },
+//   {
+//     image: '../../public/blood.JPG',
+//     text: 'Blood Donation',
+//     buttonText: 'READ FULL STORY',
+//     buttonLink: '/full-story-2'
+//   },
+//   // Add more slides as needed
+// ];
+
+// const HorizontalCarousel = () => {
+//   const [current, setCurrent] = useState(0);
+
+//   const nextSlide = () => {
+//     setCurrent((current + 1) % slides.length);
+//   };
+
+//   const prevSlide = () => {
+//     setCurrent((current - 1 + slides.length) % slides.length);
+//   };
+
+//   return (
+//     <div className="relative min-h-96 w-full overflow-hidden">
+//       <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${current * 100}%)` }}>
+//         {slides.map((slide, index) => (
+//           <div key={index} className="flex-shrink-0 w-full relative">
+//             <div className="absolute h-96 inset-0 bg-black bg-opacity-50">
+//             <img src={slide.image} alt={slide.text} className="w-full h-full object-cover" />
+//             <div className="absolute inset-0 flex flex-col justify-center items-center text-balance text-white font-extrabold">
+//               <h1 className="text-4xl md:text-5xl font-bold mb-4">{slide.text}</h1>
+//               <a href={slide.buttonLink} className="bg-white text-black py-2 px-4 rounded-lg shadow-lg">
+//                 {slide.buttonText}
+//               </a>
+//             </div>
+//             </div>
+
+//           </div>
+//         ))}
+//       </div >
+//       <button onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 p-4 bg-gray-700 bg-opacity-50 hover:bg-opacity-75 text-white rounded-full">
+//         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+//         </svg>
+//       </button>
+//       <button onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 p-4 bg-gray-700 bg-opacity-50 hover:bg-opacity-75 text-white rounded-full">
+//         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+//         </svg>
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default HorizontalCarousel;

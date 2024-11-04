@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 // test git hub
 const slides = [
   {
-    image: "/blood.JPG",
+    image: "/blood.webp",
     text: "Annual Blood Donation",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-1",
   },
   {
-    image: "/annual_meeting.JPG",
+    image: "/annual_meeting.webp",
     text: "Annual Welfare Meeting",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
