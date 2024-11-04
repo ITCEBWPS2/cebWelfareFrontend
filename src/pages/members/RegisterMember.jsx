@@ -636,9 +636,9 @@ const RegisterMember = () => {
                   />
                 )}
               </div> */}
-            </div>
-            {/* Second column */}
-            <div>
+              {/* </div> */}
+              {/* Second column */}
+              {/* <div> */}
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Mobile number
