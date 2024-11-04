@@ -3,9 +3,6 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Home,
-  Benefits,
-  Contact,
-  About,
   Loans,
   Login,
   RegisterMember,
@@ -15,6 +12,7 @@ import {
 import MainLayout from "./components/MainLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import DashboardLayout from "./components/DashboardLayout";
 
 const App = () => {
   useEffect(() => {
@@ -35,33 +33,32 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Route for login page without MainLayout */}
+        {/* Routes that use MainLayout */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+
         <Route path="/login" element={<Login />} />
 
-        {/* Routes that use MainLayout for authenticated users */}
+        {/* Routes that use DashboardLayout */}
         <Route
-          path="*"
           element={
             <PrivateRoute>
-              <MainLayout>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/benefits" element={<Benefits />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/loans" element={<Loans />} />
-                  <Route path="/registermember" element={<RegisterMember />} />
-                  <Route path="/members" element={<Members />} />
-                  <Route
-                    path="/viewmember/:memberId"
-                    element={<ViewMember />}
-                  />
-                  {/* <Route path="/viewmember" element={<ViewMember />} /> */}
-                </Routes>
-              </MainLayout>
+              <DashboardLayout />
             </PrivateRoute>
           }
-        />
+        >
+          <Route path="/dashboard/loans" element={<Loans />} />
+          <Route
+            path="/dashboard/registermember"
+            element={<RegisterMember />}
+          />
+          <Route path="/dashboard/members" element={<Members />} />
+          <Route
+            path="/dashboard/viewmember/:memberId"
+            element={<ViewMember />}
+          />
+        </Route>
       </Routes>
     </Router>
   );

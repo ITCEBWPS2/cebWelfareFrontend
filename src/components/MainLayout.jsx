@@ -2,12 +2,13 @@
 import React from "react";
 import Navbar from "./Navbar";
 import BottomBar from "./BottomBar";
+import { Outlet } from "react-router-dom";
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
   return (
     <div>
       <Navbar />
-      {children}
+      <Outlet />
       <BottomBar />
     </div>
   );
