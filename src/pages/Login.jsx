@@ -1,85 +1,67 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Login = () => {
-  const [epfNo, setEpfNo] = useState("");
+const LoginPage = () => {
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Redirect to home if already logged in
-    if (localStorage.getItem("token")) {
-      navigate("/");
-    }
-  }, [navigate]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Basic validation checks
-    if (!epfNo || !password) {
-      setError("EPF Number and Password are required");
-      return;
-    }
+    setLoading(true);
+    setError(null);
 
     try {
-      const { data } = await axios.post(
-        // "https://serverbackend-4wcf.onrender.com/api/members/auth",
-        "http://localhost:5000/api/members/auth",
-        { epf: epfNo, password },
-        { withCredentials: true }
-      );
-
-      //localStorage.setItem("token", data.token); // Save token in localStorage
-
-      console.log("User logged in successfully:", data);
-      navigate("/"); // Redirect to the home page
+      const response = await axios.post("/api/login", { identifier, password });
+      console.log("Login successful:", response.data);
+      // Redirect or handle login success here
     } catch (err) {
-      setError("Invalid EPF Number or Password");
+      setError(
+        err.response?.data?.message || "An error occurred. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div
-      style={{
-        backgroundImage: `url('../../public/Signin.jpg')`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-        width: "100vw",
-      }}
+      className="flex min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/main_header_1.webp')" }}
     >
-      <div className="flex min-h-screen items-center justify-center">
-        <div
-          className="container1 bg-yellow-50 bg-opacity-50 rounded-lg shadow-2xl max-w-fit px-8 flex-col justify-between"
-          style={{ height: "auto", minHeight: "50vh" }}
-        >
-          <div className="flex-grow"></div>
-          <h1 className="text-4xl font-medium text-center mb-8">Sign In</h1>
-          {error && <p className="text-red-500">{error}</p>}
-          <form onSubmit={handleSubmit}>
-            <div className="mb-6">
+      <div className="flex flex-col justify-center p-8 bg-white w-full md:max-w-sm md:p-12 md:mr-auto md:ml-0">
+        <Link to="/">
+          <div className="flex justify-center md:justify-start mb-14">
+            <img src="/cebcare.png" alt="Logo" className="h-12" />
+          </div>
+        </Link>
+        <form onSubmit={handleSubmit}>
+          <h2 className="mb-8 font-heading text-2xl font-bold text-center md:text-left">
+            Login to Your Account
+          </h2>
+          <div className="space-y-6">
+            <div>
+              {error && <p className="text-red-500 text-sm">{error}</p>}
               <label
-                htmlFor="epfNo"
-                className="block font-semibold text-xl text-black-900 mb-2"
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
               >
-                EPF Number
+                Email / EPF Number
               </label>
               <input
                 type="text"
                 id="epfNo"
-                value={epfNo}
-                onChange={(e) => setEpfNo(e.target.value)}
-                className="appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
+                className="mt-1 appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 p-2 leading-tight focus:outline-none focus:border-red-500"
               />
             </div>
-            <div className="mb-4">
+            <div>
               <label
                 htmlFor="password"
-                className="block font-semibold text-xl text-black-900 mb-2"
+                className="block text-sm font-medium text-gray-700"
               >
                 Password
               </label>
@@ -88,30 +70,21 @@ const Login = () => {
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                className="mt-1 appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 p-2 leading-tight focus:outline-none focus:border-red-500"
               />
             </div>
-            <br />
-            <div className="flex items-center justify-between">
-              <button
-                type="submit"
-                className="bg-red-900 hover:bg-red-700 text-white font-medium rounded-lg px-5 py-2.5"
-              >
-                Sign In
-              </button>
-              <a
-                href="#"
-                className="text-lg text-gray-500 hover:underline ml-4"
-              >
-                Forgot Password?
-              </a>
-            </div>
-          </form>
-          <div className="flex-grow"></div>
-        </div>
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="mt-8 w-full bg-black hover:bg-red-900 rounded text-white py-3 font-semibold transition duration-200"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;
