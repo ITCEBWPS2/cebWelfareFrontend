@@ -6,10 +6,10 @@ const Contact = () => {
   return (
     <section id="contact" className="pt-14 pb-8">
       <div className="flex flex-col lg:flex-row items-center lg:items-start">
-        <div className="w-full lg:w-2/5 mb-8 lg:mb-0">
+        <div className="w-full lg:w-2/5 lg:pr-16 mb-8 lg:mb-0">
           <ContactForm />
         </div>
-        <div className="w-full lg:w-3/5 lg:pl-14 flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div className="w-full lg:w-3/5 flex flex-col items-center lg:items-start text-center lg:text-left">
           <img
             src={blood_donation}
             alt="Contact Us"

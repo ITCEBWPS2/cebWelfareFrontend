@@ -52,7 +52,7 @@ const LoginPage = () => {
               </label>
               <input
                 type="text"
-                id="epfNo"
+                id="identifier"
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 className="mt-1 appearance-none bg-transparent border-b-2 border-black w-full text-gray-700 p-2 leading-tight focus:outline-none focus:border-red-500"

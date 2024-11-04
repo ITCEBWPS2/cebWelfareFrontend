@@ -44,14 +44,7 @@ const Navbar = () => {
           {/* Logo Section */}
           <Link to="/">
             <div className="flex-center gap-2">
-              <img
-                src="/Picture2.jpg"
-                alt="CEB Logo"
-                className="h-8 w-8 md:w-12 md:h-12"
-              />
-              <div className="text-yellow-300 text-lg font-semibold">
-                CEB (WPS II)
-              </div>
+              <img src="/cebcare.png" alt="CEB Logo" className="h-8 md:h-12" />
             </div>
           </Link>
 
@@ -93,14 +86,7 @@ const Navbar = () => {
               >
                 <Link to="/">
                   <div className="flex items-center mb-7 mt-2 gap-2">
-                    <img
-                      src="/Picture2.jpg"
-                      alt="CEB Logo"
-                      className="h-12 w-12"
-                    />
-                    <div className="text-yellow-300 text-lg font-semibold">
-                      CEB (WPS II)
-                    </div>
+                    <img src="/cebcare.png" alt="CEB Logo" className="h-12" />
                   </div>
                 </Link>
                 <SheetHeader className="text-left">
