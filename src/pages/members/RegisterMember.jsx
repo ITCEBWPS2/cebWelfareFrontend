@@ -796,7 +796,7 @@ const RegisterMember = () => {
                         name="name"
                         value={child.name}
                         onChange={(e) => handleChildrenChange(e, index)}
-                        className="w-full p-2 border"
+                        className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                         // required
                       />
                     </div>
@@ -807,7 +807,7 @@ const RegisterMember = () => {
                         name="age"
                         value={child.age}
                         onChange={(e) => handleChildrenChange(e, index)}
-                        className="w-full p-2 border"
+                        className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                         // required
                       />
                     </div>
@@ -829,7 +829,7 @@ const RegisterMember = () => {
                         name="gender"
                         value={child.gender}
                         onChange={(e) => handleChildrenChange(e, index)}
-                        className="w-full p-2 border"
+                        className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                       >
                         <option value="">Select Gender</option>
                         <option value="Son">Son</option>
@@ -849,7 +849,7 @@ const RegisterMember = () => {
                 <button
                   type="button"
                   onClick={addChild}
-                  className="w-full bg-green-500 text-white p-2"
+                  className="w-full bg-red-900 text-white p-2"
                 >
                   Add Child
                 </button>
