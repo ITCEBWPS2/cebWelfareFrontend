@@ -26,7 +26,6 @@ const slides = [
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
   },
-  // Add more slides as needed
 ];
 
 const HorizontalCarousel = () => {
@@ -39,10 +38,10 @@ const HorizontalCarousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000); // Change slide every 4 seconds
+    }, 4000);
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [current]); // Depend on current to keep updating
+    return () => clearInterval(interval);
+  }, [current]);
 
   return (
     <div className="relative min-h-96 w-full overflow-hidden">
@@ -52,6 +51,7 @@ const HorizontalCarousel = () => {
       >
         {slides.map((slide, index) => (
           <div key={index} className="flex-shrink-0 w-full relative">
+            <div className="absolute h-screen inset-0 bg-black bg-opacity-50">
             <div className="absolute h-60 inset-0 bg-black bg-opacity-50">
               <img
                 src={slide.image}

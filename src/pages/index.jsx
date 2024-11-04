@@ -15,8 +15,8 @@ import ViewMember from "./members/ViewMember.jsx";
 import LoanApplication from "./members/LoanApplication.jsx";
 import Carousel from "../components/Carousel.jsx";
 import HorizontalCarousel from "../components/HorizontalCarousel.jsx";
-export { default as AdminPanel } from "./AdminPanel.jsx";
-export { default as ViewUsers } from "./ViewUsers.jsx";
+import AdminPanel from "./AdminPanel.jsx";
+import ViewUsers from "./ViewUsers.jsx";
 
 export {
   Home,
@@ -35,4 +35,6 @@ export {
   RegisterMember,
   Relatives,
   ViewMember,
+  AdminPanel,
+  ViewUsers,
 };
