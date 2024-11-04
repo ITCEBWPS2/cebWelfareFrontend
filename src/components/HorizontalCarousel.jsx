@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
-import "../../public/1681549012528.jpg";
+import "../../public/1681549012528.webp";
 
 const slides = [
   {
-    image: "../../public/1681549012528.jpg",
+    image: "../../public/1681549012528.webp",
     text: "Welfare Society CEB (WPS II)",
     // buttonText: 'READ FULL STORY',
     // buttonLink: '/full-story-1'
   },
   {
-    image: "../../public/Poson.JPG",
+    image: "../../public/Poson.webp",
     text: "Poson poya day 2024",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-1",
   },
   {
-    image: "../../public/annual_meeting.JPG",
+    image: "../../public/annual_meeting.webp",
     text: "ANNUAL MEETING",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
   },
   {
-    image: "../../public/blood.JPG",
+    image: "../../public/blood.webp",
     text: "Blood Donation",
     buttonText: "READ FULL STORY",
     buttonLink: "/full-story-2",
