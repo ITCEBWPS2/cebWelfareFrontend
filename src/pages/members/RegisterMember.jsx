@@ -213,7 +213,7 @@ const RegisterMember = () => {
   // mobile number validation
   const validateMobile = (value) => {
     if (!/^\d+$/.test(value)) {
-      setMobileMessage("Only digits are allowed.");
+      setMobileMessage("Only digits are allowed !");
     } else if (value.length !== 10) {
       setMobileMessage("Mobile number must be exactly 10 digits.");
     } else if (!regex.test(value)) {
@@ -322,7 +322,7 @@ const RegisterMember = () => {
       <div className="bg-yellow-50 p-8 rounded-lg shadow-lg max-w-8xl w-full">
         <h1 className="text-center text-2xl font-bold mb-8">Register</h1>
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-3 gap-6">
+          <div className=" grid grid-cols-3 gap-6">
             <div>
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">Name</label>
