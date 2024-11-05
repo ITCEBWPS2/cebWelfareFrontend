@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     <SidebarProvider>
       <AppSidebar />
       <main>
-        <SidebarTrigger />
+        <SidebarTrigger className="fixed bg-white ml-2 mt-2 shadow-md" />
         <Outlet />
       </main>
     </SidebarProvider>

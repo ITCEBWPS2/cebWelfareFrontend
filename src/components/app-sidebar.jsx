@@ -1,8 +1,9 @@
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
   Bot,
+  ChevronsUpDown,
   Command,
   Frame,
   GalleryVerticalEnd,
@@ -10,103 +11,71 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavProjects } from "@/components/nav-projects";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  SidebarMenuButton,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { Avatar, AvatarImage } from "./ui/avatar";
+import { Link } from "react-router-dom";
+import { NavAdmin } from "./nav-admin";
 
 // This is sample data.
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "/avatar.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Home",
+      url: "/registermemeber",
       icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
+      isActive: false,
     },
     {
-      title: "Models",
+      title: "Loans",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "My Loans",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Apply Loan",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Loan History",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Benefits",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Information",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "My Benefits",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Apply Benefits",
           url: "#",
         },
       ],
@@ -135,41 +104,92 @@ const data = {
       ],
     },
   ],
-  projects: [
+  navAdmin: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
+      title: "Manage Users",
+      url: "/dashboard/members",
+      icon: Bot,
+      items: [
+        {
+          title: "All Members",
+          url: "/dashboard/members",
+        },
+        {
+          title: "Add a Member",
+          url: "/dashboard/registermember",
+        },
+        {
+          title: "Add an Admin",
+          url: "#",
+        },
+      ],
     },
     {
-      name: "Sales & Marketing",
+      title: "Manage Loans",
       url: "#",
-      icon: PieChart,
+      icon: BookOpen,
+      items: [
+        {
+          title: "Loan Requests",
+          url: "#",
+        },
+        {
+          title: "Pending Requests",
+          url: "#",
+        },
+        {
+          title: "Approved Requests",
+          url: "#",
+        },
+      ],
     },
     {
-      name: "Travel",
+      title: "Manage Benefits",
       url: "#",
-      icon: Map,
+      icon: BookOpen,
+      items: [
+        {
+          title: "Benefit Requests",
+          url: "#",
+        },
+        {
+          title: "Pending Requests",
+          url: "#",
+        },
+        {
+          title: "Approved Requests",
+          url: "#",
+        },
+      ],
     },
   ],
-}
+};
 
-export function AppSidebar({
-  ...props
-}) {
+export function AppSidebar({ ...props }) {
   return (
-    (<Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <SidebarMenuButton
+          size="lg"
+          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+        >
+          <Avatar className="h-8 w-8 rounded-lg">
+            <AvatarImage src="/Picture2.jpg" alt="CEB_Logo" />
+          </Avatar>
+          <div className="grid flex-1 text-left text-sm leading-tight">
+            <span className="truncate font-semibold">CEB WELFARE</span>
+            <span className="truncate text-xs">WPS II</span>
+          </div>
+        </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavAdmin items={data.navAdmin} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
-    </Sidebar>)
+    </Sidebar>
   );
 }
