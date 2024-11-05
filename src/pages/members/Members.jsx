@@ -108,7 +108,7 @@ const MembersTable = () => {
   }, [filteredMembers]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-fit bg-gray-100">
       <div className="bg-white p-8 shadow-md rounded-lg mx-4 my-8">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center space-x-2">
@@ -187,7 +187,7 @@ const MembersTable = () => {
                         type="text"
                         name="epf"
                         value={editedMember.epf}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         className="border rounded-lg px-2 py-1"
                       />
                     ) : (
@@ -200,7 +200,7 @@ const MembersTable = () => {
                         type="text"
                         name="welfareNo"
                         value={editedMember.welfareNo}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         className="border rounded-lg px-2 py-1"
                       />
                     ) : (
@@ -213,7 +213,7 @@ const MembersTable = () => {
                         type="text"
                         name="name"
                         value={editedMember.name}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         className="border rounded-lg px-2 py-1"
                       />
                     ) : (
