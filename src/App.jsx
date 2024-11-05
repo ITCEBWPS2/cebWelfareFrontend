@@ -8,12 +8,12 @@ import {
   RegisterMember,
   Members,
   ViewMember,
+  Dashboard,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
-import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   useEffect(() => {
@@ -40,7 +40,6 @@ const App = () => {
         </Route>
 
         <Route path="/login" element={<Login />} />
-        <Route path="/dash" element={<Dashboard />} />
 
         {/* Routes that use DashboardLayout */}
         <Route
@@ -50,16 +49,14 @@ const App = () => {
             </PrivateRoute>
           }
         >
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/loans" element={<Loans />} />
           <Route
-            path="/dashboard/registermember"
+            path="/dashboard/members/register"
             element={<RegisterMember />}
           />
           <Route path="/dashboard/members" element={<Members />} />
-          <Route
-            path="/dashboard/viewmember/:memberId"
-            element={<ViewMember />}
-          />
+          <Route path="/dashboard/members/:memberId" element={<ViewMember />} />
         </Route>
       </Routes>
     </Router>

@@ -28,7 +28,6 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Link } from "react-router-dom";
 import { NavAdmin } from "./nav-admin";
 
-// This is sample data.
 const data = {
   user: {
     name: "shadcn",
@@ -38,9 +37,15 @@ const data = {
   navMain: [
     {
       title: "Home",
-      url: "/registermemeber",
+      url: "/dashboard",
       icon: SquareTerminal,
-      isActive: false,
+      isActive: true,
+      items: [
+        {
+          title: "Dashboard",
+          url: "/dashboard",
+        },
+      ],
     },
     {
       title: "Loans",
@@ -116,7 +121,7 @@ const data = {
         },
         {
           title: "Add a Member",
-          url: "/dashboard/registermember",
+          url: "/dashboard/members/register",
         },
         {
           title: "Add an Admin",
