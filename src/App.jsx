@@ -13,6 +13,7 @@ import MainLayout from "./components/MainLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   useEffect(() => {
@@ -39,6 +40,7 @@ const App = () => {
         </Route>
 
         <Route path="/login" element={<Login />} />
+        <Route path="/dash" element={<Dashboard />} />
 
         {/* Routes that use DashboardLayout */}
         <Route
