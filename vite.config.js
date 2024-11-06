@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://98.81.11.43/api/",
+        target: "http://localhost:5000",
         changeOrigin: true,
       },
     },
@@ -19,6 +19,3 @@ export default defineConfig({
     },
   },
 });
-
-//13.61.8.102 - blue
-//98.81.11.43 - orange
