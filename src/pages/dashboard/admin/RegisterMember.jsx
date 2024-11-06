@@ -275,8 +275,8 @@ const RegisterMember = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://serverbackend-4wcf.onrender.com/api/members",
-        // "http://localhost:5000/api/members",
+        //"https://serverbackend-4wcf.onrender.com/api/members",
+        "http://localhost:5000/api/members",
         formData
       );
       console.log("Member created:", response.data);
