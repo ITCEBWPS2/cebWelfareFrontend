@@ -6,13 +6,13 @@ const RegisterMember = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    epf: "",
     password: "",
+    epf: "",
     dateOfJoined: "",
     dateOfBirth: "",
-    dateOfRegistered: "",
+    dateOfRegistered: new Date().toISOString().split("T")[0],
     welfareNo: "",
-    role: "admin",
+    role: "member",
     payroll: "",
     division: "",
     branch: "",
@@ -22,7 +22,7 @@ const RegisterMember = () => {
       number: "",
     },
     spouseName: "",
-    test: [{ name: "", age: "", gender: "" }],
+    children: [{ name: "", age: "", gender: "" }],
     motherName: "",
     motherAge: "",
     fatherName: "",
@@ -245,12 +245,12 @@ const RegisterMember = () => {
   // children validation
   const handleChildrenChange = (e, index) => {
     const { name, value } = e.target;
-    const updatedChildren = formData.test.map((child, i) =>
+    const updatedChildren = formData.children.map((child, i) =>
       i === index ? { ...child, [name]: value } : child
     );
     setFormData({
       ...formData,
-      test: updatedChildren,
+      children: updatedChildren,
     });
   };
 
@@ -258,16 +258,16 @@ const RegisterMember = () => {
   const addChild = () => {
     setFormData({
       ...formData,
-      test: [...formData.test, { name: "", age: "", gender: "" }],
+      children: [...formData.children, { name: "", age: "", gender: "" }],
     });
   };
 
   // Remove child from children array
   const removeChild = (index) => {
-    const updatedChildren = formData.test.filter((_, i) => i !== index);
+    const updatedChildren = formData.children.filter((_, i) => i !== index);
     setFormData({
       ...formData,
-      test: updatedChildren,
+      children: updatedChildren,
     });
   };
 
@@ -286,7 +286,7 @@ const RegisterMember = () => {
         setFormData({
           name: "",
           email: "",
-          // password: "",
+          password: "",
           epf: "",
           dateOfJoined: "",
           dateOfBirth: "",
@@ -302,7 +302,7 @@ const RegisterMember = () => {
             number: "",
           },
           spouseName: "",
-          test: [{ name: "", age: "", gender: "" }],
+          children: [{ name: "", age: "", gender: "" }],
           motherName: "",
           motherAge: "",
           fatherName: "",
@@ -753,7 +753,7 @@ const RegisterMember = () => {
               {/* Children Section */}
               <div>
                 <h2 className="text-xl font-semibold">Children</h2>
-                {formData.test.map((child, index) => (
+                {formData.children.map((child, index) => (
                   <div key={index} className="border p-4 mb-4 space-y-2">
                     <div>
                       <label className="block">Child Name</label>
@@ -763,7 +763,7 @@ const RegisterMember = () => {
                         value={child.name}
                         onChange={(e) => handleChildrenChange(e, index)}
                         className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                        // required
+                        required
                       />
                     </div>
                     <div>
@@ -774,7 +774,7 @@ const RegisterMember = () => {
                         value={child.age}
                         onChange={(e) => handleChildrenChange(e, index)}
                         className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
-                        // required
+                        required
                       />
                     </div>
 
