@@ -14,6 +14,8 @@ import MainLayout from "./components/MainLayout";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
+import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
 
 const App = () => {
   useEffect(() => {
@@ -23,13 +25,6 @@ const App = () => {
       offset: 100,
     });
   }, []);
-
-  // A wrapper to handle redirection based on authentication
-  const PrivateRoute = ({ children }) => {
-    const isAuthenticated = localStorage.getItem("token"); // Check authentication status
-    //return isAuthenticated ? children : <Navigate to="/login" />;
-    return children;
-  };
 
   return (
     <Router>
@@ -42,21 +37,22 @@ const App = () => {
         <Route path="/login" element={<Login />} />
 
         {/* Routes that use DashboardLayout */}
-        <Route
-          element={
-            <PrivateRoute>
-              <DashboardLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/loans" element={<Loans />} />
-          <Route
-            path="/dashboard/members/register"
-            element={<RegisterMember />}
-          />
-          <Route path="/dashboard/members" element={<Members />} />
-          <Route path="/dashboard/members/:memberId" element={<ViewMember />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/loans" element={<Loans />} />
+            <Route
+              path="/dashboard/members/:memberId"
+              element={<ViewMember />}
+            />
+            <Route path="" element={<AdminRoute />}>
+              <Route
+                path="/dashboard/members/register"
+                element={<RegisterMember />}
+              />
+              <Route path="/dashboard/members" element={<Members />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </Router>

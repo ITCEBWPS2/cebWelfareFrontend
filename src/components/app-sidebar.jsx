@@ -27,6 +27,7 @@ import {
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Link } from "react-router-dom";
 import { NavAdmin } from "./nav-admin";
+import { useSelector } from "react-redux";
 
 const data = {
   user: {
@@ -171,25 +172,29 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const { userInfo } = useSelector((state) => state.auth);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <SidebarMenuButton
-          size="lg"
-          className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-        >
-          <Avatar className="h-8 w-8 rounded-lg">
-            <AvatarImage src="/Picture2.jpg" alt="CEB_Logo" />
-          </Avatar>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">CEB WELFARE</span>
-            <span className="truncate text-xs">WPS II</span>
-          </div>
-        </SidebarMenuButton>
+        <Link to="/">
+          <SidebarMenuButton
+            size="lg"
+            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+          >
+            <Avatar className="h-8 w-8 rounded-lg">
+              <AvatarImage src="/Picture2.jpg" alt="CEB_Logo" />
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-semibold">CEB WELFARE</span>
+              <span className="truncate text-xs">WPS II</span>
+            </div>
+          </SidebarMenuButton>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavAdmin items={data.navAdmin} />
+        {userInfo.role === "admin" && <NavAdmin items={data.navAdmin} />}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
