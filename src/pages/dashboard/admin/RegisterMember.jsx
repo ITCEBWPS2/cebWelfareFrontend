@@ -290,9 +290,9 @@ const RegisterMember = () => {
           epf: "",
           dateOfJoined: "",
           dateOfBirth: "",
-          dateOfRegistered: "",
+          dateOfRegistered: new Date().toISOString().split("T")[0],
           welfareNo: "",
-          role: "admin",
+          role: "member",
           payroll: "",
           division: "",
           branch: "",
@@ -748,6 +748,33 @@ const RegisterMember = () => {
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
+              </div>
+
+              <div className="mb-4">
+                <label className="block font-bold text-gray-950">Role</label>
+                <select
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  onClick={(e) => {
+                    // Expand dropdown on click
+                    e.target.size = 5;
+                    // Collapse all other select dropdowns
+                    document.querySelectorAll("select").forEach((select) => {
+                      if (select !== e.target) select.size = 1;
+                    });
+                  }}
+                  onBlur={(e) => {
+                    // Collapse dropdown on blur
+                    e.target.size = 1;
+                  }}
+                  className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+                  style={{ maxHeight: "10rem", overflowY: "auto" }}
+                >
+                  <option value="">Select Role</option>
+                  <option value="member">Member</option>
+                  <option value="admin">Admin</option>
+                </select>
               </div>
 
               {/* Children Section */}
