@@ -2,6 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { SquarePen, Trash2 } from "lucide-react";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
@@ -9,6 +18,7 @@ const MembersTable = () => {
   const [highlightedMemberId, setHighlightedMemberId] = useState(null);
   const [editingMemberId, setEditingMemberId] = useState(null);
   const [editedMember, setEditedMember] = useState({});
+  const [selectedMember, setSelectedMember] = useState(null);
   const navigate = useNavigate();
   const memberRefs = useRef({});
 
@@ -28,6 +38,14 @@ const MembersTable = () => {
     } catch (error) {
       console.error("Error fetching members:", error);
     }
+  };
+
+  const handleDialogOpen = (member) => {
+    setSelectedMember(member);
+  };
+
+  const handleDialogClose = () => {
+    setSelectedMember(null);
   };
 
   const handleEditClick = (member) => {
@@ -101,239 +119,218 @@ const MembersTable = () => {
   }, [filteredMembers]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100">
-      <div className="bg-white p-8 shadow-md rounded-lg mx-4 my-8">
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center space-x-2">
-            <label htmlFor="search" className="text-gray-700 font-semibold">
-              Search:
-            </label>
-            <input
-              type="text"
-              id="search"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
-              placeholder="Search by EPF or Welfare No..."
-            />
-          </div>
-          <button
-            className="bg-red-900 hover:bg-red-700 text-yellow-200 text-3xl font-semibold rounded-lg px-60 py-2.5 transition duration-300"
-            onClick={() => navigate("/registermember")}
-          >
-            Register a New Member
-          </button>
+    <div className="p-8 my-8">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+        <div className="flex items-center space-x-2">
+          <label htmlFor="search" className="text-gray-700 font-semibold">
+            Search:
+          </label>
+          <input
+            type="text"
+            id="search"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-600"
+            placeholder="Search by EPF or Welfare No..."
+          />
         </div>
+        <button
+          className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
+          onClick={() => navigate("/dashboard/members/register")}
+        >
+          Register New Member
+        </button>
+      </div>
 
-        <div className="overflow-x-auto h-screen">
-          <table className="w-full bg-white rounded-lg h-screen shadow-lg">
-            <thead className="bg-red-900 text-white">
-              <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  EPF no
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Welfare no
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Name
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Date of Birth
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Date of Registered
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Date of Joined
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Payroll
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Contact Number
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Whatsapp Number
-                </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredMembers.map((member, index) => (
-                <tr
-                  key={member._id}
-                  ref={(el) => (memberRefs.current[member._id] = el)}
-                  className={`${
-                    highlightedMemberId === member._id
-                      ? "bg-yellow-200"
-                      : index % 2 === 0
-                      ? "bg-yellow-50"
-                      : "bg-red-50"
-                  }`}
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white shadow-lg rounded-lg">
+          <thead className="bg-red-900 text-white text-xs md:text-sm">
+            <tr>
+              {[
+                "EPF no",
+                "Welfare no",
+                "Name",
+                "Date of Registered",
+                "Date of Joined",
+                "Payroll",
+                "Actions",
+              ].map((header) => (
+                <th
+                  key={header}
+                  className="px-4 py-3 text-left font-semibold whitespace-nowrap"
                 >
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="text"
-                        name="epf"
-                        value={editedMember.epf}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.epf
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="text"
-                        name="welfareNo"
-                        value={editedMember.welfareNo}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.welfareNo
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="text"
-                        name="name"
-                        value={editedMember.name}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.name
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="date"
-                        name="dateOfBirth"
-                        value={editedMember.dateOfBirth}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.dateOfBirth
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="date"
-                        name="dateOfRegistered"
-                        value={editedMember.dateOfRegistered}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.dateOfRegistered
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="date"
-                        name="dateOfJoined"
-                        value={editedMember.dateOfJoined}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.dateOfJoined
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="text"
-                        name="payroll"
-                        value={editedMember.payroll}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.payroll
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="text"
-                        name="contactNumber"
-                        value={editedMember.contactNumber}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.contactNumber
-                    )}
-                  </td>
-                  <td className="border px-6 py-4">
-                    {editingMemberId === member._id ? (
-                      <input
-                        type="text"
-                        name="whatsappNumber"
-                        value={editedMember.whatsappNumber}
-                        onChange={handleInputChange}
-                        className="border rounded-lg px-2 py-1"
-                      />
-                    ) : (
-                      member.whatsappNumber
-                    )}
-                  </td>
-                  <td className="border px-6 py-4 flex space-x-2">
-                    {editingMemberId === member._id ? (
-                      <>
-                        <button
-                          className="bg-green-500 hover:bg-green-700 text-white rounded-lg px-4 py-2"
-                          onClick={() => handleSaveClick(member._id)}
-                        >
-                          Save
-                        </button>
-                        <button
-                          className="bg-gray-500 hover:bg-gray-700 text-white rounded-lg px-4 py-2"
-                          onClick={() => setEditingMemberId(null)}
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-4 py-2"
-                          onClick={() => handleEditClick(member)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="bg-red-500 hover:bg-red-700 text-white rounded-lg px-4 py-2"
-                          onClick={() => handleDelete(member._id)}
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
-                    <Link to={`/viewmember/${member._id}`}>
-                      <button className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-4 py-2">
-                        View Details
-                      </button>
-                    </Link>
-                  </td>
-                </tr>
+                  {header}
+                </th>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredMembers.map((member, index) => (
+              <tr
+                key={member._id}
+                ref={(el) => (memberRefs.current[member._id] = el)}
+                className={`${
+                  highlightedMemberId === member._id
+                    ? "bg-yellow-200"
+                    : index % 2 === 0
+                    ? "bg-yellow-50"
+                    : "bg-red-50"
+                }`}
+              >
+                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                  {member.epf}
+                </td>
+                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                  {member.welfareNo}
+                </td>
+                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                  {member.name}
+                </td>
+                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                  {member.dateOfRegistered}
+                </td>
+                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                  {member.dateOfJoined}
+                </td>
+                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                  {member.payroll}
+                </td>
+
+                <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1"
+                    onClick={() => handleEditClick(member)}
+                  >
+                    <SquarePen className="p-0.5" />
+                  </button>
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
+                    onClick={() => handleDelete(member._id)}
+                  >
+                    <Trash2 className="p-0.5" />
+                  </button>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
+                    View Details
+                  </button>
+                  <Dialog>
+                    <DialogTrigger>
+                      <div
+                        onClick={() => handleDialogOpen(member)}
+                        className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-3 py-1"
+                      >
+                        View
+                      </div>
+                    </DialogTrigger>
+                    {selectedMember && (
+                      <DialogContent
+                        onClose={handleDialogClose}
+                        className="max-w-lg mx-auto"
+                      >
+                        <DialogHeader>
+                          <DialogTitle className="text-2xl font-bold">
+                            {selectedMember.name}'s Details
+                          </DialogTitle>
+                          <DialogDescription>
+                            Here are the full details of the member.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="p-4 text-gray-700 space-y-2">
+                          {/* Displaying Member Details with Conditions */}
+                          <p>
+                            <strong>Email:</strong>{" "}
+                            {selectedMember.email || "N/A"}
+                          </p>
+                          <p>
+                            <strong>EPF No:</strong> {selectedMember.epf}
+                          </p>
+                          <p>
+                            <strong>Date of Birth:</strong>{" "}
+                            {selectedMember.dateOfBirth || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Date of Joined:</strong>{" "}
+                            {selectedMember.dateOfJoined || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Date of Registered:</strong>{" "}
+                            {selectedMember.dateOfRegistered || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Welfare No:</strong>{" "}
+                            {selectedMember.welfareNo}
+                          </p>
+                          <p>
+                            <strong>Role:</strong> {selectedMember.role}
+                          </p>
+                          <p>
+                            <strong>Payroll:</strong> {selectedMember.payroll}
+                          </p>
+                          <p>
+                            <strong>Division:</strong> {selectedMember.division}
+                          </p>
+                          <p>
+                            <strong>Branch:</strong> {selectedMember.branch}
+                          </p>
+                          <p>
+                            <strong>Unit:</strong> {selectedMember.unit}
+                          </p>
+                          <p>
+                            <strong>Contact Number:</strong>{" "}
+                            {selectedMember.contactNo?.number || "N/A"}
+                          </p>
+                          <p>
+                            <strong>WhatsApp Number:</strong>{" "}
+                            {selectedMember.contactNo?.whatsappNo || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Spouse Name:</strong>{" "}
+                            {selectedMember.spouseName || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Mother's Name:</strong>{" "}
+                            {selectedMember.motherName || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Father's Name:</strong>{" "}
+                            {selectedMember.fatherName || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Mother-in-Law's Name:</strong>{" "}
+                            {selectedMember.motherInLawName || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Father-in-Law's Name:</strong>{" "}
+                            {selectedMember.fatherInLawName || "N/A"}
+                          </p>
+                          <p>
+                            <strong>Member Fee:</strong>{" "}
+                            {selectedMember.memberFee
+                              ? `$${selectedMember.memberFee}`
+                              : "N/A"}
+                          </p>
+                          {/* Children Details */}
+                          {selectedMember.children?.length > 0 && (
+                            <div>
+                              <strong>Children:</strong>
+                              <ul className="list-disc list-inside">
+                                {selectedMember.children.map((child, i) => (
+                                  <li key={i}>
+                                    {child.name}, Age: {child.age}, Gender:{" "}
+                                    {child.gender}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      </DialogContent>
+                    )}
+                  </Dialog>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
