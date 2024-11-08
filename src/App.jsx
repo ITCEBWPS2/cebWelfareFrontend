@@ -6,7 +6,7 @@ import {
   Loans,
   Login,
   RegisterMember,
-  Members,
+  AllMembers,
   ViewMember,
   Dashboard,
 } from "./pages";
@@ -50,7 +50,7 @@ const App = () => {
                 path="/dashboard/members/register"
                 element={<RegisterMember />}
               />
-              <Route path="/dashboard/members" element={<Members />} />
+              <Route path="/dashboard/members" element={<AllMembers />} />
             </Route>
           </Route>
         </Route>

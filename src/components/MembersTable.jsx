@@ -18,7 +18,9 @@ const MembersTable = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/members`);
+      const response = await axios.get(`${BASE_URL}/api/members`, {
+        withCredentials: true,
+      });
       const sortedMembers = response.data.sort(
         (a, b) => a.welfareNo - b.welfareNo
       );
@@ -57,7 +59,9 @@ const MembersTable = () => {
   const handleDelete = async (memberId) => {
     if (window.confirm("Are you sure you want to delete this member ?")) {
       try {
-        await axios.delete(`${BASE_URL}/api/members/${memberId}`);
+        await axios.delete(`${BASE_URL}/api/members/${memberId}`, {
+          withCredentials: true,
+        });
         setMembers(members.filter((member) => member._id !== memberId));
         alert("Member deleted successfully.");
       } catch (error) {

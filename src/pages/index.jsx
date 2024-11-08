@@ -18,7 +18,7 @@ import ViewUsers from "./ViewUsers.jsx";
 // ----- Dashboard ----- //
 
 import Dashboard from "./dashboard/Dashboard.jsx";
-import Members from "./dashboard/admin/Members.jsx";
+import AllMembers from "./dashboard/admin/AllMembers.jsx";
 import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
 import ViewMember from "./dashboard/admin/ViewMember.jsx";
 
@@ -42,4 +42,4 @@ export {
 
 // ----- Dashboard ----- //
 
-export { Dashboard, Members, RegisterMember, ViewMember };
+export { Dashboard, AllMembers, RegisterMember, ViewMember };
