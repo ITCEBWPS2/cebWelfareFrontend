@@ -1,28 +1,36 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { useLoginMutation } from "@/slices/usersApiSlice";
+import { setCredentials } from "@/slices/authSlice";
 
 const LoginPage = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/dashboard");
+    }
+  }, [navigate, userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
-
     try {
-      const response = await axios.post("/api/login", { identifier, password });
-      console.log("Login successful:", response.data);
-      // Redirect or handle login success here
+      const res = await login({ identifier, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate("/dashboard");
     } catch (err) {
-      setError(
-        err.response?.data?.message || "An error occurred. Please try again."
-      );
-    } finally {
-      setLoading(false);
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -76,10 +84,10 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            disabled={loading}
+            disabled={isLoading}
             className="mt-8 w-full bg-black hover:bg-red-900 rounded text-white py-3 font-semibold transition duration-200"
           >
-            {loading ? "Logging in..." : "Login"}
+            {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>

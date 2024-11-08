@@ -9,10 +9,18 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { Menu } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLogoutMutation } from "@/slices/usersApiSlice";
+import { logout } from "@/slices/authSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+
+  const [logoutApiCall] = useLogoutMutation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +33,14 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    // Clear the token from localStorage
-    localStorage.removeItem("token");
-
-    // Redirect to the login page
-    navigate("/login");
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -65,10 +75,28 @@ const Navbar = () => {
             <a href="#contact" className="text-white hover:text-yellow-300">
               Contact
             </a>
-            {/* Logout button */}
-            <button onClick={handleLogout} className="button-yellow-outline">
-              Login
-            </button>
+            {userInfo ? (
+              <>
+                <Link
+                  to="/dashboard"
+                  className="text-white hover:text-yellow-300"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  onClick={logoutHandler}
+                  className="button-yellow-outline"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <button className="button-yellow-outline">Login</button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Navigation */}
@@ -113,13 +141,29 @@ const Navbar = () => {
                   >
                     Contact
                   </a>
-                  {/* Logout button */}
-                  <button
-                    onClick={handleLogout}
-                    className="button-yellow-outline"
-                  >
-                    Login
-                  </button>
+
+                  {userInfo ? (
+                    <>
+                      <Link
+                        to="/dashboard"
+                        className="text-white hover:text-yellow-300"
+                      >
+                        Dashboard
+                      </Link>
+                      <button
+                        onClick={logoutHandler}
+                        className="button-yellow-outline"
+                      >
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/login">
+                        <button className="button-yellow-outline">Login</button>
+                      </Link>
+                    </>
+                  )}
                 </nav>
               </SheetContent>
             </Sheet>

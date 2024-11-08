@@ -8,15 +8,19 @@ import Register from "./Register.jsx";
 
 import MemberBenefits from "./members/MemberBenefits.jsx";
 import MemberLoans from "./members/MemberLoans.jsx";
-import Members from "./members/Members.jsx";
-import RegisterMember from "./members/RegisterMember.jsx";
 import Relatives from "./members/Relatives.jsx";
-import ViewMember from "./members/ViewMember.jsx";
 import LoanApplication from "./members/LoanApplication.jsx";
 import Carousel from "../components/Carousel.jsx";
 import HorizontalCarousel from "../components/HorizontalCarousel.jsx";
 import AdminPanel from "./AdminPanel.jsx";
 import ViewUsers from "./ViewUsers.jsx";
+
+// ----- Dashboard ----- //
+
+import Dashboard from "./dashboard/Dashboard.jsx";
+import Members from "./dashboard/admin/Members.jsx";
+import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
+import ViewMember from "./dashboard/admin/ViewMember.jsx";
 
 export {
   Home,
@@ -31,10 +35,11 @@ export {
   Carousel,
   HorizontalCarousel,
   LoanApplication,
-  Members,
-  RegisterMember,
   Relatives,
-  ViewMember,
   AdminPanel,
   ViewUsers,
 };
+
+// ----- Dashboard ----- //
+
+export { Dashboard, Members, RegisterMember, ViewMember };
