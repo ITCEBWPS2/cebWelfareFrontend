@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BASE_URL } from "@/constants";
 
 const RegisterMember = () => {
   const [formData, setFormData] = useState({
@@ -274,11 +275,7 @@ const RegisterMember = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        //"https://serverbackend-4wcf.onrender.com/api/members",
-        "http://localhost:5000/api/members",
-        formData
-      );
+      const response = await axios.post(`${BASE_URL}/api/members`, formData);
       console.log("Member created:", response.data);
       toast.success(response.data.message);
 
