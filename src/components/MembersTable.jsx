@@ -11,6 +11,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
+import { ScrollArea } from "./ui/scroll-area";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
@@ -224,7 +225,7 @@ const MembersTable = () => {
                     {selectedMember && (
                       <DialogContent
                         onClose={handleDialogClose}
-                        className="max-w-lg mx-auto"
+                        className="max-w-xl mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none"
                       >
                         <DialogHeader>
                           <DialogTitle className="text-2xl font-bold">
