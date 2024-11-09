@@ -225,7 +225,7 @@ const MembersTable = () => {
                     {selectedMember && (
                       <DialogContent
                         onClose={handleDialogClose}
-                        className="max-w-xl mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none"
+                        className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
                       >
                         <DialogHeader>
                           <DialogTitle className="text-2xl font-bold">
