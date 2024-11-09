@@ -21,6 +21,7 @@ import Dashboard from "./dashboard/Dashboard.jsx";
 import AllMembers from "./dashboard/admin/AllMembers.jsx";
 import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
 import ViewMember from "./dashboard/admin/ViewMember.jsx";
+import MemberProfile from "./dashboard/MemberProfile.jsx";
 
 export {
   Home,
@@ -42,4 +43,4 @@ export {
 
 // ----- Dashboard ----- //
 
-export { Dashboard, AllMembers, RegisterMember, ViewMember };
+export { Dashboard, AllMembers, RegisterMember, ViewMember, MemberProfile };

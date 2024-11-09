@@ -210,16 +210,18 @@ const MembersTable = () => {
                   >
                     <Trash2 className="p-0.5" />
                   </button>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-                    View Details
-                  </button>
+                  <Link to={`/dashboard/members/${member._id}`}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
+                      View Profile
+                    </button>
+                  </Link>
                   <Dialog>
                     <DialogTrigger>
                       <div
                         onClick={() => handleDialogOpen(member)}
                         className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-3 py-1"
                       >
-                        View
+                        View Details
                       </div>
                     </DialogTrigger>
                     {selectedMember && (
@@ -227,16 +229,15 @@ const MembersTable = () => {
                         onClose={handleDialogClose}
                         className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
                       >
-                        <DialogHeader>
+                        <DialogHeader className="border-b pb-4">
                           <DialogTitle className="text-2xl font-bold">
-                            {selectedMember.name}'s Details
+                            {selectedMember.name}
                           </DialogTitle>
                           <DialogDescription>
                             Here are the full details of the member.
                           </DialogDescription>
                         </DialogHeader>
-                        <div className="p-4 text-gray-700 space-y-2">
-                          {/* Displaying Member Details with Conditions */}
+                        <div className="py-2 text-gray-700 space-y-2">
                           <p>
                             <strong>Email:</strong>{" "}
                             {selectedMember.email || "N/A"}

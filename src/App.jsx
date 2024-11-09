@@ -9,6 +9,7 @@ import {
   AllMembers,
   ViewMember,
   Dashboard,
+  MemberProfile,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import AOS from "aos";
@@ -43,7 +44,7 @@ const App = () => {
             <Route path="/dashboard/loans" element={<Loans />} />
             <Route
               path="/dashboard/members/:memberId"
-              element={<ViewMember />}
+              element={<MemberProfile />}
             />
             <Route path="" element={<AdminRoute />}>
               <Route
