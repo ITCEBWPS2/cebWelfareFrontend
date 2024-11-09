@@ -3,7 +3,7 @@ import annual_meeting from "./annual_meeting.webp";
 import blood_donation from "./blood.webp";
 import emblem from "./emblem.png";
 import cover from "./cover.jpg";
-import user_fallback from "./user_fallback.webp";
+import user_fallback from "./user_profile_fallback.webp";
 
 export {
   main_header_1,

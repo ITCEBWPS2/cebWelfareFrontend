@@ -2,7 +2,7 @@ import { main_header_1, user_fallback } from "@/assets";
 import { BASE_URL } from "@/constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MemberProfile = () => {
   const { memberId } = useParams();
@@ -30,11 +30,19 @@ const MemberProfile = () => {
   }, [memberId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="min-h-[600px] flex items-center justify-center">
+        Loading...
+      </div>
+    );
   }
 
   if (!member) {
-    return <div>Member not found.</div>;
+    return (
+      <div className="min-h-[600px] flex items-center justify-center">
+        <div>Member not found.</div>
+      </div>
+    );
   }
 
   const {
@@ -70,9 +78,9 @@ const MemberProfile = () => {
       <img
         src={main_header_1}
         alt="Profile"
-        className="w-full h-40 object-cover object-center"
+        className="w-full h-36 object-cover object-center"
       />
-      <div className="max-w-4xl -mt-14 px-4">
+      <div className="max-w-4xl w-full -mt-14 px-4">
         <div className="flex flex-col items-left">
           <img
             src={profilePhoto}
@@ -187,16 +195,35 @@ const MemberProfile = () => {
             </div>
           </div>
         </div>
-        <div className="my-8 space-x-4">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-            View Profile
-          </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-            View Profile
-          </button>
+      </div>
+      <div className="flex items-center justify-center w-full my-8">
+        <div className="flex flex-col max-w-4xl w-full gap-4 px-4 py-8 md:flex-row border-t">
+          <Link to="#">
+            <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
+              My Loans
+            </button>
+          </Link>
+          <Link to="#">
+            <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
+              My Benefits
+            </button>
+          </Link>
+          {role === "admin" && (
+            <>
+              <Link to="#">
+                <button className="bg-green-600 hover:bg-green-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
+                  Update Profile
+                </button>
+              </Link>
+              <Link to="#">
+                <button className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
+                  Remove Member
+                </button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
-      <div className="bg-red-900 h-8 w-full" />
     </div>
   );
 };
