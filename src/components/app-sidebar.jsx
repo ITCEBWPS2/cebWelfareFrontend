@@ -1,20 +1,6 @@
-import * as React from "react";
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  ChevronsUpDown,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -27,7 +13,7 @@ import {
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Link } from "react-router-dom";
 import { NavAdmin } from "./nav-admin";
-import { useSelector } from "react-redux";
+import { useAuth } from "@/api/authContext";
 
 const data = {
   user: {
@@ -172,7 +158,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
-  const { userInfo } = useSelector((state) => state.auth);
+  const { user } = useAuth();
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -194,7 +180,7 @@ export function AppSidebar({ ...props }) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {userInfo.role === "admin" && <NavAdmin items={data.navAdmin} />}
+        {user.role === "admin" && <NavAdmin items={data.navAdmin} />}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

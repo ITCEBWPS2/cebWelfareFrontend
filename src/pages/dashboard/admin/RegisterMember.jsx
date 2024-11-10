@@ -275,7 +275,9 @@ const RegisterMember = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}/api/members`, formData);
+      const response = await axios.post(`${BASE_URL}/api/members`, formData, {
+        withCredentials: true,
+      });
       console.log("Member created:", response.data);
       toast.success(response.data.message);
 
