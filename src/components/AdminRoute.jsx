@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux";
+import { useAuth } from "@/api/authContext";
 import { Outlet } from "react-router-dom";
 
 const AdminRoute = () => {
-  const { userInfo } = useSelector((state) => state.auth);
-  return userInfo.role === "admin" ? (
+  const { user } = useAuth();
+  return user && user.role === "admin" ? (
     <Outlet />
   ) : (
-    "Only admins have access to this page."
+    <div>Only admins have access to this page.</div>
   );
 };
 

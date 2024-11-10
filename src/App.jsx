@@ -7,7 +7,6 @@ import {
   Login,
   RegisterMember,
   AllMembers,
-  ViewMember,
   Dashboard,
   MemberProfile,
 } from "./pages";

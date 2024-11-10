@@ -1,3 +1,4 @@
+import { useAuth } from "@/api/authContext";
 import { main_header_1, user_fallback } from "@/assets";
 import { BASE_URL } from "@/constants";
 import axios from "axios";
@@ -8,6 +9,7 @@ const MemberProfile = () => {
   const { memberId } = useParams();
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchMemberData = async () => {
@@ -208,7 +210,7 @@ const MemberProfile = () => {
               My Benefits
             </button>
           </Link>
-          {role === "admin" && (
+          {user.role === "admin" && (
             <>
               <Link to="#">
                 <button className="bg-green-600 hover:bg-green-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">

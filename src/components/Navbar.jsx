@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -9,18 +9,11 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { Menu } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLogoutMutation } from "@/slices/usersApiSlice";
-import { logout } from "@/slices/authSlice";
+import { useAuth } from "@/api/authContext";
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
-  const { userInfo } = useSelector((state) => state.auth);
-
-  const dispatch = useDispatch();
-
-  const [logoutApiCall] = useLogoutMutation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,16 +25,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const logoutHandler = async () => {
-    try {
-      await logoutApiCall().unwrap();
-      dispatch(logout());
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   return (
     <div className="sticky top-0 z-10">
@@ -75,7 +58,7 @@ const Navbar = () => {
             <a href="#contact" className="text-white hover:text-yellow-300">
               Contact
             </a>
-            {userInfo ? (
+            {user ? (
               <>
                 <Link
                   to="/dashboard"
@@ -83,10 +66,7 @@ const Navbar = () => {
                 >
                   Dashboard
                 </Link>
-                <button
-                  onClick={logoutHandler}
-                  className="button-yellow-outline"
-                >
+                <button onClick={logout} className="button-yellow-outline">
                   Logout
                 </button>
               </>
@@ -142,7 +122,7 @@ const Navbar = () => {
                     Contact
                   </a>
 
-                  {userInfo ? (
+                  {user ? (
                     <>
                       <Link
                         to="/dashboard"
@@ -151,7 +131,7 @@ const Navbar = () => {
                         Dashboard
                       </Link>
                       <button
-                        onClick={logoutHandler}
+                        onClick={logout}
                         className="button-yellow-outline"
                       >
                         Logout

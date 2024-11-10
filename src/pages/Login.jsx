@@ -1,37 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
-import { useLoginMutation } from "@/slices/usersApiSlice";
-import { setCredentials } from "@/slices/authSlice";
+import { useAuth } from "@/api/authContext";
 
 const LoginPage = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const [login, { isLoading }] = useLoginMutation();
-
-  const { userInfo } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/dashboard");
-    }
-  }, [navigate, userInfo]);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await login({ identifier, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
-      navigate("/dashboard");
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
-    }
+    login(identifier, password, navigate);
   };
 
   return (
@@ -51,7 +30,6 @@ const LoginPage = () => {
           </h2>
           <div className="space-y-6">
             <div>
-              {error && <p className="text-red-500 text-sm">{error}</p>}
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -84,10 +62,9 @@ const LoginPage = () => {
           </div>
           <button
             type="submit"
-            disabled={isLoading}
             className="mt-8 w-full bg-black hover:bg-red-900 rounded text-white py-3 font-semibold transition duration-200"
           >
-            {isLoading ? "Logging in..." : "Login"}
+            Login
           </button>
         </form>
       </div>
