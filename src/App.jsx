@@ -16,6 +16,7 @@ import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
+import { useAuth } from "./api/authContext";
 
 const App = () => {
   useEffect(() => {
@@ -25,6 +26,40 @@ const App = () => {
       offset: 100,
     });
   }, []);
+
+  const { user } = useAuth();
+
+  // return (
+  //   <Router>
+  //     <Routes>
+  //       {/* Routes that use MainLayout */}
+  //       <Route element={<MainLayout />}>
+  //         <Route path="/" element={<Home />} />
+  //       </Route>
+
+  //       <Route path="/login" element={<Login />} />
+
+  //       {/* Routes that use DashboardLayout */}
+  //       <Route path="" element={<PrivateRoute />}>
+  //         <Route element={<DashboardLayout />}>
+  //           <Route path="/dashboard" element={<Dashboard />} />
+  //           <Route path="/dashboard/loans" element={<Loans />} />
+  //           <Route
+  //             path="/dashboard/members/:memberId"
+  //             element={<MemberProfile />}
+  //           />
+  //           <Route path="" element={<AdminRoute />}>
+  //             <Route
+  //               path="/dashboard/members/register"
+  //               element={<RegisterMember />}
+  //             />
+  //             <Route path="/dashboard/members" element={<AllMembers />} />
+  //           </Route>
+  //         </Route>
+  //       </Route>
+  //     </Routes>
+  //   </Router>
+  // );
 
   return (
     <Router>
@@ -37,7 +72,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
 
         {/* Routes that use DashboardLayout */}
-        <Route path="" element={<PrivateRoute />}>
+        {user && (
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/loans" element={<Loans />} />
@@ -45,15 +80,17 @@ const App = () => {
               path="/dashboard/members/:memberId"
               element={<MemberProfile />}
             />
-            <Route path="" element={<AdminRoute />}>
-              <Route
-                path="/dashboard/members/register"
-                element={<RegisterMember />}
-              />
-              <Route path="/dashboard/members" element={<AllMembers />} />
-            </Route>
+            {user && user.role === "admin" && (
+              <>
+                <Route
+                  path="/dashboard/members/register"
+                  element={<RegisterMember />}
+                />
+                <Route path="/dashboard/members" element={<AllMembers />} />
+              </>
+            )}
           </Route>
-        </Route>
+        )}
       </Routes>
     </Router>
   );
