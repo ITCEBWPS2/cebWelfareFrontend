@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "@/slices/usersApiSlice";
 import { logout } from "@/slices/authSlice";
+import { main_header_1 } from "@/assets";
 
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
@@ -58,7 +59,7 @@ export function NavUser({ user }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={main_header_1} alt={user.name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
@@ -82,7 +83,7 @@ export function NavUser({ user }) {
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate text-xs">{user.role}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

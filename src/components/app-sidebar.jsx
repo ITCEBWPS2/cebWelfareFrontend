@@ -1,4 +1,3 @@
-import * as React from "react";
 import { BookOpen, Bot, Settings2, SquareTerminal } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -15,6 +14,10 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Link } from "react-router-dom";
 import { NavAdmin } from "./nav-admin";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_URL } from "@/constants";
+import { useFetchUser } from "@/hooks/useFetchUser";
 
 const data = {
   user: {
