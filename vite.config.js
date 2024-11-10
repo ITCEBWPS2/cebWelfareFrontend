@@ -1,5 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+import { BASE_URL } from "./src/constants";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,12 +9,14 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://98.81.11.43/api/",
+        target: BASE_URL,
         changeOrigin: true,
       },
     },
   },
-})
-
-//13.61.8.102 - blue
-//98.81.11.43 - orange
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});

@@ -1,23 +1,17 @@
 // src/components/MainLayout.jsx
-import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import LinesImage from './Lines';
-import Wrapper from './Wrapper';
+import React from "react";
+import Navbar from "./Navbar";
+import BottomBar from "./BottomBar";
+import { Outlet } from "react-router-dom";
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
   return (
     <div>
       <Navbar />
-      <LinesImage className="w-full h-auto" />
-      <Wrapper>
-      {children}
-      </Wrapper>
-      <Footer />
-
+      <Outlet />
+      <BottomBar />
     </div>
   );
 };
 
 export default MainLayout;
-

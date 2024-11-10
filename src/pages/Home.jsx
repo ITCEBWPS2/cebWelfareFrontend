@@ -1,69 +1,51 @@
-// import { Carousel } from 'bootstrap';
 import React from "react";
 import HorizontalCarousel from "../components/HorizontalCarousel";
+import LinesImage from "@/components/Lines";
+import MainCarousel from "@/components/MainCarousel";
+import LinksSection from "@/components/LinksSection";
+import { cover } from "@/assets";
+import NewsSection from "@/components/NewsSection";
+import Benefits from "@/components/Benefits";
+import Contact from "@/components/Contact";
 
-const Homepage = () => {
+const Home = () => {
   return (
-    // <div className=" justify-center items-center min-h-screen bg-yellow-50">
     <div>
-      <HorizontalCarousel />
-      {/* <div className="bg-gray-100 font-sans min-h-screen"> */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex">
-          {/* Left Sidebar */}
-          <div className="w-1/4 bg-red-200 p-4 shadow-lg">
-            <div>
-              <input
-                type="text"
-                placeholder="Search ..."
-                className="w-full border rounded-3xl px-4 py-2 mb-4"
-              />
-              <ul className="text-red-700 font-bold">
-                <li>
-                  The Blood Donation Camp was successfully completed on
-                  31-10-2023 by the Welfare Association for the 54th Anniversary
-                  of Lang.VMA (B.P. II).
-                </li>
-                <br />
-                <li>
-                  Western Province South II Welfare Association 14th Annual The
-                  general meeting was held on 12-06-2024.
-                </li>
-              </ul>
-            </div>
+      <MainCarousel />
+      <div className="wrapper">
+        <section
+          id="about"
+          className="mt-14 flex flex-col md:flex-row items-center justify-between bg-soft-green rounded-xl gap-8 py-7 md:py-14 md:gap-28"
+        >
+          <div
+            className="flex-1 flex justify-center items-center"
+            data-aos="slide-in"
+          >
+            <img className="max-w-full rounded-lg" src={cover} alt="CEB" />
           </div>
-          {/* Main Content */}
-          <div className="w-3/4 ml-4">
-            {/* Carousel */}
-            <div className="bg-red-900 p-4 rounded-2xl shadow-lg mb-4">
-              <img
-                src="../../../Cover photo.jpg"
-                alt="Banner 1"
-                className="w-full h-100 object-cover rounded mb-4"
-              />
-              <img
-                src="/banner2.jpg"
-                alt="Banner 2"
-                className="w-full h-64 object-cover rounded hidden"
-              />
-            </div>
+          <div className="flex-1" data-aos="slide-in">
+            <h2 className="hidden font-heading text-4xl font-bold text-center mb-4 md:text-6xl md:mb-8 md:text-left md:block">
+              About
+            </h2>
+            <p className="text-base">
+              Welcome to our organization! We are committed to providing the
+              best services to our members. Our mission is to support and
+              enhance the well-being of our community through various programs
+              and initiatives. Our team is dedicated to ensuring that our
+              members receive the highest level of service and support. We
+              believe in the power of community and strive to foster a sense of
+              belonging and mutual support among our members.
+            </p>
+          </div>
+        </section>
 
-            {/* Article Section */}
-            <section className="bg-white p-4 shadow-lg">
-              <h3 className="text-xl font-bold text-red-700">
-                Ceylon Electricity Board Welfare Society
-              </h3>
-              <p className="mt-2 text-gray-600">
-                Western Province South II Welfare Association 14th Annual The
-                general meeting was held on 12-06-2024.
-              </p>
-            </section>
-          </div>
-        </div>
+        <NewsSection />
+        <Benefits />
+        <Contact />
       </div>
-      {/* </div> */}
+      <LinksSection />
     </div>
   );
 };
 
-export default Homepage;
+export default Home;
