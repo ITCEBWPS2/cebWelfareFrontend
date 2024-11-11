@@ -16,6 +16,7 @@ import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
+import { useAuth } from "./api/authContext";
 
 const App = () => {
   useEffect(() => {
@@ -25,6 +26,8 @@ const App = () => {
       offset: 100,
     });
   }, []);
+
+  const { user } = useAuth();
 
   return (
     <Router>
