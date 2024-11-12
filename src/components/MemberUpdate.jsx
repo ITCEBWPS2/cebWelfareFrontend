@@ -33,11 +33,16 @@ const MemberUpdate = ({ memberId }) => {
     fatherInLawAge: "",
     memberFee: "",
   });
+  const [initialData, setInitialData] = useState(null);
+  const [isModified, setIsModified] = useState(false);
 
   useEffect(() => {
     axios
       .get(`${BASE_URL}/api/members/${memberId}`, { withCredentials: true })
-      .then((response) => setFormData(response.data))
+      .then((response) => {
+        setFormData(response.data);
+        setInitialData(response.data);
+      })
       .catch((error) => console.error("Error fetching member data:", error));
   }, [memberId]);
 
@@ -86,6 +91,13 @@ const MemberUpdate = ({ memberId }) => {
       alert("Failed to update member");
     }
   };
+
+  // Check if formData has been modified compared to initialData
+  useEffect(() => {
+    if (initialData) {
+      setIsModified(JSON.stringify(formData) !== JSON.stringify(initialData));
+    }
+  }, [formData, initialData]);
 
   return (
     <form
@@ -225,7 +237,13 @@ const MemberUpdate = ({ memberId }) => {
       {/* Submit button */}
       <button
         type="submit"
-        className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+        disabled={!isModified}
+        className={`w-full py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500
+          ${
+            isModified
+              ? "bg-green-500 hover:bg-green-600 text-white"
+              : "bg-gray-300 text-gray-600 cursor-not-allowed"
+          }`}
       >
         Update Member
       </button>
