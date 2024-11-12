@@ -12,6 +12,7 @@ import {
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
+import MemberUpdate from "./MemberUpdate";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
@@ -198,12 +199,20 @@ const MembersTable = () => {
                 </td>
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
-                  <button
-                    className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1"
-                    onClick={() => handleEditClick(member)}
-                  >
-                    <SquarePen className="p-0.5" />
-                  </button>
+                  <Dialog>
+                    <DialogTrigger>
+                      <div className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1">
+                        <SquarePen className="p-0.5" />
+                      </div>
+                    </DialogTrigger>
+
+                    <DialogContent
+                      onClose={handleDialogClose}
+                      className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
+                    >
+                      <MemberUpdate memberId={member._id} />
+                    </DialogContent>
+                  </Dialog>
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
                     onClick={() => handleDelete(member._id)}

@@ -36,7 +36,7 @@ const MemberUpdate = ({ memberId }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/api/members/${memberId}`)
+      .get(`${BASE_URL}/api/members/${memberId}`, { withCredentials: true })
       .then((response) => setFormData(response.data))
       .catch((error) => console.error("Error fetching member data:", error));
   }, [memberId]);
@@ -77,7 +77,9 @@ const MemberUpdate = ({ memberId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${BASE_URL}/api/members/${memberId}`, formData);
+      await axios.put(`${BASE_URL}/api/members/${memberId}`, formData, {
+        withCredentials: true,
+      });
       alert("Member updated successfully");
     } catch (error) {
       console.error("Error updating member:", error);
