@@ -29,7 +29,7 @@ const slides = [
     image: main_header_1,
     text: "WELOCME TO WELFARE SOCIETY CEB (WPS II)",
     subText:
-      "We’re here to support each other and create a strong community where everyone feels valued. Our society is committed to enhancing the well-being of all our members, offering financial assistance, benefits, and a reliable network of support. Through our various programs, we aim to improve the quality of life for each member, helping you feel connected and cared for within our community. Thank you for being a part of WPS II—we’re glad to have you with us!",
+      "We’re here to support each other and create a strong community where everyone feels valued. Our society is committed to enhancing the well-being of all our members, offering financial assistance, benefits, and a reliable network of support. Through our various programs, we aim to improve the quality of life for each member, helping you feel connected and cared for within our community. Thank you for being a part of WPS II—we’re glad to have you with us!  Thank you!",
   },
 ];
 
