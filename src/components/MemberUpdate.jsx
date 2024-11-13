@@ -100,10 +100,7 @@ const MemberUpdate = ({ memberId }) => {
   }, [formData, initialData]);
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-8 space-y-6"
-    >
+    <form onSubmit={handleSubmit} className="p-4 space-y-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Update Member</h2>
 
       <div>
