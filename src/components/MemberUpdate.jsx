@@ -113,7 +113,7 @@ const MemberUpdate = ({ memberId }) => {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
         />
       </div>
 
@@ -126,48 +126,36 @@ const MemberUpdate = ({ memberId }) => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <div>
-        <label className="block text-gray-600 text-sm font-medium mb-2">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
         />
       </div>
 
       {/* Example for nested fields (Contact Numbers) */}
-      <div>
-        <label className="block text-gray-600 text-sm font-medium mb-2">
-          WhatsApp Number
-        </label>
-        <input
-          type="number"
-          name="whatsappNo"
-          value={formData.contactNo.whatsappNo}
-          onChange={(e) => handleNestedChange(e, "contactNo")}
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div>
-        <label className="block text-gray-600 text-sm font-medium mb-2">
-          Phone Number
-        </label>
-        <input
-          type="number"
-          name="number"
-          value={formData.contactNo.number}
-          onChange={(e) => handleNestedChange(e, "contactNo")}
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+      <div className="flex flex-col md:flex-row gap-4">
+        <div>
+          <label className="block text-gray-600 text-sm font-medium mb-2">
+            WhatsApp Number
+          </label>
+          <input
+            type="number"
+            name="whatsappNo"
+            value={formData.contactNo.whatsappNo}
+            onChange={(e) => handleNestedChange(e, "contactNo")}
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+          />
+        </div>
+        <div>
+          <label className="block text-gray-600 text-sm font-medium mb-2">
+            Phone Number
+          </label>
+          <input
+            type="number"
+            name="number"
+            value={formData.contactNo.number}
+            onChange={(e) => handleNestedChange(e, "contactNo")}
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
+          />
+        </div>
       </div>
 
       {/* Dynamic Children Fields */}
