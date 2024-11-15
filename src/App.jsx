@@ -43,7 +43,6 @@ const App = () => {
         <Route path="" element={<PrivateRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/loans" element={<Loans />} />
             <Route
               path="/dashboard/members/:memberId"
               element={<MemberProfile />}
@@ -54,6 +53,7 @@ const App = () => {
                 element={<RegisterMember />}
               />
               <Route path="/dashboard/members" element={<AllMembers />} />
+              <Route path="/dashboard/loans" element={<Loans />} />
             </Route>
           </Route>
         </Route>

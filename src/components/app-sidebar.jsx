@@ -36,7 +36,7 @@ const data = {
     },
     {
       title: "Loans",
-      url: "#",
+      url: "/dashboard/loans",
       icon: Bot,
       items: [
         {
@@ -123,7 +123,7 @@ const data = {
       items: [
         {
           title: "Loan Requests",
-          url: "#",
+          url: "/dashboard/loans",
         },
         {
           title: "Pending Requests",

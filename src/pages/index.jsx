@@ -2,7 +2,6 @@ import Home from "./Home.jsx";
 import Benefits from "./Benefits.jsx";
 import Contact from "./Contact.jsx";
 import About from "./About.jsx";
-import Loans from "./Loans.jsx";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 
@@ -21,13 +20,13 @@ import Dashboard from "./dashboard/Dashboard.jsx";
 import AllMembers from "./dashboard/admin/AllMembers.jsx";
 import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
 import MemberProfile from "./dashboard/MemberProfile.jsx";
+import Loans from "./dashboard/admin/Loans.jsx";
 
 export {
   Home,
   Benefits,
   Contact,
   About,
-  Loans,
   Login,
   Register,
   MemberBenefits,
@@ -42,4 +41,4 @@ export {
 
 // ----- Dashboard ----- //
 
-export { Dashboard, AllMembers, RegisterMember, MemberProfile };
+export { Dashboard, AllMembers, RegisterMember, MemberProfile, Loans };
