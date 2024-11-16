@@ -50,14 +50,13 @@ const LoanApplication = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-4xl mx-auto p-8 bg-white shadow-md rounded-md space-y-6"
+      className="max-w-4xl mx-auto my-8 p-8 space-y-12"
     >
-      <h1 className="text-2xl font-bold text-center text-gray-700">
+      <h1 className="text-2xl font-bold text-gray-700">
         Loan Application Form
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Member Number */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <label
             htmlFor="memberNumber"
@@ -73,7 +72,7 @@ const LoanApplication = () => {
             value={formData.memberNumber}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -93,7 +92,7 @@ const LoanApplication = () => {
             value={formData.epfNumber}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -113,7 +112,7 @@ const LoanApplication = () => {
             value={formData.loanNumber}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -133,7 +132,7 @@ const LoanApplication = () => {
             value={formData.loanAmount}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -153,7 +152,7 @@ const LoanApplication = () => {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -173,7 +172,7 @@ const LoanApplication = () => {
             value={formData.address}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -192,7 +191,7 @@ const LoanApplication = () => {
             value={formData.position}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -211,7 +210,7 @@ const LoanApplication = () => {
             value={formData.branch}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -230,7 +229,7 @@ const LoanApplication = () => {
             value={formData.contactNo.mobile}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -248,7 +247,7 @@ const LoanApplication = () => {
             placeholder="Enter Landline Contact"
             value={formData.contactNo.landline}
             onChange={handleChange}
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -267,7 +266,7 @@ const LoanApplication = () => {
             value={formData.nationalIdNumber}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -286,7 +285,7 @@ const LoanApplication = () => {
             value={formData.reasonForLoan}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -304,7 +303,7 @@ const LoanApplication = () => {
             value={formData.requiredLoanDate}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -322,7 +321,7 @@ const LoanApplication = () => {
             value={formData.dateOfBirth}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
@@ -340,14 +339,14 @@ const LoanApplication = () => {
             value={formData.retirementDate}
             onChange={handleChange}
             required
-            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
       </div>
 
       <button
         type="submit"
-        className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        className="w-full p-3 font-semibold bg-red-900 text-white rounded-md hover:bg-red-800 transition"
       >
         Submit Loan Application
       </button>
