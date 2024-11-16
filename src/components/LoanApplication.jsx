@@ -2,22 +2,27 @@ import React, { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
+import { useAuth } from "@/api/authContext";
 
 const LoanApplication = () => {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    memberNumber: "",
-    epfNumber: "",
+    memberNumber: user.welfareNo,
+    epfNumber: user.epf,
     loanNumber: "",
     loanAmount: "",
-    name: "",
+    name: user.name,
     address: "",
     position: "",
-    branch: "",
-    contactNo: { mobile: "", landline: "" },
+    branch: user.branch,
+    contactNo: {
+      mobile: user.contactNo.whatsappNo,
+      landline: user.contactNo.number,
+    },
     nationalIdNumber: "",
     reasonForLoan: "",
     requiredLoanDate: "",
-    dateOfBirth: "",
+    dateOfBirth: user.dateOfBirth,
     retirementDate: "",
     loanStatus: "pending",
   });
@@ -49,20 +54,24 @@ const LoanApplication = () => {
 
       if (response.data) {
         setFormData({
-          memberNumber: "",
-          epfNumber: "",
+          memberNumber: user.welfareNo,
+          epfNumber: user.epf,
           loanNumber: "",
           loanAmount: "",
-          name: "",
+          name: user.name,
           address: "",
           position: "",
-          branch: "",
-          contactNo: { mobile: "", landline: "" },
+          branch: user.branch,
+          contactNo: {
+            mobile: user.contactNo.whatsappNo,
+            landline: user.contactNo.number,
+          },
           nationalIdNumber: "",
           reasonForLoan: "",
           requiredLoanDate: "",
-          dateOfBirth: "",
+          dateOfBirth: user.dateOfBirth,
           retirementDate: "",
+          loanStatus: "pending",
         });
       }
     } catch (error) {
@@ -96,11 +105,11 @@ const LoanApplication = () => {
             value={formData.memberNumber}
             onChange={handleChange}
             required
+            disabled
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
-        {/* EPF Number */}
         <div>
           <label
             htmlFor="epfNumber"
@@ -116,11 +125,11 @@ const LoanApplication = () => {
             value={formData.epfNumber}
             onChange={handleChange}
             required
+            disabled
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
 
-        {/* Loan Number */}
         <div>
           <label
             htmlFor="loanNumber"
@@ -140,7 +149,6 @@ const LoanApplication = () => {
           />
         </div>
 
-        {/* Loan Amount */}
         <div>
           <label
             htmlFor="loanAmount"
@@ -160,7 +168,6 @@ const LoanApplication = () => {
           />
         </div>
 
-        {/* Name */}
         <div>
           <label
             htmlFor="name"
@@ -180,7 +187,6 @@ const LoanApplication = () => {
           />
         </div>
 
-        {/* Address */}
         <div>
           <label
             htmlFor="address"
