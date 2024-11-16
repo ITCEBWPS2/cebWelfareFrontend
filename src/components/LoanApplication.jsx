@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "@/constants";
+import toast from "react-hot-toast";
 
 const LoanApplication = () => {
   const [formData, setFormData] = useState({
@@ -39,11 +41,33 @@ const LoanApplication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/loan/apply", formData);
-      alert("Loan application submitted successfully!");
+      const response = await axios.post(`${BASE_URL}/api/loans`, formData, {
+        withCredentials: true,
+      });
+      console.log("Loan Application Submitted Successfully:", response.data);
+      toast.success(response.data.message);
+
+      if (response.data) {
+        setFormData({
+          memberNumber: "",
+          epfNumber: "",
+          loanNumber: "",
+          loanAmount: "",
+          name: "",
+          address: "",
+          position: "",
+          branch: "",
+          contactNo: { mobile: "", landline: "" },
+          nationalIdNumber: "",
+          reasonForLoan: "",
+          requiredLoanDate: "",
+          dateOfBirth: "",
+          retirementDate: "",
+        });
+      }
     } catch (error) {
       console.error("Error submitting loan application:", error);
-      alert("Failed to submit loan application.");
+      toast.error("Something went wrong");
     }
   };
 
