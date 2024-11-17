@@ -12,11 +12,10 @@ import {
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
 
-const MembersTable = () => {
+const LoansTable = () => {
   const [members, setMembers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [highlightedMemberId, setHighlightedMemberId] = useState(null);
-  const [editedMember, setEditedMember] = useState({});
   const [selectedMember, setSelectedMember] = useState(null);
   const navigate = useNavigate();
   const memberRefs = useRef({});
@@ -181,7 +180,7 @@ const MembersTable = () => {
                       onClose={handleDialogClose}
                       className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
                     >
-                      <MemberUpdate memberId={member._id} />
+                      Loan Update
                     </DialogContent>
                   </Dialog>
                   <button
@@ -318,4 +317,4 @@ const MembersTable = () => {
   );
 };
 
-export default MembersTable;
+export default LoansTable;

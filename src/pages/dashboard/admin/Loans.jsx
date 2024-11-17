@@ -1,10 +1,9 @@
-import LoanApplication from "@/components/LoanApplication";
-import React from "react";
+import LoansTable from "@/components/LoansTable";
 
 const Loans = () => {
   return (
     <div>
-      <LoanApplication />
+      <LoansTable />
     </div>
   );
 };
