@@ -11,7 +11,6 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
-import MemberUpdate from "./MemberUpdate";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
