@@ -1,7 +1,7 @@
 import LoanApplication from "@/components/LoanApplication";
 import React from "react";
 
-const LoanApplication = () => {
+const LoanApplicationPage = () => {
   return (
     <div>
       <LoanApplication />
@@ -9,4 +9,4 @@ const LoanApplication = () => {
   );
 };
 
-export default LoanApplication;
+export default LoanApplicationPage;

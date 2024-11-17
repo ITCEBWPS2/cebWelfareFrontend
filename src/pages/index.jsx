@@ -8,7 +8,6 @@ import Register from "./Register.jsx";
 import MemberBenefits from "./members/MemberBenefits.jsx";
 import MemberLoans from "./members/MemberLoans.jsx";
 import Relatives from "./members/Relatives.jsx";
-import LoanApplication from "./members/LoanApplication.jsx";
 import Carousel from "../components/Carousel.jsx";
 import HorizontalCarousel from "../components/HorizontalCarousel.jsx";
 import AdminPanel from "./AdminPanel.jsx";
@@ -21,6 +20,7 @@ import AllMembers from "./dashboard/admin/AllMembers.jsx";
 import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
 import MemberProfile from "./dashboard/MemberProfile.jsx";
 import Loans from "./dashboard/admin/Loans.jsx";
+import LoanApplicationPage from "./dashboard/LoanApplicationPage.jsx";
 
 export {
   Home,
@@ -33,7 +33,6 @@ export {
   MemberLoans,
   Carousel,
   HorizontalCarousel,
-  LoanApplication,
   Relatives,
   AdminPanel,
   ViewUsers,
@@ -41,4 +40,11 @@ export {
 
 // ----- Dashboard ----- //
 
-export { Dashboard, AllMembers, RegisterMember, MemberProfile, Loans };
+export {
+  Dashboard,
+  AllMembers,
+  RegisterMember,
+  MemberProfile,
+  Loans,
+  LoanApplicationPage,
+};

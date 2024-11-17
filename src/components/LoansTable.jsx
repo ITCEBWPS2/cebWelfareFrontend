@@ -108,7 +108,7 @@ const LoansTable = () => {
         </div>
         <button
           className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
-          onClick={() => navigate("/dashboard/members/register")}
+          onClick={() => navigate("/dashboard/loans/apply")}
         >
           Register New Member
         </button>
