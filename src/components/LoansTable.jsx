@@ -57,7 +57,7 @@ const LoansTable = () => {
           className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
           onClick={() => navigate("/dashboard/loans/apply")}
         >
-          Apply a Loan
+          Apply to a Loan
         </button>
       </div>
 
@@ -68,10 +68,10 @@ const LoansTable = () => {
               {[
                 "EPF no",
                 "Welfare no",
+                "Loan Number",
                 "Name",
-                "Date of Registered",
-                "Date of Joined",
-                "Payroll",
+                "Loan Amount",
+                "Status",
                 "Actions",
               ].map((header) => (
                 <th
@@ -87,22 +87,22 @@ const LoansTable = () => {
             {loans.map((loan, index) => (
               <tr key={loan._id}>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  td
+                  {loan.epfNumber}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  td
+                  {loan.memberNumber}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {loan._id}
+                  {loan.loanNumber}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  td
+                  {loan.name}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  td
+                  {loan.loanAmount}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  td
+                  {loan.loanStatus}
                 </td>
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
