@@ -41,15 +41,11 @@ const data = {
       items: [
         {
           title: "My Loans",
-          url: "#",
+          url: "/dashboard/my-loans",
         },
         {
           title: "Apply Loan",
-          url: "#",
-        },
-        {
-          title: "Loan History",
-          url: "#",
+          url: "/dashboard/apply-loan",
         },
       ],
     },
@@ -68,29 +64,6 @@ const data = {
         },
         {
           title: "Apply Benefits",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
           url: "#",
         },
       ],

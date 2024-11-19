@@ -4,7 +4,7 @@ import React from "react";
 const RejectedLoans = () => {
   return (
     <div className="p-8 my-8">
-      <LoansTable status="approved" />
+      <LoansTable status="rejected" />
     </div>
   );
 };

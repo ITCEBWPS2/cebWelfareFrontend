@@ -21,6 +21,7 @@ import DashboardLayout from "./components/DashboardLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import { useAuth } from "./api/authContext";
+import MyLoans from "./pages/dashboard/MyLoans";
 
 const App = () => {
   useEffect(() => {
@@ -52,9 +53,10 @@ const App = () => {
               element={<MemberProfile />}
             />
             <Route
-              path="/dashboard/loans/apply"
+              path="/dashboard/apply-loan"
               element={<LoanApplicationPage />}
             />
+            <Route path="/dashboard/my-loans" element={<MyLoans />} />
             <Route path="" element={<AdminRoute />}>
               <Route
                 path="/dashboard/members/register"

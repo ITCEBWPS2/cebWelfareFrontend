@@ -18,7 +18,6 @@ const LoansTable = ({ status }) => {
   const [loans, setLoans] = useState([]);
   const [loanStatus, setLoanStatus] = useState("");
   const [selectedLoanId, setSelectedLoanId] = useState(null);
-  const navigate = useNavigate();
 
   const allowedStatuses = ["pending", "approved", "rejected"];
 
