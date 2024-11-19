@@ -10,6 +10,9 @@ import {
   Dashboard,
   MemberProfile,
   LoanApplicationPage,
+  PendingLoans,
+  ApprovedLoans,
+  RejectedLoans,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import AOS from "aos";
@@ -59,6 +62,18 @@ const App = () => {
               />
               <Route path="/dashboard/members" element={<AllMembers />} />
               <Route path="/dashboard/loans" element={<Loans />} />
+              <Route
+                path="/dashboard/loans/pending"
+                element={<PendingLoans />}
+              />
+              <Route
+                path="/dashboard/loans/approved"
+                element={<ApprovedLoans />}
+              />
+              <Route
+                path="/dashboard/loans/rejected"
+                element={<RejectedLoans />}
+              />
             </Route>
           </Route>
         </Route>

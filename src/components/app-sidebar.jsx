@@ -122,16 +122,20 @@ const data = {
       icon: BookOpen,
       items: [
         {
-          title: "Loan Requests",
+          title: "All Loan Requests",
           url: "/dashboard/loans",
         },
         {
           title: "Pending Requests",
-          url: "#",
+          url: "/dashboard/loans/pending",
         },
         {
           title: "Approved Requests",
-          url: "#",
+          url: "/dashboard/loans/approved",
+        },
+        {
+          title: "Rejected Requests",
+          url: "/dashboard/loans/rejected",
         },
       ],
     },

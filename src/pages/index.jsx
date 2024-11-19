@@ -21,6 +21,9 @@ import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
 import MemberProfile from "./dashboard/MemberProfile.jsx";
 import Loans from "./dashboard/admin/Loans.jsx";
 import LoanApplicationPage from "./dashboard/LoanApplicationPage.jsx";
+import PendingLoans from "./dashboard/admin/PendingLoans.jsx";
+import ApprovedLoans from "./dashboard/admin/ApprovedLoans.jsx";
+import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
 
 export {
   Home,
@@ -47,4 +50,7 @@ export {
   MemberProfile,
   Loans,
   LoanApplicationPage,
+  PendingLoans,
+  ApprovedLoans,
+  RejectedLoans,
 };

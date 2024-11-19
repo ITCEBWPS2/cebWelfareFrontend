@@ -91,17 +91,7 @@ const LoansTable = ({ status }) => {
   };
 
   return (
-    <div className="p-8 my-8">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-        <div className="flex items-center space-x-2"></div>
-        <button
-          className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
-          onClick={() => navigate("/dashboard/loans/apply")}
-        >
-          Apply to a Loan
-        </button>
-      </div>
-
+    <div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-lg rounded-lg">
           <thead className="bg-red-900 text-white text-xs md:text-sm">
