@@ -34,7 +34,6 @@ const RegisterMember = () => {
     fatherInLawAge: "",
     memberFee: "",
   });
-
   const [customDivision, setCustomDivision] = useState(false);
   const [customBranch, setCustomBranch] = useState(false);
   const [customPayroll, setCustomPayroll] = useState(false);
@@ -50,6 +49,31 @@ const RegisterMember = () => {
       password: prevData.epf,
     }));
   }, [formData.epf]);
+
+  const fetchWelfareNumber = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/api/members/util/generate-welfare-number`,
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.data) {
+        setFormData((prevData) => ({
+          ...prevData,
+          welfareNo: response.data,
+        }));
+      } else {
+        console.error("Failed to fetch welfare number:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching welfare number:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchWelfareNumber();
+  }, []);
 
   const regex = /^07\d{8}$/; // Mobile number regex
 
@@ -320,7 +344,6 @@ const RegisterMember = () => {
     } catch (error) {
       console.error("Error creating member:", error);
       toast.error("Something went wrong");
-      // window.location.reload(false);
     }
   };
 

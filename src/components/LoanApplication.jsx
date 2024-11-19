@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
@@ -26,6 +26,31 @@ const LoanApplication = () => {
     retirementDate: "",
     loanStatus: "pending",
   });
+
+  const fetchLoanNumber = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/api/loans/util/generate-loan-number`,
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.data) {
+        setFormData((prevData) => ({
+          ...prevData,
+          loanNumber: response.data,
+        }));
+      } else {
+        console.error("Failed to fetch loan number:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error fetching loan number:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchLoanNumber();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -145,6 +170,7 @@ const LoanApplication = () => {
             value={formData.loanNumber}
             onChange={handleChange}
             required
+            disabled
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
