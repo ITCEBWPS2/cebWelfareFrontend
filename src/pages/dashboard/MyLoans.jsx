@@ -56,7 +56,7 @@ const MyLoans = () => {
                     Loan Number: {loan.loanNumber}
                   </h2>
                   <p className="text-gray-700">
-                    <span className="font-medium">Amount:</span> $
+                    <span className="font-medium">Amount:</span> Rs.
                     {loan.loanAmount}
                   </p>
                   <p
@@ -74,7 +74,7 @@ const MyLoans = () => {
                   <DialogTitle className="text-2xl font-bold">
                     {loan.loanNumber}
                   </DialogTitle>
-                  <DialogDescription>Update Loan Details.</DialogDescription>
+                  <DialogDescription>Complete Loan Details.</DialogDescription>
                 </DialogHeader>
                 <div className="py-2 text-gray-700 space-y-2">
                   <p>
