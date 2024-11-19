@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Home,
@@ -15,25 +15,12 @@ import {
   RejectedLoans,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
-import { useAuth } from "./api/authContext";
 import MyLoans from "./pages/dashboard/MyLoans";
 
 const App = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      offset: 100,
-    });
-  }, []);
-
-  const { user } = useAuth();
-
   return (
     <Router>
       <Routes>
