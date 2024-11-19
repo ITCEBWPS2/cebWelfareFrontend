@@ -17,7 +17,6 @@ const MembersTable = () => {
   const [members, setMembers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [highlightedMemberId, setHighlightedMemberId] = useState(null);
-  const [editedMember, setEditedMember] = useState({});
   const [selectedMember, setSelectedMember] = useState(null);
   const navigate = useNavigate();
   const memberRefs = useRef({});

@@ -11,10 +11,16 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import toast from "react-hot-toast";
 
 const LoansTable = () => {
   const [loans, setLoans] = useState([]);
+  const [loanStatus, setLoanStatus] = useState("");
+  const [selectedLoanId, setSelectedLoanId] = useState(null);
   const navigate = useNavigate();
+
+  const allowedStatuses = ["pending", "approved", "rejected"];
 
   useEffect(() => {
     fetchLoans();
@@ -31,6 +37,33 @@ const LoansTable = () => {
       setLoans(sortedLoans);
     } catch (error) {
       console.error("Error fetching loans:", error);
+    }
+  };
+
+  // Update loan status
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/api/loans/${selectedLoanId}/status`,
+        { loanStatus },
+        {
+          withCredentials: true,
+        }
+      );
+
+      setLoans((prevLoans) =>
+        prevLoans.map((loan) =>
+          loan._id === selectedLoanId ? { ...loan, loanStatus } : loan
+        )
+      );
+
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    } finally {
+      setSelectedLoanId(null);
     }
   };
 
@@ -102,7 +135,47 @@ const LoansTable = () => {
                   {loan.loanAmount}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {loan.loanStatus}
+                  <div className="flex items-center justify-center gap-3">
+                    {loan.loanStatus}
+                    <Popover>
+                      <PopoverTrigger>
+                        <SquarePen
+                          className="text-gray-600"
+                          onClick={() => {
+                            setSelectedLoanId(loan._id);
+                            setLoanStatus(loan.loanStatus);
+                          }}
+                        />
+                      </PopoverTrigger>
+                      <PopoverContent className="shadow-none">
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                          <div>
+                            <label className="block text-sm font-medium">
+                              Loan Status
+                            </label>
+                            <select
+                              value={loanStatus}
+                              onChange={(e) => setLoanStatus(e.target.value)}
+                              className="w-full px-4 py-2 border rounded"
+                            >
+                              <option value="">Select Status</option>
+                              {allowedStatuses.map((status) => (
+                                <option key={status} value={status}>
+                                  {status}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                          <button
+                            type="submit"
+                            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+                          >
+                            Update Status
+                          </button>
+                        </form>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
                 </td>
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
