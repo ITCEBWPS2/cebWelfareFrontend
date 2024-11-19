@@ -1,5 +1,14 @@
 import { useAuth } from "@/api/authContext";
 import { main_header_1, user_fallback } from "@/assets";
+import MemberUpdate from "@/components/MemberUpdate";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { BASE_URL } from "@/constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -30,6 +39,20 @@ const MemberProfile = () => {
 
     fetchMemberData();
   }, [memberId]);
+
+  const handleDelete = async (memberId) => {
+    if (window.confirm("Are you sure you want to delete this member?")) {
+      try {
+        await axios.delete(`${BASE_URL}/api/members/${memberId}`, {
+          withCredentials: true,
+        });
+        alert("Member deleted successfully.");
+      } catch (error) {
+        console.error("Error deleting member:", error);
+        alert("Failed to delete member!!!");
+      }
+    }
+  };
 
   if (loading) {
     return (
@@ -200,7 +223,7 @@ const MemberProfile = () => {
       </div>
       <div className="flex items-center justify-center w-full my-8">
         <div className="flex flex-col max-w-4xl w-full gap-4 px-4 py-8 md:flex-row border-t">
-          <Link to="#">
+          <Link to="/dashboard/my-loans">
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               My Loans
             </button>
@@ -212,16 +235,32 @@ const MemberProfile = () => {
           </Link>
           {user.role === "admin" && (
             <>
-              <Link to="#">
-                <button className="bg-green-600 hover:bg-green-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
-                  Update Profile
-                </button>
-              </Link>
-              <Link to="#">
-                <button className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
-                  Remove Member
-                </button>
-              </Link>
+              <Dialog>
+                <DialogTrigger>
+                  <button className="bg-green-600 hover:bg-green-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
+                    Update Profile
+                  </button>
+                </DialogTrigger>
+
+                <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+                  <DialogHeader className="border-b pb-4">
+                    <DialogTitle className="text-2xl font-bold">
+                      {name}
+                    </DialogTitle>
+                    <DialogDescription>
+                      Update Member Details.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <MemberUpdate memberId={memberId} />
+                </DialogContent>
+              </Dialog>
+
+              <button
+                className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200"
+                onClick={() => handleDelete(memberId)}
+              >
+                Remove Member
+              </button>
             </>
           )}
         </div>

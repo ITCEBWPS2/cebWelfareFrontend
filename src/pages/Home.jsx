@@ -1,6 +1,4 @@
 import React from "react";
-import HorizontalCarousel from "../components/HorizontalCarousel";
-import LinesImage from "@/components/Lines";
 import MainCarousel from "@/components/MainCarousel";
 import LinksSection from "@/components/LinksSection";
 import { cover } from "@/assets";

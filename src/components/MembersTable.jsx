@@ -11,14 +11,12 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
-import { ScrollArea } from "./ui/scroll-area";
+import MemberUpdate from "./MemberUpdate";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [highlightedMemberId, setHighlightedMemberId] = useState(null);
-  const [editingMemberId, setEditingMemberId] = useState(null);
-  const [editedMember, setEditedMember] = useState({});
   const [selectedMember, setSelectedMember] = useState(null);
   const navigate = useNavigate();
   const memberRefs = useRef({});
@@ -47,32 +45,6 @@ const MembersTable = () => {
 
   const handleDialogClose = () => {
     setSelectedMember(null);
-  };
-
-  const handleEditClick = (member) => {
-    setEditingMemberId(member._id);
-    setEditedMember({ ...member }); // Create a copy of the member to edit
-  };
-
-  const handleSaveClick = async (memberId) => {
-    try {
-      await axios.put(`${BASE_URL}/api/members/${memberId}`, editedMember);
-      setMembers(
-        members.map((member) =>
-          member._id === memberId ? editedMember : member
-        )
-      );
-      setEditingMemberId(null);
-      alert("Member details updated successfully !");
-    } catch (error) {
-      console.error("Error updating member:", error);
-      alert("Failed to update member details.");
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditedMember((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleDelete = async (memberId) => {
@@ -198,12 +170,28 @@ const MembersTable = () => {
                 </td>
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
-                  <button
-                    className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1"
-                    onClick={() => handleEditClick(member)}
-                  >
-                    <SquarePen className="p-0.5" />
-                  </button>
+                  <Dialog>
+                    <DialogTrigger>
+                      <div className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1">
+                        <SquarePen className="p-0.5" />
+                      </div>
+                    </DialogTrigger>
+
+                    <DialogContent
+                      onClose={handleDialogClose}
+                      className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
+                    >
+                      <DialogHeader className="border-b pb-4">
+                        <DialogTitle className="text-2xl font-bold">
+                          {member.name}
+                        </DialogTitle>
+                        <DialogDescription>
+                          Update Member Details.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <MemberUpdate memberId={member._id} />
+                    </DialogContent>
+                  </Dialog>
                   <button
                     className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
                     onClick={() => handleDelete(member._id)}
