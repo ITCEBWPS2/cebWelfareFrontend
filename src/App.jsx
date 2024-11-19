@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Home,
@@ -9,23 +9,18 @@ import {
   AllMembers,
   Dashboard,
   MemberProfile,
+  LoanApplicationPage,
+  PendingLoans,
+  ApprovedLoans,
+  RejectedLoans,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import DashboardLayout from "./components/DashboardLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
+import MyLoans from "./pages/dashboard/MyLoans";
 
 const App = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: false,
-      offset: 100,
-    });
-  }, []);
-
   return (
     <Router>
       <Routes>
@@ -40,17 +35,34 @@ const App = () => {
         <Route path="" element={<PrivateRoute />}>
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/loans" element={<Loans />} />
             <Route
               path="/dashboard/members/:memberId"
               element={<MemberProfile />}
             />
+            <Route
+              path="/dashboard/apply-loan"
+              element={<LoanApplicationPage />}
+            />
+            <Route path="/dashboard/my-loans" element={<MyLoans />} />
             <Route path="" element={<AdminRoute />}>
               <Route
                 path="/dashboard/members/register"
                 element={<RegisterMember />}
               />
               <Route path="/dashboard/members" element={<AllMembers />} />
+              <Route path="/dashboard/loans" element={<Loans />} />
+              <Route
+                path="/dashboard/loans/pending"
+                element={<PendingLoans />}
+              />
+              <Route
+                path="/dashboard/loans/approved"
+                element={<ApprovedLoans />}
+              />
+              <Route
+                path="/dashboard/loans/rejected"
+                element={<RejectedLoans />}
+              />
             </Route>
           </Route>
         </Route>
