@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import {
@@ -14,7 +14,7 @@ import { SquarePen, Trash2 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import toast from "react-hot-toast";
 
-const LoansTable = () => {
+const LoansTable = ({ status }) => {
   const [loans, setLoans] = useState([]);
   const [loanStatus, setLoanStatus] = useState("");
   const [selectedLoanId, setSelectedLoanId] = useState(null);
@@ -24,13 +24,21 @@ const LoansTable = () => {
 
   useEffect(() => {
     fetchLoans();
-  }, []);
+  }, [status]);
 
   const fetchLoans = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/loans`, {
+      let url = `${BASE_URL}/api/loans/util/loans-by-status`;
+
+      // Append query parameters based on status
+      if (status && status !== "all") {
+        url += `?status=${status}`;
+      }
+
+      const response = await axios.get(url, {
         withCredentials: true,
       });
+
       const sortedLoans = response.data.sort(
         (a, b) => a.welfareNo - b.welfareNo
       );
@@ -277,6 +285,11 @@ const LoansTable = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
+                  <Link to={`/dashboard/members/${loan.memberId}`}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
+                      View Member
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
