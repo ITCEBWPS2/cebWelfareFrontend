@@ -1,45 +1,30 @@
+// ----- Main Pages ----- //
+
 import Home from "./Home.jsx";
-import Benefits from "./Benefits.jsx";
-import Contact from "./Contact.jsx";
-import About from "./About.jsx";
-import Loans from "./Loans.jsx";
 import Login from "./Login.jsx";
-import Register from "./Register.jsx";
 
-import MemberBenefits from "./members/MemberBenefits.jsx";
-import MemberLoans from "./members/MemberLoans.jsx";
-import Relatives from "./members/Relatives.jsx";
-import LoanApplication from "./members/LoanApplication.jsx";
-import Carousel from "../components/Carousel.jsx";
-import HorizontalCarousel from "../components/HorizontalCarousel.jsx";
-import AdminPanel from "./AdminPanel.jsx";
-import ViewUsers from "./ViewUsers.jsx";
-
-// ----- Dashboard ----- //
+// ----- Dashboard Pages ----- //
 
 import Dashboard from "./dashboard/Dashboard.jsx";
 import AllMembers from "./dashboard/admin/AllMembers.jsx";
 import RegisterMember from "./dashboard/admin/RegisterMember.jsx";
 import MemberProfile from "./dashboard/MemberProfile.jsx";
+import Loans from "./dashboard/admin/Loans.jsx";
+import LoanApplicationPage from "./dashboard/LoanApplicationPage.jsx";
+import PendingLoans from "./dashboard/admin/PendingLoans.jsx";
+import ApprovedLoans from "./dashboard/admin/ApprovedLoans.jsx";
+import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
+
+export { Home, Login };
 
 export {
-  Home,
-  Benefits,
-  Contact,
-  About,
+  Dashboard,
+  AllMembers,
+  RegisterMember,
+  MemberProfile,
   Loans,
-  Login,
-  Register,
-  MemberBenefits,
-  MemberLoans,
-  Carousel,
-  HorizontalCarousel,
-  LoanApplication,
-  Relatives,
-  AdminPanel,
-  ViewUsers,
+  LoanApplicationPage,
+  PendingLoans,
+  ApprovedLoans,
+  RejectedLoans,
 };
-
-// ----- Dashboard ----- //
-
-export { Dashboard, AllMembers, RegisterMember, MemberProfile };

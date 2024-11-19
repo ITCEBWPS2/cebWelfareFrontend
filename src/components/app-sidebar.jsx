@@ -36,20 +36,16 @@ const data = {
     },
     {
       title: "Loans",
-      url: "#",
+      url: "/dashboard/loans",
       icon: Bot,
       items: [
         {
           title: "My Loans",
-          url: "#",
+          url: "/dashboard/my-loans",
         },
         {
           title: "Apply Loan",
-          url: "#",
-        },
-        {
-          title: "Loan History",
-          url: "#",
+          url: "/dashboard/apply-loan",
         },
       ],
     },
@@ -68,29 +64,6 @@ const data = {
         },
         {
           title: "Apply Benefits",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
           url: "#",
         },
       ],
@@ -122,16 +95,20 @@ const data = {
       icon: BookOpen,
       items: [
         {
-          title: "Loan Requests",
-          url: "#",
+          title: "All Loan Requests",
+          url: "/dashboard/loans",
         },
         {
           title: "Pending Requests",
-          url: "#",
+          url: "/dashboard/loans/pending",
         },
         {
           title: "Approved Requests",
-          url: "#",
+          url: "/dashboard/loans/approved",
+        },
+        {
+          title: "Rejected Requests",
+          url: "/dashboard/loans/rejected",
         },
       ],
     },
