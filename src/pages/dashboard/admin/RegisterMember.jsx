@@ -754,6 +754,7 @@ const RegisterMember = () => {
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   required
+                  disabled
                 />
               </div>
             </div>

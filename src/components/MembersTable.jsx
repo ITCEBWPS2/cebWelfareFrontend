@@ -182,6 +182,14 @@ const MembersTable = () => {
                       onClose={handleDialogClose}
                       className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
                     >
+                      <DialogHeader className="border-b pb-4">
+                        <DialogTitle className="text-2xl font-bold">
+                          {member.name}
+                        </DialogTitle>
+                        <DialogDescription>
+                          Update Member Details.
+                        </DialogDescription>
+                      </DialogHeader>
                       <MemberUpdate memberId={member._id} />
                     </DialogContent>
                   </Dialog>

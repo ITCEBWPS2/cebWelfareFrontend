@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import {
@@ -52,7 +52,7 @@ const LoansTable = () => {
   return (
     <div className="p-8 my-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
-        <div className="flex items-center space-x-2">search</div>
+        <div className="flex items-center space-x-2"></div>
         <button
           className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
           onClick={() => navigate("/dashboard/loans/apply")}
@@ -114,7 +114,14 @@ const LoansTable = () => {
                     </DialogTrigger>
 
                     <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
-                      Loan Update
+                      <DialogHeader className="border-b pb-4">
+                        <DialogTitle className="text-2xl font-bold">
+                          {loan.loanNumber}
+                        </DialogTitle>
+                        <DialogDescription>
+                          Update Loan Details.
+                        </DialogDescription>
+                      </DialogHeader>
                     </DialogContent>
                   </Dialog>
                   <button
@@ -123,11 +130,80 @@ const LoansTable = () => {
                   >
                     <Trash2 className="p-0.5" />
                   </button>
-                  <Link to={`/dashboard/members/${loan._id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-                      View Profile
-                    </button>
-                  </Link>
+                  <Dialog>
+                    <DialogTrigger>
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
+                        View Details
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+                      <DialogHeader className="border-b pb-4">
+                        <DialogTitle className="text-2xl font-bold">
+                          {loan.loanNumber}
+                        </DialogTitle>
+                        <DialogDescription>
+                          View Loan Details.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="py-2 text-gray-700 space-y-2">
+                        <p>
+                          <strong>Member No:</strong> {loan.memberNumber}
+                        </p>
+                        <p>
+                          <strong>EPF No:</strong> {loan.epfNumber}
+                        </p>
+                        <p>
+                          <strong>Loan No:</strong> {loan.loanNumber}
+                        </p>
+                        <p>
+                          <strong>Loan Amount:</strong> {loan.loanAmount}
+                        </p>
+                        <p>
+                          <strong>Member Name:</strong> {loan.name || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Address:</strong> {loan.address || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Position:</strong> {loan.position || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Branch:</strong> {loan.branch || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Contact Number:</strong>{" "}
+                          {loan.contactNo?.mobile || "N/A"}
+                        </p>
+                        <p>
+                          <strong>WhatsApp Number:</strong>{" "}
+                          {loan.contactNo?.landline || "N/A"}
+                        </p>
+                        <p>
+                          <strong>NIC:</strong> {loan.nationalIdNumber || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Reason for Loan:</strong>{" "}
+                          {loan.reasonForLoan || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Required Loan Date:</strong>{" "}
+                          {loan.requiredLoanDate || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Date of Birth:</strong>{" "}
+                          {loan.dateOfBirth || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Retirement Date:</strong>{" "}
+                          {loan.retirementDate || "N/A"}
+                        </p>
+                        <p>
+                          <strong>Loan Status:</strong>{" "}
+                          {loan.loanStatus || "N/A"}
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </td>
               </tr>
             ))}
