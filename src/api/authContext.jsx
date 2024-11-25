@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // New loading state
 
   const login = async (identifier, password, navigate) => {
     try {
@@ -40,11 +41,17 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
       }
     }
+    setLoading(false); // Mark loading as complete
   };
 
   useEffect(() => {
     fetchUser();
   }, []);
+
+  // Render children only when loading is complete
+  if (loading) {
+    return <div>Loading...</div>; // Optional: Replace with a loader
+  }
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
