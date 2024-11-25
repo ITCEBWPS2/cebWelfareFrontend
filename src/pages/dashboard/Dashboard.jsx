@@ -1,27 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { apply_loans, apply_benefits, my_loans, my_benefits } from "@/assets";
 
 const cards = [
   {
-    icon: "📦",
+    icon: apply_loans,
     title: "Apply Loans",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     link: "/dashboard/apply-loan",
   },
   {
-    icon: "📦",
+    icon: my_loans,
     title: "My Loans",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     link: "/dashboard/my-loans",
   },
   {
-    icon: "📦",
+    icon: apply_benefits,
     title: "Apply Benefits",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     link: "/dashboard/apply-benefits",
   },
   {
-    icon: "📦",
+    icon: my_benefits,
     title: "My Benefits",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     link: "/dashboard/my-benefits",
@@ -38,10 +39,9 @@ const Dashboard = () => {
             to={card.link}
             className="bg-white rounded-lg p-6 border"
           >
-            <div className="flex items-center space-x-4">
-              <div className="text-4xl group-hover:text-blue-500 transition-colors duration-300">
-                {card.icon}
-              </div>
+            <div className="flex items-start space-x-6">
+              <img src={card.icon} className="w-12 h-12" />
+
               <div>
                 <h3 className="text-xl font-semibold group-hover:text-blue-500 transition-colors duration-300">
                   {card.title}
