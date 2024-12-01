@@ -45,7 +45,7 @@ const HorizontalCarousel = () => {
   }, [current]); // Depend on current to keep updating
 
   return (
-    <div className="relative min-h-96 w-full overflow-hidden">
+    <div className="relative min-h-60 w-full overflow-hidden">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${current * 100}%)` }}

@@ -7,13 +7,13 @@ const slides = [
     image: main_header_1,
     text: "WELOCME TO WELFARE SOCIETY CEB (WPS II)",
     subText:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius.",
+      "We’re here to support each other and create a strong community where everyone feels valued. Our society is committed to enhancing the well-being of all our members, offering financial assistance, benefits, and a reliable network of support. Through our various programs, we aim to improve the quality of life for each member, helping you feel connected and cared for within our community. Thank you for being a part of WPS II—we’re glad to have you with us!",
   },
   {
     image: annual_meeting,
     text: "ANNUAL MEETING",
     subText:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius.",
+      "The Welfare Society (WPS II) recently held its Annual Meeting for 2024, marking a successful gathering dedicated to fostering unity, growth, and mutual support within our community. Attendees included members and leaders committed to discussing past achievements, upcoming initiatives, and shared goals aimed at enhancing welfare services. This group photo captures the spirit of teamwork and dedication that drives WPS II forward, reflecting our collective commitment to a brighter future for all members.",
     buttonText: "READ FULL STORY",
     buttonLink: "#news",
   },
@@ -21,7 +21,7 @@ const slides = [
     image: blood_donation,
     text: "BLOOD DONATION",
     subText:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius.",
+      "The Welfare Society recently organized a successful blood donation event, uniting members and volunteers to support a crucial cause. This event embodies the society's commitment to giving back and making a meaningful impact in the community. With the collective efforts of all participants, the blood donation drive served as a reminder of the power of compassion and solidarity in helping those in need.",
     buttonText: "READ FULL STORY",
     buttonLink: "#news",
   },
@@ -29,7 +29,7 @@ const slides = [
     image: main_header_1,
     text: "WELOCME TO WELFARE SOCIETY CEB (WPS II)",
     subText:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius.",
+      "We’re here to support each other and create a strong community where everyone feels valued. Our society is committed to enhancing the well-being of all our members, offering financial assistance, benefits, and a reliable network of support. Through our various programs, we aim to improve the quality of life for each member, helping you feel connected and cared for within our community. Thank you for being a part of WPS II—we’re glad to have you with us!  Thank you!",
   },
 ];
 
