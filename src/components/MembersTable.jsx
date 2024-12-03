@@ -39,6 +39,20 @@ const MembersTable = () => {
     }
   };
 
+  const formatDate = (dateString) => {
+    // Ensure the input is converted to a Date object
+    const date = new Date(dateString);
+
+    // Check if the conversion results in an invalid date
+    if (isNaN(date)) return "-";
+
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Months are zero-indexed
+    const year = date.getFullYear();
+
+    return `${month}/${day}/${year}`;
+  };
+
   const handleDialogOpen = (member) => {
     setSelectedMember(member);
   };
@@ -160,10 +174,11 @@ const MembersTable = () => {
                   {member.name}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {member.dateOfRegistered}
+                  {formatDate(member.dateOfRegistered)}
                 </td>
+
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {member.dateOfJoined}
+                  {formatDate(member.dateOfJoined)}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {member.payroll}
