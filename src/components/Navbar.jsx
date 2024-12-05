@@ -37,7 +37,7 @@ const Navbar = () => {
           {/* Logo Section */}
           <Link to="/">
             <div className="flex-center gap-2">
-              <img src="/cebcare.png" alt="CEB Logo" className="h-8 md:h-12" />
+              <img src="/icon.jpg" alt="CEB Logo" className="h-8 md:h-12" />
             </div>
           </Link>
 
