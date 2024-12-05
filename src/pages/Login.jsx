@@ -21,7 +21,7 @@ const LoginPage = () => {
       <div className="flex flex-col justify-center p-8 bg-white w-full md:max-w-sm md:p-12 md:mr-auto md:ml-0">
         <Link to="/">
           <div className="flex justify-center md:justify-start mb-14">
-            <img src="/cebcare.png" alt="Logo" className="h-12" />
+            <img src="/icon.jpg" alt="Logo" className="h-12" />
           </div>
         </Link>
         <form onSubmit={handleSubmit}>

@@ -17,7 +17,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Link } from "react-router-dom";
-import { main_header_1 } from "@/assets";
+import { user_fallback } from "@/assets";
 import { useAuth } from "@/api/authContext";
 
 export function NavUser() {
@@ -34,7 +34,7 @@ export function NavUser() {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={main_header_1} alt={user.name} />
+                <AvatarImage src={user_fallback} alt={user.name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
