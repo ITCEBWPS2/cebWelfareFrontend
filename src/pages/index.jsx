@@ -15,9 +15,9 @@ import PendingLoans from "./dashboard/admin/PendingLoans.jsx";
 import ApprovedLoans from "./dashboard/admin/ApprovedLoans.jsx";
 import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
 
-export { Home, Login };
-
 export {
+  Home,
+  Login,
   Dashboard,
   AllMembers,
   RegisterMember,
