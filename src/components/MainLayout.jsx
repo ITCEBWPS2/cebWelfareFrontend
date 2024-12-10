@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import BottomBar from "./BottomBar";
 import { Outlet } from "react-router-dom";
+import BottomToTop from "./BottomToTop";
 
 const MainLayout = () => {
   return (
@@ -10,6 +11,7 @@ const MainLayout = () => {
       <Navbar />
       <Outlet />
       <BottomBar />
+      <BottomToTop />
     </div>
   );
 };
