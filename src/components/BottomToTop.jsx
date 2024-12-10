@@ -1,3 +1,4 @@
+import { ArrowUp } from "lucide-react";
 import React from "react";
 
 const BottomToTop = () => {
@@ -6,33 +7,12 @@ const BottomToTop = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 z-10 w-full bg-white shadow-lg flex justify-around items-center py-2 border-t border-gray-300">
+    <div className="fixed bottom-5 right-5 z-10 bg-white rounded-lg shadow-lg flex justify-center items-center p-2 md:bottom-10 md:right-10">
       <button
-        className="flex flex-col items-center text-gray-600 hover:text-blue-500 focus:text-blue-500"
-        onClick={() => alert("Navigating to Home")}
-      >
-        X<span className="text-sm">Home</span>
-      </button>
-
-      <button
-        className="flex flex-col items-center text-gray-600 hover:text-blue-500 focus:text-blue-500"
-        onClick={() => alert("Navigating to About")}
-      >
-        X<span className="text-sm">About</span>
-      </button>
-
-      <button
-        className="flex flex-col items-center text-gray-600 hover:text-blue-500 focus:text-blue-500"
-        onClick={() => alert("Navigating to Contact")}
-      >
-        X<span className="text-sm">Contact</span>
-      </button>
-
-      <button
-        className="flex flex-col items-center text-gray-600 hover:text-blue-500 focus:text-blue-500"
+        className="flex flex-col items-center text-gray-600 hover:text-red-500"
         onClick={handleScrollToTop}
       >
-        A<span className="text-sm">Top</span>
+        <ArrowUp />
       </button>
     </div>
   );
