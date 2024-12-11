@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import MainCarousel from "@/components/MainCarousel";
 import LinksSection from "@/components/LinksSection";
 import { cover } from "@/assets";
@@ -7,6 +7,27 @@ import Benefits from "@/components/Benefits";
 import Contact from "@/components/Contact";
 
 const Home = () => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          element.classList.add("animate-fade-in");
+        } else {
+          element.classList.remove("animate-fade-in");
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (element) observer.observe(element);
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   return (
     <div>
       <MainCarousel />
