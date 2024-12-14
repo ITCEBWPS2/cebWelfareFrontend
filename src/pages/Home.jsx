@@ -55,6 +55,9 @@ const Home = () => {
               believe in the power of community and strive to foster a sense of
               belonging and mutual support among our members.
             </p>
+            <button className="mt-4 font-semibold hover:text-red-900 transition-colors duration-200">
+              Read More...
+            </button>
           </div>
         </section>
 

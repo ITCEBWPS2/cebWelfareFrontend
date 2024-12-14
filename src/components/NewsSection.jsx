@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { annual_meeting, blood_donation } from "@/assets";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ image, title, description }) => {
   const charLimit = 150;
@@ -82,6 +83,11 @@ const NewsSection = () => {
           />
         ))}
       </div>
+      <Link to="/events">
+        <button className="mt-4 font-semibold hover:text-red-900 transition-colors duration-200">
+          View More Events...
+        </button>
+      </Link>
     </div>
   );
 };
