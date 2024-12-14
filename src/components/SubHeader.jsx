@@ -10,7 +10,7 @@ const SubHeader = ({ image, title, description }) => {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-70" />
       <div className="wrapper-header absolute inset-0 flex flex-col justify-center items-center text-center text-white pt-8">
-        <h1 className="font-heading text-3xl font-extrabold mb-4 animate-fade-in md:text-5xl">
+        <h1 className="font-heading text-4xl font-bold mb-4 animate-fade-in md:text-6xl">
           {title}
         </h1>
         <p className="text-base md:text-lg font-normal mb-4 animate-fade-in-delay">

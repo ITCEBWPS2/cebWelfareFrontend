@@ -2,6 +2,7 @@
 
 import Home from "./Home.jsx";
 import Login from "./Login.jsx";
+import Events from "./Events.jsx";
 
 // ----- Dashboard Pages ----- //
 
@@ -18,6 +19,7 @@ import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
 export {
   Home,
   Login,
+  Events,
   Dashboard,
   AllMembers,
   RegisterMember,

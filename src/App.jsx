@@ -13,6 +13,7 @@ import {
   PendingLoans,
   ApprovedLoans,
   RejectedLoans,
+  Events,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -27,6 +28,7 @@ const App = () => {
         {/* Routes that use MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Events />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

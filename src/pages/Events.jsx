@@ -1,3 +1,5 @@
+import { annual_meeting, blood_donation } from "@/assets";
+import SubHeader from "@/components/SubHeader";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const NewsCard = ({ image, title, description }) => {
@@ -46,6 +48,11 @@ const NewsCard = ({ image, title, description }) => {
 };
 
 const Events = () => {
+  const image = annual_meeting,
+    title = "Latest Events",
+    description =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius";
+
   const news = [
     {
       image: blood_donation,
@@ -68,21 +75,21 @@ const Events = () => {
   ];
 
   return (
-    <div id="news" className="py-7 md:py-14">
-      <h1 className="font-heading font-bold text-center mb-12 text-4xl md:text-6xl md:text-left">
-        Latest Events
-      </h1>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-14">
-        {news.map((news, index) => (
-          <NewsCard
-            key={index}
-            image={news.image}
-            title={news.title}
-            description={news.description}
-          />
-        ))}
+    <>
+      <SubHeader image={image} title={title} description={description} />
+      <div className="wrapper py-7 md:py-20">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-14">
+          {news.map((news, index) => (
+            <NewsCard
+              key={index}
+              image={news.image}
+              title={news.title}
+              description={news.description}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
