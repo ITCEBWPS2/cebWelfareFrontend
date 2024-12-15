@@ -10,6 +10,11 @@ const About = () => {
   return (
     <>
       <SubHeader image={image} title={title} description={description} />
+      <div className="wrapper pt-20">
+        <div className="flex items-center justify-center text-lg">
+          Build something here!
+        </div>
+      </div>
     </>
   );
 };
