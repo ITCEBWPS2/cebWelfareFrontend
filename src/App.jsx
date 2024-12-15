@@ -14,6 +14,7 @@ import {
   ApprovedLoans,
   RejectedLoans,
   Events,
+  About,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -29,6 +30,7 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/about" element={<About />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

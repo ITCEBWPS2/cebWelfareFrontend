@@ -5,6 +5,7 @@ import { cover } from "@/assets";
 import NewsSection from "@/components/NewsSection";
 import Benefits from "@/components/Benefits";
 import Contact from "@/components/Contact";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const ref = useRef(null);
@@ -55,9 +56,11 @@ const Home = () => {
               believe in the power of community and strive to foster a sense of
               belonging and mutual support among our members.
             </p>
-            <button className="mt-4 font-semibold hover:text-red-900 transition-colors duration-200">
-              Read More...
-            </button>
+            <Link to="/about">
+              <button className="mt-4 font-semibold hover:text-red-900 transition-colors duration-200">
+                Read More...
+              </button>
+            </Link>
           </div>
         </section>
 
