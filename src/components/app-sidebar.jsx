@@ -59,11 +59,23 @@ const data = {
           url: "#",
         },
         {
-          title: "My Benefits",
+          title: "Death Funds",
           url: "#",
         },
         {
-          title: "Apply Benefits",
+          title: "Retirement Gifts",
+          url: "#",
+        },
+        {
+          title: "Grade 5 Scholarship",
+          url: "#",
+        },
+        {
+          title: "Refund Member Fees",
+          url: "#",
+        },
+        {
+          title: "Medical",
           url: "#",
         },
       ],
@@ -113,20 +125,28 @@ const data = {
       ],
     },
     {
-      title: "Manage Benefits",
+      title: "Benefits",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Benefit Requests",
+          title: "Death Funds",
           url: "#",
         },
         {
-          title: "Pending Requests",
+          title: "Retirement Gifts",
           url: "#",
         },
         {
-          title: "Approved Requests",
+          title: "Grade 5 Scholarship",
+          url: "#",
+        },
+        {
+          title: "Refund Member Fees",
+          url: "#",
+        },
+        {
+          title: "Medical",
           url: "#",
         },
       ],
