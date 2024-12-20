@@ -24,6 +24,7 @@ import {
   Scholarships,
   Medicals,
   Refunds,
+  Retirements,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="/dashboard/scholarships" element={<Scholarships />} />
             <Route path="/dashboard/medicals" element={<Medicals />} />
             <Route path="/dashboard/refunds" element={<Refunds />} />
+            <Route path="/dashboard/retirements" element={<Retirements />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
             <Route path="" element={<AdminRoute />}>
               <Route

@@ -25,6 +25,7 @@ import Medicals from "./dashboard/Medicals.jsx";
 import ManageRefunds from "./dashboard/admin/ManageRefunds.jsx";
 import Refunds from "./dashboard/Refunds.jsx";
 import ManageRetirements from "./dashboard/admin/ManageRetirements.jsx";
+import Retirements from "./dashboard/Retirements.jsx";
 
 export {
   Home,
@@ -49,4 +50,5 @@ export {
   ManageRefunds,
   Refunds,
   ManageRetirements,
+  Retirements,
 };
