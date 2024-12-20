@@ -21,6 +21,7 @@ import {
   ManageMedicals,
   ManageRefunds,
   ManageRetirements,
+  Scholarships,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -54,6 +55,7 @@ const App = () => {
               element={<LoanApplicationPage />}
             />
             <Route path="/dashboard/deathfunds" element={<DeathFunds />} />
+            <Route path="/dashboard/scholarships" element={<Scholarships />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
             <Route path="" element={<AdminRoute />}>
               <Route

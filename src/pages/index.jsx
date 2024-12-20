@@ -19,6 +19,7 @@ import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
 import ManageDeathFunds from "./dashboard/admin/ManageDeathFunds.jsx";
 import DeathFunds from "./dashboard/DeathFunds.jsx";
 import ManageScholarships from "./dashboard/admin/ManageScholarships.jsx";
+import Scholarships from "./dashboard/Scholarships.jsx";
 import ManageMedicals from "./dashboard/admin/ManageMedicals.jsx";
 import ManageRefunds from "./dashboard/admin/ManageRefunds.jsx";
 import ManageRetirements from "./dashboard/admin/ManageRetirements.jsx";
@@ -40,6 +41,7 @@ export {
   ManageDeathFunds,
   DeathFunds,
   ManageScholarships,
+  Scholarships,
   ManageMedicals,
   ManageRefunds,
   ManageRetirements,

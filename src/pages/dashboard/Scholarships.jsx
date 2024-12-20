@@ -11,7 +11,7 @@ import { BASE_URL } from "@/constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const DeathFunds = () => {
+const Scholarships = () => {
   const { user } = useAuth();
   const [benefits, setBenefits] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -86,4 +86,4 @@ const DeathFunds = () => {
   );
 };
 
-export default DeathFunds;
+export default Scholarships;
