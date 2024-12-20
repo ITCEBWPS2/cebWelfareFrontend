@@ -23,6 +23,7 @@ import Scholarships from "./dashboard/Scholarships.jsx";
 import ManageMedicals from "./dashboard/admin/ManageMedicals.jsx";
 import Medicals from "./dashboard/Medicals.jsx";
 import ManageRefunds from "./dashboard/admin/ManageRefunds.jsx";
+import Refunds from "./dashboard/Refunds.jsx";
 import ManageRetirements from "./dashboard/admin/ManageRetirements.jsx";
 
 export {
@@ -46,5 +47,6 @@ export {
   ManageMedicals,
   Medicals,
   ManageRefunds,
+  Refunds,
   ManageRetirements,
 };

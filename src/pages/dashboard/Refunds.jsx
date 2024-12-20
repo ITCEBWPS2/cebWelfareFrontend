@@ -11,7 +11,7 @@ import { BASE_URL } from "@/constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Medicals = () => {
+const Refunds = () => {
   const { user } = useAuth();
   const [benefits, setBenefits] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,7 @@ const Medicals = () => {
     const fetchBenefits = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/medicals/benefits/${user._id}`,
+          `${BASE_URL}/api/refunds/benefits/${user._id}`,
           {
             withCredentials: true,
           }
@@ -43,7 +43,7 @@ const Medicals = () => {
 
   return (
     <div className="p-8 my-8">
-      <h1 className="mb-8 font-bold text-xl">Medicals</h1>
+      <h1 className="mb-8 font-bold text-xl">Refunds</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {benefits.map((benefit) => (
           <>
@@ -57,8 +57,8 @@ const Medicals = () => {
                     {benefit.memberId}
                   </h2>
                   <p className="text-gray-700">
-                    <span className="font-medium">Date:</span>
-                    {benefit.date}
+                    <span className="font-medium">Amount:</span> Rs.
+                    {benefit.amount}
                   </p>
                 </div>
               </DialogTrigger>
@@ -71,10 +71,13 @@ const Medicals = () => {
                 </DialogHeader>
                 <div className="py-2 text-gray-700 space-y-2">
                   <p>
-                    <strong>Date: </strong> {benefit.date}
+                    <strong>Benefit Amount:</strong> {benefit.amount}
                   </p>
                   <p>
-                    <strong>Reason: </strong> {benefit.reason || "N/A"}
+                    <strong>Reason:</strong> {benefit.reason || "N/A"}
+                  </p>
+                  <p>
+                    <strong>Message:</strong> {benefit.message || "N/A"}
                   </p>
                 </div>
               </DialogContent>
@@ -86,4 +89,4 @@ const Medicals = () => {
   );
 };
 
-export default Medicals;
+export default Refunds;
