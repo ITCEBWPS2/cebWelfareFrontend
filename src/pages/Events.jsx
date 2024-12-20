@@ -1,6 +1,6 @@
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { annual_meeting, blood_donation } from "@/assets";
-import { Link } from "react-router-dom";
+import SubHeader from "@/components/SubHeader";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const NewsCard = ({ image, title, description }) => {
   const charLimit = 150;
@@ -47,7 +47,12 @@ const NewsCard = ({ image, title, description }) => {
   );
 };
 
-const NewsSection = () => {
+const Events = () => {
+  const image = annual_meeting,
+    title = "Latest Events",
+    description =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet nisl non urna fringilla cursus vitae nec metus. Suspendisse malesuada sodales varius";
+
   const news = [
     {
       image: blood_donation,
@@ -68,28 +73,24 @@ const NewsSection = () => {
         "The NEIC is organizing various initiatives to disseminate environmental information and knowledge to local and overseas users. These include user awareness programs, exhibitions, reading month and literacy month programs, and storytelling sessions for children. Additionally, the NEIC provides numerous current awareness news. It has developed into a fully automated library, ensuring the dissemination and preservation of environmental information for future generations. By participating in these programs, users can enhance their understanding of environmental issues and contribute to global sustainability efforts. The NEIC’s commitment to education and automation makes it a vital resource for environmental knowledge.",
     },
   ];
+
   return (
-    <div id="news" className="py-7 md:py-14">
-      <h1 className="font-heading font-bold text-center mb-12 text-4xl md:text-6xl md:text-left">
-        Latest Events
-      </h1>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-14">
-        {news.map((news, index) => (
-          <NewsCard
-            key={index}
-            image={news.image}
-            title={news.title}
-            description={news.description}
-          />
-        ))}
+    <>
+      <SubHeader image={image} title={title} description={description} />
+      <div className="wrapper py-7 md:py-20">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 md:gap-14">
+          {news.map((news, index) => (
+            <NewsCard
+              key={index}
+              image={news.image}
+              title={news.title}
+              description={news.description}
+            />
+          ))}
+        </div>
       </div>
-      <Link to="/events">
-        <button className="mt-4 font-semibold hover:text-red-900 transition-colors duration-200">
-          View More Events...
-        </button>
-      </Link>
-    </div>
+    </>
   );
 };
 
-export default NewsSection;
+export default Events;

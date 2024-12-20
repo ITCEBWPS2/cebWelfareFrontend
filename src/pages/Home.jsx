@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import MainCarousel from "@/components/MainCarousel";
 import LinksSection from "@/components/LinksSection";
 import { cover } from "@/assets";
 import NewsSection from "@/components/NewsSection";
 import Benefits from "@/components/Benefits";
 import Contact from "@/components/Contact";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          element.classList.add("animate-fade-in");
+        } else {
+          element.classList.remove("animate-fade-in");
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (element) observer.observe(element);
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, []);
+
   return (
     <div>
       <MainCarousel />
@@ -34,6 +56,11 @@ const Home = () => {
               believe in the power of community and strive to foster a sense of
               belonging and mutual support among our members.
             </p>
+            <Link to="/about">
+              <button className="mt-4 font-semibold hover:text-red-900 transition-colors duration-200">
+                Read More...
+              </button>
+            </Link>
           </div>
         </section>
 

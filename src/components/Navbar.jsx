@@ -30,7 +30,7 @@ const Navbar = () => {
     <div className="sticky top-0 z-10">
       <nav
         className={`absolute z-10 top-0 py-4 w-full ${
-          scrolled ? "bg-red-900" : "bg-transparent"
+          scrolled ? "bg-black/80" : "bg-transparent"
         } transition-colors duration-300`}
       >
         <div className="wrapper flex-between">
