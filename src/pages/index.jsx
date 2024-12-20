@@ -19,6 +19,7 @@ import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
 import ManageDeathFunds from "./dashboard/admin/ManageDeathFunds.jsx";
 import DeathFunds from "./dashboard/DeathFunds.jsx";
 import ManageScholarships from "./dashboard/admin/ManageScholarships.jsx";
+import ManageMedicals from "./dashboard/admin/ManageMedicals.jsx";
 
 export {
   Home,
@@ -37,4 +38,5 @@ export {
   ManageDeathFunds,
   DeathFunds,
   ManageScholarships,
+  ManageMedicals,
 };
