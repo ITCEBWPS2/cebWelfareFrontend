@@ -3,13 +3,11 @@ import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
 
-const DeathFundForm = () => {
+const MedicalForm = () => {
   const [formData, setFormData] = useState({
     memberId: "",
-    personType: "",
-    amount: "",
     date: "",
-    additionalNotes: "",
+    reason: "",
   });
 
   const handleChange = (e) => {
@@ -24,20 +22,14 @@ const DeathFundForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${BASE_URL}/api/deathfunds`,
-        formData,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/api/medicals`, formData, {
+        withCredentials: true,
+      });
       toast.success("Form submitted successfully");
       setFormData({
         memberId: "",
-        personType: "",
-        amount: "",
         date: "",
-        additionalNotes: "",
+        reason: "",
       });
     } catch (error) {
       toast.error("There was an error submitting the form.");
@@ -63,46 +55,6 @@ const DeathFundForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="personType"
-            className="block text-sm font-medium mb-1"
-          >
-            Person Type
-          </label>
-          <select
-            id="personType"
-            name="personType"
-            value={formData.personType}
-            onChange={handleChange}
-            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
-            required
-          >
-            <option value="" disabled>
-              Select person type
-            </option>
-            <option value="member">Member</option>
-            <option value="spouse">Spouse</option>
-            <option value="unmarried_child">Unmarried Child</option>
-            <option value="parent">Parent</option>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="amount" className="block text-sm font-medium mb-1">
-            Amount
-          </label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
-            required
-          />
-        </div>
-
-        <div>
           <label htmlFor="date" className="block text-sm font-medium mb-1">
             Date
           </label>
@@ -118,16 +70,13 @@ const DeathFundForm = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="additionalNotes"
-            className="block text-sm font-medium mb-1"
-          >
-            Additional Notes
+          <label htmlFor="reason" className="block text-sm font-medium mb-1">
+            Reason
           </label>
           <textarea
-            id="additionalNotes"
-            name="additionalNotes"
-            value={formData.additionalNotes}
+            id="reason"
+            name="reason"
+            value={formData.reason}
             onChange={handleChange}
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
           ></textarea>
@@ -144,4 +93,4 @@ const DeathFundForm = () => {
   );
 };
 
-export default DeathFundForm;
+export default MedicalForm;

@@ -3,13 +3,11 @@ import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
 
-const DeathFundForm = () => {
+const ScholarshipForm = () => {
   const [formData, setFormData] = useState({
     memberId: "",
-    personType: "",
+    indexNumber: "",
     amount: "",
-    date: "",
-    additionalNotes: "",
   });
 
   const handleChange = (e) => {
@@ -25,7 +23,7 @@ const DeathFundForm = () => {
 
     try {
       const response = await axios.post(
-        `${BASE_URL}/api/deathfunds`,
+        `${BASE_URL}/api/scholarships`,
         formData,
         {
           withCredentials: true,
@@ -34,10 +32,8 @@ const DeathFundForm = () => {
       toast.success("Form submitted successfully");
       setFormData({
         memberId: "",
-        personType: "",
+        indexNumber: "",
         amount: "",
-        date: "",
-        additionalNotes: "",
       });
     } catch (error) {
       toast.error("There was an error submitting the form.");
@@ -64,27 +60,20 @@ const DeathFundForm = () => {
 
         <div>
           <label
-            htmlFor="personType"
+            htmlFor="indexNumber"
             className="block text-sm font-medium mb-1"
           >
-            Person Type
+            Index Number
           </label>
-          <select
-            id="personType"
-            name="personType"
-            value={formData.personType}
+          <input
+            type="text"
+            id="indexNumber"
+            name="indexNumber"
+            value={formData.indexNumber}
             onChange={handleChange}
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
             required
-          >
-            <option value="" disabled>
-              Select person type
-            </option>
-            <option value="member">Member</option>
-            <option value="spouse">Spouse</option>
-            <option value="unmarried_child">Unmarried Child</option>
-            <option value="parent">Parent</option>
-          </select>
+          />
         </div>
 
         <div>
@@ -102,37 +91,6 @@ const DeathFundForm = () => {
           />
         </div>
 
-        <div>
-          <label htmlFor="date" className="block text-sm font-medium mb-1">
-            Date
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
-            required
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="additionalNotes"
-            className="block text-sm font-medium mb-1"
-          >
-            Additional Notes
-          </label>
-          <textarea
-            id="additionalNotes"
-            name="additionalNotes"
-            value={formData.additionalNotes}
-            onChange={handleChange}
-            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
-          ></textarea>
-        </div>
-
         <button
           type="submit"
           className="w-full py-2 px-4 bg-red-900 text-white font-semibold rounded-md hover:bg-red-800"
@@ -144,4 +102,4 @@ const DeathFundForm = () => {
   );
 };
 
-export default DeathFundForm;
+export default ScholarshipForm;
