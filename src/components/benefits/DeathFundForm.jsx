@@ -41,11 +41,10 @@ const DeathFundForm = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-bold mb-4">Death Fund Benefit Form</h2>
+    <div className="p-4">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="memberId" className="block text-sm font-medium">
+          <label htmlFor="memberId" className="block text-sm font-medium mb-1">
             Member ID
           </label>
           <input
@@ -54,13 +53,16 @@ const DeathFundForm = () => {
             name="memberId"
             value={formData.memberId}
             onChange={handleChange}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="personType" className="block text-sm font-medium">
+          <label
+            htmlFor="personType"
+            className="block text-sm font-medium mb-1"
+          >
             Person Type
           </label>
           <select
@@ -68,7 +70,7 @@ const DeathFundForm = () => {
             name="personType"
             value={formData.personType}
             onChange={handleChange}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
             required
           >
             <option value="" disabled>
@@ -82,7 +84,7 @@ const DeathFundForm = () => {
         </div>
 
         <div>
-          <label htmlFor="amount" className="block text-sm font-medium">
+          <label htmlFor="amount" className="block text-sm font-medium mb-1">
             Amount
           </label>
           <input
@@ -91,13 +93,13 @@ const DeathFundForm = () => {
             name="amount"
             value={formData.amount}
             onChange={handleChange}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="date" className="block text-sm font-medium">
+          <label htmlFor="date" className="block text-sm font-medium mb-1">
             Date
           </label>
           <input
@@ -106,7 +108,7 @@ const DeathFundForm = () => {
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
             required
           />
         </div>
@@ -114,7 +116,7 @@ const DeathFundForm = () => {
         <div>
           <label
             htmlFor="additionalNotes"
-            className="block text-sm font-medium"
+            className="block text-sm font-medium mb-1"
           >
             Additional Notes
           </label>
@@ -123,13 +125,13 @@ const DeathFundForm = () => {
             name="additionalNotes"
             value={formData.additionalNotes}
             onChange={handleChange}
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full py-2 px-4 bg-red-900 text-white font-semibold rounded-md hover:bg-red-800"
         >
           Submit
         </button>
