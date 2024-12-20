@@ -15,6 +15,7 @@ import {
   RejectedLoans,
   Events,
   About,
+  ManageDeathFunds,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -66,6 +67,10 @@ const App = () => {
               <Route
                 path="/dashboard/loans/rejected"
                 element={<RejectedLoans />}
+              />
+              <Route
+                path="/dashboard/benefits/deathfunds"
+                element={<ManageDeathFunds />}
               />
             </Route>
           </Route>

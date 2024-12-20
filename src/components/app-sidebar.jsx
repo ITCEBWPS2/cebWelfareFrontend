@@ -56,27 +56,27 @@ const data = {
       items: [
         {
           title: "Information",
-          url: "#",
+          url: "dashboard/benefits/info",
         },
         {
           title: "Death Funds",
-          url: "#",
+          url: "dashboard/deathfunds",
         },
         {
           title: "Retirement Gifts",
-          url: "#",
+          url: "dashboard/retirements",
         },
         {
           title: "Grade 5 Scholarship",
-          url: "#",
+          url: "dashboard/scholarships",
         },
         {
           title: "Refund Member Fees",
-          url: "#",
+          url: "dashboard/refunds",
         },
         {
           title: "Medical",
-          url: "#",
+          url: "dashboard/medicals",
         },
       ],
     },
@@ -131,23 +131,23 @@ const data = {
       items: [
         {
           title: "Death Funds",
-          url: "#",
+          url: "/dashboard/benefits/deathfunds",
         },
         {
           title: "Retirement Gifts",
-          url: "#",
+          url: "/dashboard/benefits/retirements",
         },
         {
           title: "Grade 5 Scholarship",
-          url: "#",
+          url: "/dashboard/benefits/scholarships",
         },
         {
           title: "Refund Member Fees",
-          url: "#",
+          url: "/dashboard/benefits/refunds",
         },
         {
           title: "Medical",
-          url: "#",
+          url: "/dashboard/benefits/medicals",
         },
       ],
     },

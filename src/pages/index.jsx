@@ -16,6 +16,7 @@ import LoanApplicationPage from "./dashboard/LoanApplicationPage.jsx";
 import PendingLoans from "./dashboard/admin/PendingLoans.jsx";
 import ApprovedLoans from "./dashboard/admin/ApprovedLoans.jsx";
 import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
+import ManageDeathFunds from "./dashboard/admin/ManageDeathFunds.jsx";
 
 export {
   Home,
@@ -31,4 +32,5 @@ export {
   PendingLoans,
   ApprovedLoans,
   RejectedLoans,
+  ManageDeathFunds,
 };

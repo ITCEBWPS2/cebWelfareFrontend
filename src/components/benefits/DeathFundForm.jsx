@@ -1,0 +1,141 @@
+import React, { useState } from "react";
+import axios from "axios";
+
+const DeathFundForm = () => {
+  const [formData, setFormData] = useState({
+    memberId: "",
+    personType: "",
+    amount: "",
+    date: "",
+    additionalNotes: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("/api/deathfunds", formData, {
+        withCredentials: true,
+      });
+      alert("Form submitted successfully");
+      console.log(response.data);
+      setFormData({
+        memberId: "",
+        personType: "",
+        amount: "",
+        date: "",
+        additionalNotes: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("There was an error submitting the form.");
+    }
+  };
+
+  return (
+    <div className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md">
+      <h2 className="text-2xl font-bold mb-4">Death Fund Benefit Form</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="memberId" className="block text-sm font-medium">
+            Member ID
+          </label>
+          <input
+            type="text"
+            id="memberId"
+            name="memberId"
+            value={formData.memberId}
+            onChange={handleChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="personType" className="block text-sm font-medium">
+            Person Type
+          </label>
+          <select
+            id="personType"
+            name="personType"
+            value={formData.personType}
+            onChange={handleChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          >
+            <option value="" disabled>
+              Select person type
+            </option>
+            <option value="member">Member</option>
+            <option value="spouse">Spouse</option>
+            <option value="unmarried_child">Unmarried Child</option>
+            <option value="parent">Parent</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="amount" className="block text-sm font-medium">
+            Amount
+          </label>
+          <input
+            type="text"
+            id="amount"
+            name="amount"
+            value={formData.amount}
+            onChange={handleChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="date" className="block text-sm font-medium">
+            Date
+          </label>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            required
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="additionalNotes"
+            className="block text-sm font-medium"
+          >
+            Additional Notes
+          </label>
+          <textarea
+            id="additionalNotes"
+            name="additionalNotes"
+            value={formData.additionalNotes}
+            onChange={handleChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default DeathFundForm;
