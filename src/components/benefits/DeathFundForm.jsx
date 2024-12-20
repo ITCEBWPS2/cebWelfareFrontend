@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "@/constants";
 
 const DeathFundForm = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +23,13 @@ const DeathFundForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/deathfunds", formData, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${BASE_URL}/api/deathfunds`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
       alert("Form submitted successfully");
       console.log(response.data);
       setFormData({

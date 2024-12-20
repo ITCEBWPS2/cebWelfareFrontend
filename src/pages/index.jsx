@@ -17,6 +17,7 @@ import PendingLoans from "./dashboard/admin/PendingLoans.jsx";
 import ApprovedLoans from "./dashboard/admin/ApprovedLoans.jsx";
 import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
 import ManageDeathFunds from "./dashboard/admin/ManageDeathFunds.jsx";
+import DeathFunds from "./dashboard/DeathFunds.jsx";
 
 export {
   Home,
@@ -33,4 +34,5 @@ export {
   ApprovedLoans,
   RejectedLoans,
   ManageDeathFunds,
+  DeathFunds,
 };

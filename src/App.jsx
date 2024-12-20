@@ -16,6 +16,7 @@ import {
   Events,
   About,
   ManageDeathFunds,
+  DeathFunds,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -48,6 +49,7 @@ const App = () => {
               path="/dashboard/apply-loan"
               element={<LoanApplicationPage />}
             />
+            <Route path="/dashboard/deathfunds" element={<DeathFunds />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
             <Route path="" element={<AdminRoute />}>
               <Route
