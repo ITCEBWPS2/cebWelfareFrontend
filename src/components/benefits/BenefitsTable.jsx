@@ -54,7 +54,7 @@ const BenefitsTable = ({ benefit, benefitName }) => {
       case "medicals":
         return ["Member ID", "Date", "Reason", "Actions"];
       case "scholarships":
-        return ["Member ID", "IndexNumber", "Amount", "Actions"];
+        return ["Member ID", "Index Number", "Amount", "Actions"];
       case "refunds":
         return ["Member ID", "Amount", "Reason", "Message", "Actions"];
       case "retirements":
