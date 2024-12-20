@@ -15,7 +15,6 @@ import { Trash2 } from "lucide-react";
 
 const BenefitsTable = ({ benefit, benefitName }) => {
   const [benefits, setBenefits] = useState([]);
-  const [selectedBenefitId, setSelectedBenefitId] = useState(null);
 
   useEffect(() => {
     fetchBenefits();
@@ -29,7 +28,7 @@ const BenefitsTable = ({ benefit, benefitName }) => {
 
       setBenefits(response.data);
     } catch (error) {
-      console.error("Error fetching benefits:", error);
+      toast.error("Error fetching benefits:");
     }
   };
 
@@ -48,22 +47,37 @@ const BenefitsTable = ({ benefit, benefitName }) => {
     }
   };
 
+  const renderHeader = () => {
+    switch (benefit) {
+      case "deathfunds":
+        return ["Member ID", "Person", "Amount", "Date", "Actions"];
+      case "medicals":
+        return ["Member ID", "Date", "Reason", "Actions"];
+      case "scholarships":
+        return ["Member ID", "IndexNumber", "Amount", "Actions"];
+      case "refunds":
+        return ["Member ID", "Amount", "Reason", "Message", "Actions"];
+      case "retirements":
+        return ["Member ID", "Date", "Amount", "Actions"];
+      default:
+        return [];
+    }
+  };
+
   return (
     <div>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-lg rounded-lg">
           <thead className="bg-red-900 text-white text-xs md:text-sm">
             <tr>
-              {["Member ID", "Person", "Amount", "Date", "Actions"].map(
-                (header) => (
-                  <th
-                    key={header}
-                    className="px-4 py-3 text-left font-semibold whitespace-nowrap"
-                  >
-                    {header}
-                  </th>
-                )
-              )}
+              {renderHeader().map((header) => (
+                <th
+                  key={header}
+                  className="px-4 py-3 text-left font-semibold whitespace-nowrap"
+                >
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
@@ -72,15 +86,67 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {benefit.memberId}
                 </td>
-                <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {benefit.personType}
-                </td>
-                <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {benefit.amount}
-                </td>
-                <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {benefit.date}
-                </td>
+
+                {benefitName === "Death Fund" && (
+                  <>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.personType}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.amount}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.date}
+                    </td>
+                  </>
+                )}
+
+                {benefitName === "Scholarship" && (
+                  <>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.indexNumber}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.amount}
+                    </td>
+                  </>
+                )}
+
+                {benefitName === "Medical" && (
+                  <>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.date}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.reason}
+                    </td>
+                  </>
+                )}
+
+                {benefitName === "Refund" && (
+                  <>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.amount}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.reason}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.message}
+                    </td>
+                  </>
+                )}
+
+                {benefitName === "Retirement Gift" && (
+                  <>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.date}
+                    </td>
+                    <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                      {benefit.amount}
+                    </td>
+                  </>
+                )}
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
                   <button
@@ -108,19 +174,71 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                         <p>
                           <strong>Member ID:</strong> {benefit.memberId}
                         </p>
-                        <p>
-                          <strong>Person:</strong> {benefit.personType}
-                        </p>
-                        <p>
-                          <strong>Amount:</strong> {benefit.amount}
-                        </p>
-                        <p>
-                          <strong>Date:</strong> {benefit.date || "N/A"}
-                        </p>
-                        <p>
-                          <strong>Notes:</strong>{" "}
-                          {benefit.additionalNotes || "N/A"}
-                        </p>
+                        {benefitName === "Death Fund" && (
+                          <>
+                            <p>
+                              <strong>Person:</strong> {benefit.personType}
+                            </p>
+                            <p>
+                              <strong>Amount:</strong> {benefit.amount}
+                            </p>
+                            <p>
+                              <strong>Date:</strong> {benefit.date || "N/A"}
+                            </p>
+                            <p>
+                              <strong>Notes:</strong>{" "}
+                              {benefit.additionalNotes || "N/A"}
+                            </p>
+                          </>
+                        )}
+
+                        {benefitName === "Scholarship" && (
+                          <>
+                            <p>
+                              <strong>Index Number:</strong>{" "}
+                              {benefit.indexNumber}
+                            </p>
+                            <p>
+                              <strong>Amount:</strong> {benefit.amount}
+                            </p>
+                          </>
+                        )}
+
+                        {benefitName === "Medical" && (
+                          <>
+                            <p>
+                              <strong>Date:</strong> {benefit.date}
+                            </p>
+                            <p>
+                              <strong>Reason:</strong> {benefit.reason}
+                            </p>
+                          </>
+                        )}
+
+                        {benefitName === "Refund" && (
+                          <>
+                            <p>
+                              <strong>Amount:</strong> {benefit.amount}
+                            </p>
+                            <p>
+                              <strong>Reason:</strong> {benefit.reason}
+                            </p>
+                            <p>
+                              <strong>Message:</strong> {benefit.message}
+                            </p>
+                          </>
+                        )}
+
+                        {benefitName === "Retirement Gift" && (
+                          <>
+                            <p>
+                              <strong>Date:</strong> {benefit.date}
+                            </p>
+                            <p>
+                              <strong>Amount:</strong> {benefit.amount}
+                            </p>
+                          </>
+                        )}
                       </div>
                     </DialogContent>
                   </Dialog>
