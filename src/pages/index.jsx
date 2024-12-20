@@ -20,6 +20,7 @@ import ManageDeathFunds from "./dashboard/admin/ManageDeathFunds.jsx";
 import DeathFunds from "./dashboard/DeathFunds.jsx";
 import ManageScholarships from "./dashboard/admin/ManageScholarships.jsx";
 import ManageMedicals from "./dashboard/admin/ManageMedicals.jsx";
+import ManageRefunds from "./dashboard/admin/ManageRefunds.jsx";
 
 export {
   Home,
@@ -39,4 +40,5 @@ export {
   DeathFunds,
   ManageScholarships,
   ManageMedicals,
+  ManageRefunds,
 };
