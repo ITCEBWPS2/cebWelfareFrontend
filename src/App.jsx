@@ -13,6 +13,18 @@ import {
   PendingLoans,
   ApprovedLoans,
   RejectedLoans,
+  Events,
+  About,
+  ManageDeathFunds,
+  DeathFunds,
+  ManageScholarships,
+  ManageMedicals,
+  ManageRefunds,
+  ManageRetirements,
+  Scholarships,
+  Medicals,
+  Refunds,
+  Retirements,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -27,6 +39,8 @@ const App = () => {
         {/* Routes that use MainLayout */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/about" element={<About />} />
         </Route>
 
         <Route path="/login" element={<Login />} />
@@ -43,6 +57,11 @@ const App = () => {
               path="/dashboard/apply-loan"
               element={<LoanApplicationPage />}
             />
+            <Route path="/dashboard/deathfunds" element={<DeathFunds />} />
+            <Route path="/dashboard/scholarships" element={<Scholarships />} />
+            <Route path="/dashboard/medicals" element={<Medicals />} />
+            <Route path="/dashboard/refunds" element={<Refunds />} />
+            <Route path="/dashboard/retirements" element={<Retirements />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
             <Route path="" element={<AdminRoute />}>
               <Route
@@ -62,6 +81,26 @@ const App = () => {
               <Route
                 path="/dashboard/loans/rejected"
                 element={<RejectedLoans />}
+              />
+              <Route
+                path="/dashboard/benefits/deathfunds"
+                element={<ManageDeathFunds />}
+              />
+              <Route
+                path="/dashboard/benefits/scholarships"
+                element={<ManageScholarships />}
+              />
+              <Route
+                path="/dashboard/benefits/medicals"
+                element={<ManageMedicals />}
+              />
+              <Route
+                path="/dashboard/benefits/refunds"
+                element={<ManageRefunds />}
+              />
+              <Route
+                path="/dashboard/benefits/retirements"
+                element={<ManageRetirements />}
               />
             </Route>
           </Route>

@@ -2,6 +2,8 @@
 
 import Home from "./Home.jsx";
 import Login from "./Login.jsx";
+import Events from "./Events.jsx";
+import About from "./About.jsx";
 
 // ----- Dashboard Pages ----- //
 
@@ -14,10 +16,22 @@ import LoanApplicationPage from "./dashboard/LoanApplicationPage.jsx";
 import PendingLoans from "./dashboard/admin/PendingLoans.jsx";
 import ApprovedLoans from "./dashboard/admin/ApprovedLoans.jsx";
 import RejectedLoans from "./dashboard/admin/RejectedLoans.jsx";
+import ManageDeathFunds from "./dashboard/admin/ManageDeathFunds.jsx";
+import DeathFunds from "./dashboard/DeathFunds.jsx";
+import ManageScholarships from "./dashboard/admin/ManageScholarships.jsx";
+import Scholarships from "./dashboard/Scholarships.jsx";
+import ManageMedicals from "./dashboard/admin/ManageMedicals.jsx";
+import Medicals from "./dashboard/Medicals.jsx";
+import ManageRefunds from "./dashboard/admin/ManageRefunds.jsx";
+import Refunds from "./dashboard/Refunds.jsx";
+import ManageRetirements from "./dashboard/admin/ManageRetirements.jsx";
+import Retirements from "./dashboard/Retirements.jsx";
 
 export {
   Home,
   Login,
+  Events,
+  About,
   Dashboard,
   AllMembers,
   RegisterMember,
@@ -27,4 +41,14 @@ export {
   PendingLoans,
   ApprovedLoans,
   RejectedLoans,
+  ManageDeathFunds,
+  DeathFunds,
+  ManageScholarships,
+  Scholarships,
+  ManageMedicals,
+  Medicals,
+  ManageRefunds,
+  Refunds,
+  ManageRetirements,
+  Retirements,
 };

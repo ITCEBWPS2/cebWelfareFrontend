@@ -3,13 +3,17 @@ import React from "react";
 import Navbar from "./Navbar";
 import BottomBar from "./BottomBar";
 import { Outlet } from "react-router-dom";
+import BottomToTop from "./BottomToTop";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="flex h-screen flex-col">
       <Navbar />
-      <Outlet />
+      <main className="flex-1">
+        <Outlet />
+      </main>
       <BottomBar />
+      <BottomToTop />
     </div>
   );
 };

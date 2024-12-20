@@ -56,15 +56,27 @@ const data = {
       items: [
         {
           title: "Information",
-          url: "#",
+          url: "dashboard/benefits/info",
         },
         {
-          title: "My Benefits",
-          url: "#",
+          title: "Death Funds",
+          url: "dashboard/deathfunds",
         },
         {
-          title: "Apply Benefits",
-          url: "#",
+          title: "Retirement Gifts",
+          url: "dashboard/retirements",
+        },
+        {
+          title: "Grade 5 Scholarship",
+          url: "dashboard/scholarships",
+        },
+        {
+          title: "Refund Member Fees",
+          url: "dashboard/refunds",
+        },
+        {
+          title: "Medical",
+          url: "dashboard/medicals",
         },
       ],
     },
@@ -113,21 +125,29 @@ const data = {
       ],
     },
     {
-      title: "Manage Benefits",
+      title: "Benefits",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Benefit Requests",
-          url: "#",
+          title: "Death Funds",
+          url: "/dashboard/benefits/deathfunds",
         },
         {
-          title: "Pending Requests",
-          url: "#",
+          title: "Retirement Gifts",
+          url: "/dashboard/benefits/retirements",
         },
         {
-          title: "Approved Requests",
-          url: "#",
+          title: "Grade 5 Scholarship",
+          url: "/dashboard/benefits/scholarships",
+        },
+        {
+          title: "Refund Member Fees",
+          url: "/dashboard/benefits/refunds",
+        },
+        {
+          title: "Medical",
+          url: "/dashboard/benefits/medicals",
         },
       ],
     },
