@@ -796,7 +796,17 @@ const RegisterMember = () => {
                 >
                   <option value="">Select Role</option>
                   <option value="member">Member</option>
-                  <option value="admin">Admin</option>
+                  <option value="president">President</option>
+                  <option value="vice_president">Vice President</option>
+                  <option value="secretary">Secretary</option>
+                  <option value="assistant_secretary">
+                    Assistant Secretary
+                  </option>
+                  <option value="treasurer">Treasurer</option>
+                  <option value="assistant_treasurer">
+                    Assistant Treasurer
+                  </option>
+                  <option value="super_admin">Super Admin</option>
                 </select>
               </div>
 

@@ -14,6 +14,7 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Link } from "react-router-dom";
 import { NavAdmin } from "./nav-admin";
 import { useAuth } from "@/api/authContext";
+import { allowedRoles } from "@/authorization";
 
 const data = {
   user: {
@@ -177,7 +178,9 @@ export function AppSidebar({ ...props }) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {user.role === "admin" && <NavAdmin items={data.navAdmin} />}
+        {allowedRoles.includes(user?.role) && (
+          <NavAdmin items={data.navAdmin} />
+        )}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useAuth } from "@/api/authContext";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
@@ -12,6 +13,7 @@ import {
 } from "./ui/dialog";
 import { SquarePen, Trash2 } from "lucide-react";
 import MemberUpdate from "./MemberUpdate";
+import { isSecretaryOrAssistantSecretary, isSuperAdmin } from "@/authorization";
 
 const MembersTable = () => {
   const [members, setMembers] = useState([]);
@@ -20,6 +22,7 @@ const MembersTable = () => {
   const [selectedMember, setSelectedMember] = useState(null);
   const navigate = useNavigate();
   const memberRefs = useRef({});
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchMembers();
@@ -121,12 +124,14 @@ const MembersTable = () => {
             placeholder="Search by EPF or Welfare No..."
           />
         </div>
-        <button
-          className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
-          onClick={() => navigate("/dashboard/members/register")}
-        >
-          Register New Member
-        </button>
+        {isSecretaryOrAssistantSecretary(user) && (
+          <button
+            className="bg-red-900 hover:bg-red-700 text-yellow-200 text-xl font-semibold rounded-lg px-8 py-2 transition duration-300"
+            onClick={() => navigate("/dashboard/members/register")}
+          >
+            Register New Member
+          </button>
+        )}
       </div>
 
       <div className="overflow-x-auto">
@@ -185,34 +190,38 @@ const MembersTable = () => {
                 </td>
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
-                  <Dialog>
-                    <DialogTrigger>
-                      <div className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1">
-                        <SquarePen className="p-0.5" />
-                      </div>
-                    </DialogTrigger>
+                  {isSecretaryOrAssistantSecretary(user) && (
+                    <Dialog>
+                      <DialogTrigger>
+                        <div className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1">
+                          <SquarePen className="p-0.5" />
+                        </div>
+                      </DialogTrigger>
 
-                    <DialogContent
-                      onClose={handleDialogClose}
-                      className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
+                      <DialogContent
+                        onClose={handleDialogClose}
+                        className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
+                      >
+                        <DialogHeader className="border-b pb-4">
+                          <DialogTitle className="text-2xl font-bold">
+                            {member.name}
+                          </DialogTitle>
+                          <DialogDescription>
+                            Update Member Details.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <MemberUpdate memberId={member._id} />
+                      </DialogContent>
+                    </Dialog>
+                  )}
+                  {isSuperAdmin(user) && (
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
+                      onClick={() => handleDelete(member._id)}
                     >
-                      <DialogHeader className="border-b pb-4">
-                        <DialogTitle className="text-2xl font-bold">
-                          {member.name}
-                        </DialogTitle>
-                        <DialogDescription>
-                          Update Member Details.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <MemberUpdate memberId={member._id} />
-                    </DialogContent>
-                  </Dialog>
-                  <button
-                    className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
-                    onClick={() => handleDelete(member._id)}
-                  >
-                    <Trash2 className="p-0.5" />
-                  </button>
+                      <Trash2 className="p-0.5" />
+                    </button>
+                  )}
                   <Link to={`/dashboard/members/${member._id}`}>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
                       View Profile
