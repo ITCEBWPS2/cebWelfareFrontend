@@ -12,9 +12,12 @@ import {
 } from "../ui/dialog";
 import toast from "react-hot-toast";
 import { Trash2 } from "lucide-react";
+import { useAuth } from "@/api/authContext";
+import { isSuperAdmin } from "@/authorization";
 
 const BenefitsTable = ({ benefit, benefitName }) => {
   const [benefits, setBenefits] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     fetchBenefits();
@@ -149,12 +152,14 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                 )}
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
-                  <button
-                    className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
-                    onClick={() => handleDelete(benefit._id)}
-                  >
-                    <Trash2 className="p-0.5" />
-                  </button>
+                  {isSuperAdmin(user) && (
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
+                      onClick={() => handleDelete(benefit._id)}
+                    >
+                      <Trash2 className="p-0.5" />
+                    </button>
+                  )}
                   <Dialog>
                     <DialogTrigger>
                       <button className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-3 py-1">
