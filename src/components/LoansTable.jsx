@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/api/authContext";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import {
@@ -13,11 +14,13 @@ import {
 import { SquarePen, Trash2 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import toast from "react-hot-toast";
+import { isSuperAdmin, isTreasurerOrAssistantTreasurer } from "@/authorization";
 
 const LoansTable = ({ status }) => {
   const [loans, setLoans] = useState([]);
   const [loanStatus, setLoanStatus] = useState("");
   const [selectedLoanId, setSelectedLoanId] = useState(null);
+  const { user } = useAuth();
 
   const allowedStatuses = ["pending", "approved", "rejected"];
 
@@ -134,72 +137,78 @@ const LoansTable = ({ status }) => {
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   <div className="flex items-center justify-center gap-3">
                     {loan.loanStatus}
-                    <Popover>
-                      <PopoverTrigger>
-                        <SquarePen
-                          className="text-gray-600"
-                          onClick={() => {
-                            setSelectedLoanId(loan._id);
-                            setLoanStatus(loan.loanStatus);
-                          }}
-                        />
-                      </PopoverTrigger>
-                      <PopoverContent className="shadow-none">
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                          <div>
-                            <label className="block text-sm font-medium">
-                              Loan Status
-                            </label>
-                            <select
-                              value={loanStatus}
-                              onChange={(e) => setLoanStatus(e.target.value)}
-                              className="w-full px-4 py-2 border rounded"
+                    {isTreasurerOrAssistantTreasurer(user) && (
+                      <Popover>
+                        <PopoverTrigger>
+                          <SquarePen
+                            className="text-gray-600"
+                            onClick={() => {
+                              setSelectedLoanId(loan._id);
+                              setLoanStatus(loan.loanStatus);
+                            }}
+                          />
+                        </PopoverTrigger>
+                        <PopoverContent className="shadow-none">
+                          <form onSubmit={handleSubmit} className="space-y-4">
+                            <div>
+                              <label className="block text-sm font-medium">
+                                Loan Status
+                              </label>
+                              <select
+                                value={loanStatus}
+                                onChange={(e) => setLoanStatus(e.target.value)}
+                                className="w-full px-4 py-2 border rounded"
+                              >
+                                <option value="">Select Status</option>
+                                {allowedStatuses.map((status) => (
+                                  <option key={status} value={status}>
+                                    {status}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                            <button
+                              type="submit"
+                              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
                             >
-                              <option value="">Select Status</option>
-                              {allowedStatuses.map((status) => (
-                                <option key={status} value={status}>
-                                  {status}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                          <button
-                            type="submit"
-                            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
-                          >
-                            Update Status
-                          </button>
-                        </form>
-                      </PopoverContent>
-                    </Popover>
+                              Update Status
+                            </button>
+                          </form>
+                        </PopoverContent>
+                      </Popover>
+                    )}
                   </div>
                 </td>
 
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
-                  <Dialog>
-                    <DialogTrigger>
-                      <div className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1">
-                        <SquarePen className="p-0.5" />
-                      </div>
-                    </DialogTrigger>
+                  {isTreasurerOrAssistantTreasurer(user) && (
+                    <Dialog>
+                      <DialogTrigger>
+                        <div className="bg-green-500 hover:bg-green-700 text-white rounded-lg p-1">
+                          <SquarePen className="p-0.5" />
+                        </div>
+                      </DialogTrigger>
 
-                    <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
-                      <DialogHeader className="border-b pb-4">
-                        <DialogTitle className="text-2xl font-bold">
-                          {loan.loanNumber}
-                        </DialogTitle>
-                        <DialogDescription>
-                          Update Loan Details.
-                        </DialogDescription>
-                      </DialogHeader>
-                    </DialogContent>
-                  </Dialog>
-                  <button
-                    className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
-                    onClick={() => handleDelete(loan._id)}
-                  >
-                    <Trash2 className="p-0.5" />
-                  </button>
+                      <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+                        <DialogHeader className="border-b pb-4">
+                          <DialogTitle className="text-2xl font-bold">
+                            {loan.loanNumber}
+                          </DialogTitle>
+                          <DialogDescription>
+                            Update Loan Details.
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                  )}
+                  {isSuperAdmin(user) && (
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
+                      onClick={() => handleDelete(loan._id)}
+                    >
+                      <Trash2 className="p-0.5" />
+                    </button>
+                  )}
                   <Dialog>
                     <DialogTrigger>
                       <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
