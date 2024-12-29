@@ -31,6 +31,7 @@ import DashboardLayout from "./components/DashboardLayout";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import MyLoans from "./pages/dashboard/MyLoans";
+import SecretaryRoute from "./components/SecretaryRoute";
 
 const App = () => {
   return (
@@ -63,11 +64,15 @@ const App = () => {
             <Route path="/dashboard/refunds" element={<Refunds />} />
             <Route path="/dashboard/retirements" element={<Retirements />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
+
+            {/* Admin Routes */}
             <Route path="" element={<AdminRoute />}>
-              <Route
-                path="/dashboard/members/register"
-                element={<RegisterMember />}
-              />
+              <Route path="" element={<SecretaryRoute />}>
+                <Route
+                  path="/dashboard/members/register"
+                  element={<RegisterMember />}
+                />
+              </Route>
               <Route path="/dashboard/members" element={<AllMembers />} />
               <Route path="/dashboard/loans" element={<Loans />} />
               <Route
