@@ -63,7 +63,7 @@ const Retirements = () => {
               <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                 <DialogHeader className="border-b pb-4">
                   <DialogTitle className="text-2xl font-bold">
-                    {benefit.memberId}
+                    {benefit.epf}
                   </DialogTitle>
                   <DialogDescription>Full Benefit Details.</DialogDescription>
                 </DialogHeader>
