@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const ScholarshipForm = () => {
   const [formData, setFormData] = useState({
-    memberId: "",
+    epf: "",
     indexNumber: "",
     amount: "",
   });
@@ -31,7 +31,7 @@ const ScholarshipForm = () => {
       );
       toast.success("Form submitted successfully");
       setFormData({
-        memberId: "",
+        epf: "",
         indexNumber: "",
         amount: "",
       });
@@ -44,14 +44,14 @@ const ScholarshipForm = () => {
     <div className="p-4">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="memberId" className="block text-sm font-medium mb-1">
-            Member ID
+          <label htmlFor="epf" className="block text-sm font-medium mb-1">
+            EPF Number
           </label>
           <input
             type="text"
-            id="memberId"
-            name="memberId"
-            value={formData.memberId}
+            id="epf"
+            name="epf"
+            value={formData.epf}
             onChange={handleChange}
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-2 leading-tight focus:outline-none focus:border-red-500"
             required

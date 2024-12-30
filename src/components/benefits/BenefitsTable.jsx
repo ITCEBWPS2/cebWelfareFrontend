@@ -53,15 +53,15 @@ const BenefitsTable = ({ benefit, benefitName }) => {
   const renderHeader = () => {
     switch (benefit) {
       case "deathfunds":
-        return ["Member ID", "Person", "Amount", "Date", "Actions"];
+        return ["EPF Number", "Person", "Amount", "Date", "Actions"];
       case "medicals":
-        return ["Member ID", "Date", "Reason", "Actions"];
+        return ["EPF Number", "Date", "Reason", "Actions"];
       case "scholarships":
-        return ["Member ID", "Index Number", "Amount", "Actions"];
+        return ["EPF Number", "Index Number", "Amount", "Actions"];
       case "refunds":
-        return ["Member ID", "Amount", "Reason", "Message", "Actions"];
+        return ["EPF Number", "Amount", "Reason", "Message", "Actions"];
       case "retirements":
-        return ["Member ID", "Date", "Amount", "Actions"];
+        return ["EPF Number", "Date", "Amount", "Actions"];
       default:
         return [];
     }
@@ -87,7 +87,7 @@ const BenefitsTable = ({ benefit, benefitName }) => {
             {benefits.map((benefit, index) => (
               <tr key={index}>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {benefit.memberId}
+                  {benefit.epf}
                 </td>
 
                 {benefitName === "Death Fund" && (
