@@ -53,9 +53,7 @@ const Medicals = () => {
                   key={benefit._id}
                   className="bg-white shadow-md rounded-lg p-4 border hover:shadow-lg transition-shadow"
                 >
-                  <h2 className="text-lg font-semibold mb-2">
-                    {benefit.memberId}
-                  </h2>
+                  <h2 className="text-lg font-semibold mb-2">{benefit.epf}</h2>
                   <p className="text-gray-700">
                     <span className="font-medium">Date:</span>
                     {benefit.date}
@@ -65,7 +63,7 @@ const Medicals = () => {
               <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                 <DialogHeader className="border-b pb-4">
                   <DialogTitle className="text-2xl font-bold">
-                    {benefit.memberId}
+                    {benefit.epf}
                   </DialogTitle>
                   <DialogDescription>Full Benefit Details.</DialogDescription>
                 </DialogHeader>
