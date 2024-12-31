@@ -43,6 +43,7 @@ const MyLoans = () => {
 
   return (
     <div className="py-16 px-8">
+      <h1 className="mb-8 font-bold text-xl">Loans</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {loans.map((loan) => (
           <>
