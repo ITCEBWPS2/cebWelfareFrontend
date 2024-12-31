@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/api/authContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import {
@@ -18,8 +18,10 @@ import { isSuperAdmin, isTreasurerOrAssistantTreasurer } from "@/authorization";
 
 const LoansTable = ({ status }) => {
   const [loans, setLoans] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [loanStatus, setLoanStatus] = useState("");
   const [selectedLoanId, setSelectedLoanId] = useState(null);
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const allowedStatuses = ["pending", "approved", "rejected"];
@@ -41,12 +43,23 @@ const LoansTable = ({ status }) => {
         withCredentials: true,
       });
 
-      const sortedLoans = response.data.sort(
-        (a, b) => a.welfareNo - b.welfareNo
-      );
-      setLoans(sortedLoans);
+      setLoans(response.data);
     } catch (error) {
       console.error("Error fetching loans:", error);
+    }
+  };
+
+  const fetchMemberId = async (epf) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${BASE_URL}/api/members/find/${epf}`, {
+        withCredentials: true,
+      });
+      navigate(`/dashboard/members/${response.data._id}`);
+    } catch (error) {
+      console.error("Error fetching member data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -99,8 +112,7 @@ const LoansTable = ({ status }) => {
           <thead className="bg-red-900 text-white text-xs md:text-sm">
             <tr>
               {[
-                "EPF no",
-                "Welfare no",
+                "EPF No",
                 "Loan Number",
                 "Name",
                 "Loan Amount",
@@ -120,10 +132,7 @@ const LoansTable = ({ status }) => {
             {loans.map((loan, index) => (
               <tr key={loan._id}>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {loan.epfNumber}
-                </td>
-                <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                  {loan.memberNumber}
+                  {loan.epf}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.loanNumber}
@@ -266,15 +275,21 @@ const LoansTable = ({ status }) => {
                         </p>
                         <p>
                           <strong>Required Loan Date:</strong>{" "}
-                          {loan.requiredLoanDate || "N/A"}
+                          {new Date(loan.requiredLoanDate).toLocaleDateString(
+                            "en-GB"
+                          ) || "N/A"}
                         </p>
                         <p>
                           <strong>Date of Birth:</strong>{" "}
-                          {loan.dateOfBirth || "N/A"}
+                          {new Date(loan.dateOfBirth).toLocaleDateString(
+                            "en-GB"
+                          ) || "N/A"}
                         </p>
                         <p>
                           <strong>Retirement Date:</strong>{" "}
-                          {loan.retirementDate || "N/A"}
+                          {new Date(loan.retirementDate).toLocaleDateString(
+                            "en-GB"
+                          ) || "N/A"}
                         </p>
                         <p>
                           <strong>Loan Status:</strong>{" "}
@@ -283,11 +298,12 @@ const LoansTable = ({ status }) => {
                       </div>
                     </DialogContent>
                   </Dialog>
-                  <Link to={`/dashboard/members/${loan.memberId}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-                      View Member
-                    </button>
-                  </Link>
+                  <button
+                    onClick={() => fetchMemberId(loan.epf)}
+                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1"
+                  >
+                    {loading ? "Loading..." : "View User"}
+                  </button>
                 </td>
               </tr>
             ))}

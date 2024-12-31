@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
-import { useAuth } from "@/api/authContext";
 
 const LoanApplication = () => {
-  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    memberNumber: "",
-    epfNumber: "",
+    epf: "",
     loanNumber: "",
     loanAmount: "",
     name: "",
@@ -80,7 +77,7 @@ const LoanApplication = () => {
       if (response.data) {
         setFormData({
           memberNumber: "",
-          epfNumber: "",
+          epf: "",
           loanNumber: "",
           loanAmount: "",
           name: "",
@@ -110,36 +107,17 @@ const LoanApplication = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <label
-            htmlFor="memberNumber"
-            className="block mb-2 text-sm font-medium text-gray-600"
-          >
-            Member Number
-          </label>
-          <input
-            id="memberNumber"
-            type="text"
-            name="memberNumber"
-            placeholder="Enter Member Number"
-            value={formData.memberNumber}
-            onChange={handleChange}
-            required
-            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="epfNumber"
+            htmlFor="epf"
             className="block mb-2 text-sm font-medium text-gray-600"
           >
             EPF Number
           </label>
           <input
-            id="epfNumber"
+            id="epf"
             type="text"
-            name="epfNumber"
+            name="epf"
             placeholder="Enter EPF Number"
-            value={formData.epfNumber}
+            value={formData.epf}
             onChange={handleChange}
             required
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
