@@ -2,27 +2,24 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
-import { useAuth } from "@/api/authContext";
 
 const LoanApplication = () => {
-  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    memberNumber: user.welfareNo,
-    epfNumber: user.epf,
+    epf: "",
     loanNumber: "",
     loanAmount: "",
-    name: user.name,
+    name: "",
     address: "",
     position: "",
-    branch: user.branch || "",
+    branch: "",
     contactNo: {
-      mobile: user?.contactNo?.whatsappNo || "",
-      landline: user?.contactNo?.number || "",
+      mobile: "",
+      landline: "",
     },
     nationalIdNumber: "",
     reasonForLoan: "",
     requiredLoanDate: "",
-    dateOfBirth: user.dateOfBirth || "",
+    dateOfBirth: "",
     retirementDate: "",
     loanStatus: "pending",
   });
@@ -79,22 +76,22 @@ const LoanApplication = () => {
 
       if (response.data) {
         setFormData({
-          memberNumber: user.welfareNo,
-          epfNumber: user.epf,
+          memberNumber: "",
+          epf: "",
           loanNumber: "",
           loanAmount: "",
-          name: user.name,
+          name: "",
           address: "",
           position: "",
-          branch: user.branch,
+          branch: "",
           contactNo: {
-            mobile: user.contactNo.whatsappNo,
-            landline: user.contactNo.number,
+            mobile: "",
+            landline: "",
           },
           nationalIdNumber: "",
           reasonForLoan: "",
           requiredLoanDate: "",
-          dateOfBirth: user.dateOfBirth,
+          dateOfBirth: "",
           retirementDate: "",
           loanStatus: "pending",
         });
@@ -106,51 +103,23 @@ const LoanApplication = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-4xl mx-auto my-8 p-8 space-y-12"
-    >
-      <h1 className="text-2xl font-bold text-gray-700">
-        Loan Application Form
-      </h1>
-
+    <form onSubmit={handleSubmit} className="p-8 space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <label
-            htmlFor="memberNumber"
-            className="block mb-2 text-sm font-medium text-gray-600"
-          >
-            Member Number
-          </label>
-          <input
-            id="memberNumber"
-            type="text"
-            name="memberNumber"
-            placeholder="Enter Member Number"
-            value={formData.memberNumber}
-            onChange={handleChange}
-            required
-            disabled
-            className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="epfNumber"
+            htmlFor="epf"
             className="block mb-2 text-sm font-medium text-gray-600"
           >
             EPF Number
           </label>
           <input
-            id="epfNumber"
+            id="epf"
             type="text"
-            name="epfNumber"
+            name="epf"
             placeholder="Enter EPF Number"
-            value={formData.epfNumber}
+            value={formData.epf}
             onChange={handleChange}
             required
-            disabled
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
