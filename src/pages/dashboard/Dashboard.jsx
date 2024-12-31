@@ -5,27 +5,39 @@ import { apply_loans, apply_benefits, my_loans, my_benefits } from "@/assets";
 const cards = [
   {
     icon: apply_loans,
-    title: "Apply Loans",
+    title: "Loans",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link: "/dashboard/apply-loan",
-  },
-  {
-    icon: my_loans,
-    title: "My Loans",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link: "/dashboard/my-loans",
-  },
-  {
-    icon: apply_benefits,
-    title: "Apply Benefits",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link: "/dashboard/apply-benefits",
+    link: "/dashboard/loans",
   },
   {
     icon: my_benefits,
-    title: "My Benefits",
+    title: "Death Funds",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link: "/dashboard/my-benefits",
+    link: "/dashboard/benefits/deathfunds",
+  },
+  {
+    icon: my_benefits,
+    title: "Retirement Gifts",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link: "/dashboard/benefits/retirements",
+  },
+  {
+    icon: my_benefits,
+    title: "Scholarships",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link: "/dashboard/benefits/scholarships",
+  },
+  {
+    icon: my_benefits,
+    title: "Refunds",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link: "/dashboard/benefits/refunds",
+  },
+  {
+    icon: my_benefits,
+    title: "Medical Benefits",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    link: "/dashboard/benefits/medicals",
   },
 ];
 

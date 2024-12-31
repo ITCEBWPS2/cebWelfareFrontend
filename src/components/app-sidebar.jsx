@@ -35,52 +35,6 @@ const data = {
         },
       ],
     },
-    {
-      title: "Loans",
-      url: "/dashboard/loans",
-      icon: Bot,
-      items: [
-        {
-          title: "My Loans",
-          url: "/dashboard/my-loans",
-        },
-        {
-          title: "Apply Loan",
-          url: "/dashboard/apply-loan",
-        },
-      ],
-    },
-    {
-      title: "Benefits",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Information",
-          url: "dashboard/benefits/info",
-        },
-        {
-          title: "Death Funds",
-          url: "dashboard/deathfunds",
-        },
-        {
-          title: "Retirement Gifts",
-          url: "dashboard/retirements",
-        },
-        {
-          title: "Grade 5 Scholarship",
-          url: "dashboard/scholarships",
-        },
-        {
-          title: "Refund Member Fees",
-          url: "dashboard/refunds",
-        },
-        {
-          title: "Medical",
-          url: "dashboard/medicals",
-        },
-      ],
-    },
   ],
   navAdmin: [
     {
@@ -95,10 +49,6 @@ const data = {
         {
           title: "Add a Member",
           url: "/dashboard/members/register",
-        },
-        {
-          title: "Add an Admin",
-          url: "#",
         },
       ],
     },

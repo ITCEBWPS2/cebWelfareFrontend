@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import {
@@ -17,7 +17,9 @@ import { isSuperAdmin } from "@/authorization";
 
 const BenefitsTable = ({ benefit, benefitName }) => {
   const [benefits, setBenefits] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchBenefits();
@@ -32,6 +34,20 @@ const BenefitsTable = ({ benefit, benefitName }) => {
       setBenefits(response.data);
     } catch (error) {
       toast.error("Error fetching benefits:");
+    }
+  };
+
+  const fetchMemberId = async (epf) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${BASE_URL}/api/members/find/${epf}`, {
+        withCredentials: true,
+      });
+      navigate(`/dashboard/members/${response.data._id}`);
+    } catch (error) {
+      console.error("Error fetching member data:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -247,11 +263,12 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                       </div>
                     </DialogContent>
                   </Dialog>
-                  <Link to={`/dashboard/members/${benefit.memberId}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-                      View Member
-                    </button>
-                  </Link>
+                  <button
+                    onClick={() => fetchMemberId(benefit.epf)}
+                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1"
+                  >
+                    View User
+                  </button>
                 </td>
               </tr>
             ))}

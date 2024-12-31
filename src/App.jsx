@@ -25,6 +25,8 @@ import {
   Medicals,
   Refunds,
   Retirements,
+  UserLoans,
+  UserBenefits,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -64,6 +66,14 @@ const App = () => {
             <Route path="/dashboard/refunds" element={<Refunds />} />
             <Route path="/dashboard/retirements" element={<Retirements />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
+            <Route
+              path="/dashboard/members/:memberId/loans"
+              element={<UserLoans />}
+            />
+            <Route
+              path="/dashboard/members/:memberId/benefits"
+              element={<UserBenefits />}
+            />
 
             {/* Admin Routes */}
             <Route path="" element={<AdminRoute />}>
