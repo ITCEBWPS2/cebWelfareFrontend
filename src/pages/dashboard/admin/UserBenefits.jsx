@@ -1,4 +1,3 @@
-import { useAuth } from "@/api/authContext";
 import {
   Dialog,
   DialogContent,
@@ -10,9 +9,10 @@ import {
 import { BASE_URL } from "@/constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const UserBenefits = () => {
-  const { user } = useAuth();
+  const { memberId } = useParams();
   const [deathFunds, setDeathFunds] = useState([]);
   const [medicals, setMedicals] = useState([]);
   const [refunds, setRefunds] = useState([]);
@@ -25,7 +25,7 @@ const UserBenefits = () => {
     const fetchDeathFunds = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/deathfunds/benefits/${user._id}`,
+          `${BASE_URL}/api/deathfunds/benefits/${memberId}`,
           {
             withCredentials: true,
           }
@@ -45,7 +45,7 @@ const UserBenefits = () => {
     const fetchMedicals = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/medicals/benefits/${user._id}`,
+          `${BASE_URL}/api/medicals/benefits/${memberId}`,
           {
             withCredentials: true,
           }
@@ -62,10 +62,10 @@ const UserBenefits = () => {
   }, []);
 
   useEffect(() => {
-    const fetchBenefits = async () => {
+    const fetchRefunds = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/refunds/benefits/${user._id}`,
+          `${BASE_URL}/api/refunds/benefits/${memberId}`,
           {
             withCredentials: true,
           }
@@ -78,14 +78,14 @@ const UserBenefits = () => {
       }
     };
 
-    fetchBenefits();
+    fetchRefunds();
   }, []);
 
   useEffect(() => {
-    const fetchBenefits = async () => {
+    const fetchRetirements = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/retirements/benefits/${user._id}`,
+          `${BASE_URL}/api/retirements/benefits/${memberId}`,
           {
             withCredentials: true,
           }
@@ -98,14 +98,14 @@ const UserBenefits = () => {
       }
     };
 
-    fetchBenefits();
+    fetchRetirements();
   }, []);
 
   useEffect(() => {
-    const fetchBenefits = async () => {
+    const fetchScholarships = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/scholarships/benefits/${user._id}`,
+          `${BASE_URL}/api/scholarships/benefits/${memberId}`,
           {
             withCredentials: true,
           }
@@ -118,7 +118,7 @@ const UserBenefits = () => {
       }
     };
 
-    fetchBenefits();
+    fetchScholarships();
   }, []);
 
   if (loading) return <div className="text-center mt-6">Loading...</div>;
