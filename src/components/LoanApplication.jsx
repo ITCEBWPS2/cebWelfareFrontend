@@ -7,22 +7,22 @@ import { useAuth } from "@/api/authContext";
 const LoanApplication = () => {
   const { user } = useAuth();
   const [formData, setFormData] = useState({
-    memberNumber: user.welfareNo,
-    epfNumber: user.epf,
+    memberNumber: "",
+    epfNumber: "",
     loanNumber: "",
     loanAmount: "",
-    name: user.name,
+    name: "",
     address: "",
     position: "",
-    branch: user.branch || "",
+    branch: "",
     contactNo: {
-      mobile: user?.contactNo?.whatsappNo || "",
-      landline: user?.contactNo?.number || "",
+      mobile: "",
+      landline: "",
     },
     nationalIdNumber: "",
     reasonForLoan: "",
     requiredLoanDate: "",
-    dateOfBirth: user.dateOfBirth || "",
+    dateOfBirth: "",
     retirementDate: "",
     loanStatus: "pending",
   });
@@ -79,22 +79,22 @@ const LoanApplication = () => {
 
       if (response.data) {
         setFormData({
-          memberNumber: user.welfareNo,
-          epfNumber: user.epf,
+          memberNumber: "",
+          epfNumber: "",
           loanNumber: "",
           loanAmount: "",
-          name: user.name,
+          name: "",
           address: "",
           position: "",
-          branch: user.branch,
+          branch: "",
           contactNo: {
-            mobile: user.contactNo.whatsappNo,
-            landline: user.contactNo.number,
+            mobile: "",
+            landline: "",
           },
           nationalIdNumber: "",
           reasonForLoan: "",
           requiredLoanDate: "",
-          dateOfBirth: user.dateOfBirth,
+          dateOfBirth: "",
           retirementDate: "",
           loanStatus: "pending",
         });
@@ -106,14 +106,7 @@ const LoanApplication = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-4xl mx-auto my-8 p-8 space-y-12"
-    >
-      <h1 className="text-2xl font-bold text-gray-700">
-        Loan Application Form
-      </h1>
-
+    <form onSubmit={handleSubmit} className="p-8 space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <label
@@ -130,7 +123,6 @@ const LoanApplication = () => {
             value={formData.memberNumber}
             onChange={handleChange}
             required
-            disabled
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
@@ -150,7 +142,6 @@ const LoanApplication = () => {
             value={formData.epfNumber}
             onChange={handleChange}
             required
-            disabled
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>

@@ -1,5 +1,6 @@
 import { useAuth } from "@/api/authContext";
 import { main_header_1, user_fallback } from "@/assets";
+import { isSecretaryOrAssistantSecretary } from "@/authorization";
 import MemberUpdate from "@/components/MemberUpdate";
 import {
   Dialog,
@@ -228,17 +229,17 @@ const MemberProfile = () => {
       </div>
       <div className="flex items-center justify-center w-full my-8">
         <div className="flex flex-col max-w-4xl w-full gap-4 px-4 py-8 md:flex-row border-t">
-          <Link to="/dashboard/my-loans">
+          <Link to={`/dashboard/members/${memberId}/loans`}>
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               Loans
             </button>
           </Link>
-          <Link to="#">
+          <Link to={`/dashboard/members/${memberId}/benefits`}>
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               Benefits
             </button>
           </Link>
-          {user.role === "admin" && (
+          {isSecretaryOrAssistantSecretary(user) && (
             <>
               <Dialog>
                 <DialogTrigger>
@@ -252,9 +253,7 @@ const MemberProfile = () => {
                     <DialogTitle className="text-2xl font-bold">
                       {name}
                     </DialogTitle>
-                    <DialogDescription>
-                      Update Member Details.
-                    </DialogDescription>
+                    <DialogDescription>Update User Details.</DialogDescription>
                   </DialogHeader>
                   <MemberUpdate memberId={memberId} />
                 </DialogContent>
@@ -264,7 +263,7 @@ const MemberProfile = () => {
                 className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200"
                 onClick={() => handleDelete(memberId)}
               >
-                Remove Member
+                Remove User
               </button>
             </>
           )}
