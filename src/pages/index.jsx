@@ -28,6 +28,8 @@ import ManageRetirements from "./dashboard/admin/ManageRetirements.jsx";
 import Retirements from "./dashboard/Retirements.jsx";
 import UserLoans from "./dashboard/admin/UserLoans.jsx";
 import UserBenefits from "./dashboard/admin/UserBenefits.jsx";
+import RegisterUser from "./dashboard/admin/RegisterUser";
+import PasswordUpdate from "./dashboard/admin/PasswordUpdate.jsx";
 
 export {
   Home,
@@ -55,4 +57,6 @@ export {
   Retirements,
   UserLoans,
   UserBenefits,
+  RegisterUser,
+  PasswordUpdate,
 };

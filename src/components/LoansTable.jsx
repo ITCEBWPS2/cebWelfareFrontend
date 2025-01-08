@@ -49,13 +49,18 @@ const LoansTable = ({ status }) => {
     }
   };
 
-  const fetchMemberId = async (epf) => {
+  const fetchMemberId = async (epfnumber) => {
     setLoading(true);
     try {
-      const response = await axios.get(`${BASE_URL}/api/members/find/${epf}`, {
-        withCredentials: true,
-      });
-      navigate(`/dashboard/members/${response.data._id}`);
+      const response = await axios.get(
+        `${BASE_URL}/api/members/find/${epfnumber}`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+
+      navigate(`/dashboard/members/${response.data.epf}`);
     } catch (error) {
       console.error("Error fetching member data:", error);
     } finally {
@@ -114,7 +119,7 @@ const LoansTable = ({ status }) => {
               {[
                 "EPF No",
                 "Loan Number",
-                "Name",
+                // "Name",
                 "Loan Amount",
                 "Status",
                 "Actions",
@@ -137,9 +142,9 @@ const LoansTable = ({ status }) => {
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.loanNumber}
                 </td>
-                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                {/* <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.name}
-                </td>
+                </td> */}
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.loanAmount}
                 </td>

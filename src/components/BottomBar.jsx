@@ -8,7 +8,7 @@ const BottomBar = () => {
       <div className="bg-red-900 text-white py-8 w-full">
         <div className="wrapper flex justify-between items-center space-y-4 flex-col md:flex-row md:space-y-0">
           <div className="flex-1">
-            <div className="flex justify-start space-x-6">
+            {/* <div className="flex justify-start space-x-6">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -33,7 +33,7 @@ const BottomBar = () => {
               >
                 <i className="fab fa-instagram"></i>
               </a>
-            </div>
+            </div> */}
           </div>
           <Link to="/">
             <p className="flex-1 text-[14px] text-center text-white hover:text-yellow-300">

@@ -210,7 +210,7 @@ const MembersTable = () => {
                             Update Member Details.
                           </DialogDescription>
                         </DialogHeader>
-                        <MemberUpdate memberId={member._id} />
+                        <MemberUpdate memberId={member} />
                       </DialogContent>
                     </Dialog>
                   )}
@@ -222,7 +222,8 @@ const MembersTable = () => {
                       <Trash2 className="p-0.5" />
                     </button>
                   )}
-                  <Link to={`/dashboard/members/${member._id}`}>
+
+                  <Link to={`/dashboard/members/${member.epf}`}>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
                       View Profile
                     </button>

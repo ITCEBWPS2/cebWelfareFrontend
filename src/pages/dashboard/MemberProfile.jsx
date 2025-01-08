@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 const MemberProfile = () => {
-  const { memberId } = useParams();
+  const { epfnumber, memberId } = useParams();
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
@@ -25,7 +25,7 @@ const MemberProfile = () => {
     const fetchMemberData = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/members/${memberId}`,
+          `${BASE_URL}/api/members/${epfnumber}`,
           {
             withCredentials: true,
           }
@@ -39,12 +39,12 @@ const MemberProfile = () => {
     };
 
     fetchMemberData();
-  }, [memberId]);
+  }, [epfnumber]);
 
-  const handleDelete = async (memberId) => {
+  const handleDelete = async (epfnumber) => {
     if (window.confirm("Are you sure you want to delete this member?")) {
       try {
-        await axios.delete(`${BASE_URL}/api/members/${memberId}`, {
+        await axios.delete(`${BASE_URL}/api/members/${epfnumber}`, {
           withCredentials: true,
         });
         alert("Member deleted successfully.");
@@ -115,7 +115,7 @@ const MemberProfile = () => {
           />
           <h2 className="text-2xl text-gray-800 font-bold">{name}</h2>
           <p className="text-gray-500">
-            {role === "super_admin" ? "Super Admin" : "User"}
+            {role === "super_admin" ? "Super Admin" : ""}
           </p>
         </div>
 
@@ -221,7 +221,7 @@ const MemberProfile = () => {
               </p>
               <p>
                 <strong>Role:</strong>{" "}
-                {role === "super_admin" ? "Super Admin" : "User"}
+                {role === "super_admin" ? "Super Admin" : ""}
               </p>
             </div>
           </div>
@@ -229,12 +229,12 @@ const MemberProfile = () => {
       </div>
       <div className="flex items-center justify-center w-full my-8">
         <div className="flex flex-col max-w-4xl w-full gap-4 px-4 py-8 md:flex-row border-t">
-          <Link to={`/dashboard/members/${memberId}/loans`}>
+          <Link to={`/dashboard/members/${member._id}/loans`}>
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               Loans
             </button>
           </Link>
-          <Link to={`/dashboard/members/${memberId}/benefits`}>
+          <Link to={`/dashboard/members/${member._id}/benefits`}>
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               Benefits
             </button>
@@ -255,15 +255,15 @@ const MemberProfile = () => {
                     </DialogTitle>
                     <DialogDescription>Update User Details.</DialogDescription>
                   </DialogHeader>
-                  <MemberUpdate memberId={memberId} />
+                  <MemberUpdate memberId={epfnumber} />
                 </DialogContent>
               </Dialog>
 
               <button
                 className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200"
-                onClick={() => handleDelete(memberId)}
+                onClick={() => handleDelete(epfnumber)}
               >
-                Remove User
+                Remove
               </button>
             </>
           )}

@@ -37,13 +37,16 @@ const BenefitsTable = ({ benefit, benefitName }) => {
     }
   };
 
-  const fetchMemberId = async (epf) => {
+  const fetchMemberId = async (epfnumber) => {
     setLoading(true);
     try {
-      const response = await axios.get(`${BASE_URL}/api/members/find/${epf}`, {
-        withCredentials: true,
-      });
-      navigate(`/dashboard/members/${response.data._id}`);
+      const response = await axios.get(
+        `${BASE_URL}/api/members/find/${epfnumber}`,
+        {
+          withCredentials: true,
+        }
+      );
+      navigate(`/dashboard/members/${response.data.epf}`);
     } catch (error) {
       console.error("Error fetching member data:", error);
     } finally {
@@ -115,7 +118,8 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                       {benefit.amount}
                     </td>
                     <td className="border px-4 py-2 text-sm whitespace-nowrap">
-                      {benefit.date}
+                      {/* {benefit.date} */}
+                      {new Date(benefit.date).toISOString().split("T")[0]}
                     </td>
                   </>
                 )}
@@ -204,7 +208,8 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                               <strong>Amount:</strong> {benefit.amount}
                             </p>
                             <p>
-                              <strong>Date:</strong> {benefit.date || "N/A"}
+                              <strong>Date:</strong>{" "}
+                              {Date.UTC(benefit.date) || "N/A"}
                             </p>
                             <p>
                               <strong>Notes:</strong>{" "}
@@ -267,7 +272,7 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                     onClick={() => fetchMemberId(benefit.epf)}
                     className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1"
                   >
-                    View User
+                    {loading ? "Loading..." : "View User"}
                   </button>
                 </td>
               </tr>

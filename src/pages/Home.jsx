@@ -63,12 +63,12 @@ const Home = () => {
             </Link>
           </div>
         </section>
-
-        <NewsSection />
+        {/* 
+        <NewsSection /> */}
         <Benefits />
-        <Contact />
+        {/* <Contact /> */}
       </div>
-      <LinksSection />
+      {/* <LinksSection /> */}
     </div>
   );
 };
