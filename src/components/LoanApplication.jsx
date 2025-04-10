@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "@/constants";
 import toast from "react-hot-toast";
-import { NoBreakHyphen } from "docx";
 
 const LoanApplication = () => {
   const [members, setMembers] = useState([]);
@@ -30,17 +29,6 @@ const LoanApplication = () => {
     loanStatus: "pending",
   });
 
-  const fetchMembers = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/api/members`, {
-        withCredentials: true,
-      });
-      setMembers(response.data);
-    } catch (error) {
-      console.error("Error fetching members:", error);
-    }
-  };
-
   const fetchLoanNumber = async () => {
     try {
       const response = await axios.get(
@@ -58,6 +46,8 @@ const LoanApplication = () => {
   useEffect(() => {
     fetchMembers();
     fetchLoanNumber();
+
+    console.log("Members fetched:", members); // Debugging
   }, []);
 
   const handleChange = (e) => {
@@ -84,7 +74,10 @@ const LoanApplication = () => {
         contactNo: { ...prev.contactNo, [contactField]: value },
       }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
     }
   };
 
@@ -95,45 +88,8 @@ const LoanApplication = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const requiredDate = new Date(formData.requiredLoanDate);
-    const retirementDate = new Date(formData.retirementDate);
-    // const finalLoanAmount =
-    //   formData.loanAmount === "other"
-    //     ? formData.customLoanAmount
-    //     : formData.loanAmount;
-    const finalLoanAmount =
-      formData.loanAmount === "other" && formData.customLoanAmount
-        ? formData.customLoanAmount
-        : formData.loanAmount;
-
-    const dataToSubmit = {
-      ...formData,
-      loanAmount: finalLoanAmount,
-    };
-
-    const monthDifference =
-      retirementDate.getFullYear() * 12 +
-      retirementDate.getMonth() -
-      (requiredDate.getFullYear() * 12 + requiredDate.getMonth());
-
-    // Check if the gap is less than 10 months
-    if (monthDifference < 10) {
-      const confirmation = window.confirm(
-        "There should be a minimum of 10 months gap between the Required Loan Date and Retirement Date. Do you want to proceed?"
-      );
-
-      if (!confirmation) {
-        return; // Cancel submission
-      }
-    }
-
-    // try {
-    //   const response = await axios.post(`${BASE_URL}/api/loans`, formData, {
-    //     withCredentials: true,
-    //   });
     try {
-      const response = await axios.post(`${BASE_URL}/api/loans`, dataToSubmit, {
+      const response = await axios.post(`${BASE_URL}/api/loans`, formData, {
         withCredentials: true,
       });
       toast.success(response.data.message);
@@ -166,7 +122,7 @@ const LoanApplication = () => {
   return (
     <form onSubmit={handleSubmit} className="p-8 space-y-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="relative">
+        <div>
           <label
             htmlFor="epf"
             className="block mb-2 text-sm font-medium text-gray-600"
@@ -179,6 +135,7 @@ const LoanApplication = () => {
             name="epf"
             placeholder="Enter EPF Number"
             value={formData.epf}
+            onInput={handleChange} // Handle both typing and autocomplete selection
             onChange={handleChange}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             autoComplete="off"
@@ -288,7 +245,7 @@ const LoanApplication = () => {
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
-
+        {/* 
         <div>
           <label
             htmlFor="address"
@@ -437,7 +394,7 @@ const LoanApplication = () => {
             required
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
-        </div>
+        </div>*/}
 
         <div>
           <label
@@ -457,7 +414,7 @@ const LoanApplication = () => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label
             htmlFor="retirementDate"
             className="block mb-2 text-sm font-medium text-gray-600"
@@ -473,7 +430,7 @@ const LoanApplication = () => {
             required
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
-        </div> */}
+        </div>
       </div>
 
       <button

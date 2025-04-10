@@ -226,11 +226,11 @@ const MembersTable = () => {
                       <Trash2 className="p-0.5" />
                     </button>
                   )}
-                  <button
-                    onClick={() => handleMemberClick(member.epf)}
-                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-                    View Profile
-                  </button>
+                  <Link to={`/dashboard/members/${member._id}`}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
+                      View Profile
+                    </button>
+                  </Link>
                   <Dialog>
                     <DialogTrigger>
                       <div

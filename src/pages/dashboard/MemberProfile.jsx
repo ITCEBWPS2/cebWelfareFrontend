@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 const MemberProfile = () => {
-  const { epfnumber } = useParams();
+  const { memberId } = useParams();
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
@@ -129,7 +129,7 @@ const MemberProfile = () => {
           />
           <h2 className="text-2xl text-gray-800 font-bold">{name}</h2>
           <p className="text-gray-500">
-            {role === "super_admin" ? "Super Admin" : ""} 
+            {role === "super_admin" ? "Super Admin" : "User"}
           </p>
         </div>
 
@@ -274,8 +274,9 @@ const MemberProfile = () => {
 
               <button
                 className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200"
-                onClick={() => handleDelete(epfnumber)}>
-                Remove
+                onClick={() => handleDelete(memberId)}
+              >
+                Remove User
               </button>
             </>
           )}
