@@ -38,7 +38,7 @@ const MemberUpdate = ({ memberId }) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/api/members/${memberId}`, { withCredentials: true })
+      .get(`${BASE_URL}/api/members/${memberId.epf}`, { withCredentials: true })
       .then((response) => {
         setFormData(response.data);
         setInitialData(response.data);
@@ -82,7 +82,7 @@ const MemberUpdate = ({ memberId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${BASE_URL}/api/members/${memberId}`, formData, {
+      await axios.put(`${BASE_URL}/api/members/${memberId.epf}`, formData, {
         withCredentials: true,
       });
       alert("Member updated successfully");
@@ -139,7 +139,7 @@ const MemberUpdate = ({ memberId }) => {
           <input
             type="number"
             name="whatsappNo"
-            value={formData.contactNo.whatsappNo}
+            value={formData.contactNo?.whatsappNo}
             onChange={(e) => handleNestedChange(e, "contactNo")}
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
           />
@@ -151,7 +151,7 @@ const MemberUpdate = ({ memberId }) => {
           <input
             type="number"
             name="number"
-            value={formData.contactNo.number}
+            value={formData.contactNo?.number}
             onChange={(e) => handleNestedChange(e, "contactNo")}
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
           />

@@ -31,8 +31,7 @@ const Navbar = () => {
       <nav
         className={`absolute z-10 top-0 py-4 w-full ${
           scrolled ? "bg-black/80" : "bg-transparent"
-        } transition-colors duration-300`}
-      >
+        } transition-colors duration-300`}>
         <div className="wrapper flex-between">
           {/* Logo Section */}
           <Link to="/">
@@ -43,7 +42,7 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:block space-x-6 font-medium">
-            <Link to="/" className="text-white hover:text-yellow-300">
+            <Link to="/" href="#home" className="text-white hover:text-yellow-300">
               Home
             </Link>
             <a href="#about" className="text-white hover:text-yellow-300">
@@ -62,8 +61,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/dashboard"
-                  className="text-white hover:text-yellow-300"
-                >
+                  className="text-white hover:text-yellow-300">
                   Dashboard
                 </Link>
                 <button onClick={logout} className="button-yellow-outline">
@@ -87,8 +85,7 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent
                 side="left"
-                className="text-left bg-red-900 border-none"
-              >
+                className="text-left bg-red-900 border-none">
                 <Link to="/">
                   <div className="flex items-center mb-7 mt-2 gap-2">
                     <img src="/cebcare.png" alt="CEB Logo" className="h-12" />
@@ -100,7 +97,7 @@ const Navbar = () => {
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col space-y-4 mt-5">
-                  <Link to="/" className="text-white hover:text-yellow-300">
+                  <Link to="/" href="#home" className="text-white hover:text-yellow-300">
                     Home
                   </Link>
                   <a to="#about" className="text-white hover:text-yellow-300">
@@ -111,14 +108,12 @@ const Navbar = () => {
                   </a>
                   <a
                     href="#benefits"
-                    className="text-white hover:text-yellow-300"
-                  >
+                    className="text-white hover:text-yellow-300">
                     Benefits
                   </a>
                   <a
                     href="#contact"
-                    className="text-white hover:text-yellow-300"
-                  >
+                    className="text-white hover:text-yellow-300">
                     Contact
                   </a>
 
@@ -126,14 +121,12 @@ const Navbar = () => {
                     <>
                       <Link
                         to="/dashboard"
-                        className="text-white hover:text-yellow-300"
-                      >
+                        className="text-white hover:text-yellow-300">
                         Dashboard
                       </Link>
                       <button
                         onClick={logout}
-                        className="button-yellow-outline"
-                      >
+                        className="button-yellow-outline">
                         Logout
                       </button>
                     </>

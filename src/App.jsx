@@ -27,6 +27,8 @@ import {
   Retirements,
   UserLoans,
   UserBenefits,
+  RegisterUser,
+  PasswordUpdate,
 } from "./pages";
 import MainLayout from "./components/MainLayout";
 import DashboardLayout from "./components/DashboardLayout";
@@ -53,7 +55,7 @@ const App = () => {
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route
-              path="/dashboard/members/:memberId"
+              path="/dashboard/members/:epfnumber"
               element={<MemberProfile />}
             />
             <Route
@@ -82,7 +84,16 @@ const App = () => {
                   path="/dashboard/members/register"
                   element={<RegisterMember />}
                 />
+                <Route
+                  path="/dashboard/members/registeruser"
+                  element={<RegisterUser />}
+                />
+                <Route
+                  path="/dashboard/members/updateuser"
+                  element={<PasswordUpdate />}
+                />
               </Route>
+
               <Route path="/dashboard/members" element={<AllMembers />} />
               <Route path="/dashboard/loans" element={<Loans />} />
               <Route
