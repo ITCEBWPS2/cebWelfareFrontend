@@ -6,7 +6,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true);
 
   const login = async (identifier, password, navigate) => {
     try {
@@ -14,8 +14,17 @@ export const AuthProvider = ({ children }) => {
         identifier,
         password,
       });
+
       setUser(data);
       localStorage.setItem("token", data.token);
+
+      // 🔴 Log login activity
+      await api.post("/activity", {
+        userId: data._id || data.userId, // depends on your backend structure
+        activity: "User logged in",
+        timestamp: new Date(),
+      });
+
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
@@ -41,16 +50,15 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("token");
       }
     }
-    setLoading(false); // Mark loading as complete
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchUser();
   }, []);
 
-  // Render children only when loading is complete
   if (loading) {
-    return <div>Loading...</div>; // Optional: Replace with a loader
+    return <div>Loading...</div>;
   }
 
   return (
