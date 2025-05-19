@@ -14,7 +14,12 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Link } from "react-router-dom";
 import { NavAdmin } from "./nav-admin";
 import { useAuth } from "@/api/authContext";
-import { allowedRoles } from "@/authorization";
+import {
+  allowedRoles,
+  isAssistantSecretaryandSecetary,
+  isPresidentAndVicePresident,
+  isTreasurerAndAssistantTreasurer,
+} from "@/authorization";
 
 const data = {
   user: {
@@ -47,8 +52,16 @@ const data = {
           url: "/dashboard/members",
         },
         {
-          title: "Add a Member",
+          title: "Add Member",
           url: "/dashboard/members/register",
+        },
+        {
+          title: "Add User",
+          url: "/dashboard/members/registeruser",
+        },
+        {
+          title: "Update user passwords",
+          url: "/dashboard/members/updateuser",
         },
       ],
     },
@@ -75,39 +88,41 @@ const data = {
         },
       ],
     },
-    {
-      title: "Benefits",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Death Funds",
-          url: "/dashboard/benefits/deathfunds",
-        },
-        {
-          title: "Retirement Gifts",
-          url: "/dashboard/benefits/retirements",
-        },
-        {
-          title: "Grade 5 Scholarship",
-          url: "/dashboard/benefits/scholarships",
-        },
-        {
-          title: "Refund Member Fees",
-          url: "/dashboard/benefits/refunds",
-        },
-        {
-          title: "Medical",
-          url: "/dashboard/benefits/medicals",
-        },
-      ],
-    },
+    // {
+    //   title: "Benefits",
+    //   url: "#",
+    //   icon: BookOpen,
+    //   items: [
+    //     {
+    //       title: "Death Funds",
+    //       url: "/dashboard/benefits/deathfunds",
+    //     },
+    //     {
+    //       title: "Retirement Gifts",
+    //       url: "/dashboard/benefits/retirements",
+    //     },
+    //     {
+    //       title: "Grade 5 Scholarship",
+    //       url: "/dashboard/benefits/scholarships",
+    //     },
+    //     {
+    //       title: "Refund Member Fees",
+    //       url: "/dashboard/benefits/refunds",
+    //     },
+    //     {
+    //       title: "Medical",
+    //       url: "/dashboard/benefits/medicals",
+    //     },
+    //   ],
+    // },
   ],
 };
 
 export function AppSidebar({ ...props }) {
   const { user } = useAuth();
-
+  const userRole1 = isAssistantSecretaryandSecetary(user);
+  const userRole2 = isPresidentAndVicePresident(user);
+  const userRole3 = isTreasurerAndAssistantTreasurer(user);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -129,7 +144,11 @@ export function AppSidebar({ ...props }) {
       <SidebarContent>
         <NavMain items={data.navMain} />
         {allowedRoles.includes(user?.role) && (
-          <NavAdmin items={data.navAdmin} />
+          // <NavAdmin items={data.navAdmin} />
+          <NavAdmin
+            items={data.navAdmin}
+            role={[userRole1, userRole2, userRole3]}
+          />
         )}
       </SidebarContent>
       <SidebarFooter>

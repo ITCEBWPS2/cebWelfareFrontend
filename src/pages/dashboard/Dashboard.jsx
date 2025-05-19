@@ -1,45 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { apply_loans, apply_benefits, my_loans, my_benefits } from "@/assets";
+import apply_loans from "../../assets/apply-loans.png";
+import my_benefits from "../../assets/my-benefits.png";
+import death_funds from "../../assets/death_funds.png";
+import medical_benefits from "../../assets/medical_benefits.png";
+import refunds from "../../assets/refunds.png";
+import scholarship from "../../assets/scholarship.png";
+
 
 const cards = [
   {
     icon: apply_loans,
     title: "Loans",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Review, approve, and manage loan applications submitted by members.",
     link: "/dashboard/loans",
   },
   {
-    icon: my_benefits,
+    icon: death_funds,
     title: "Death Funds",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Administer and process death fund requests for eligible beneficiaries.",
     link: "/dashboard/benefits/deathfunds",
   },
   {
     icon: my_benefits,
     title: "Retirement Gifts",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Oversee retirement gift allocations and ensure proper disbursement.",
     link: "/dashboard/benefits/retirements",
   },
   {
-    icon: my_benefits,
+    icon: scholarship,
     title: "Scholarships",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Manage scholarship applications and monitor award statuses for recipients.",
     link: "/dashboard/benefits/scholarships",
   },
   {
-    icon: my_benefits,
+    icon: refunds,
     title: "Refunds",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Process and verify refund claims submitted by members efficiently.",
     link: "/dashboard/benefits/refunds",
   },
   {
-    icon: my_benefits,
+    icon: medical_benefits,
     title: "Medical Benefits",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description:
+      "Administer medical benefit claims and maintain healthcare assistance records.",
     link: "/dashboard/benefits/medicals",
   },
 ];
+
 
 const Dashboard = () => {
   return (

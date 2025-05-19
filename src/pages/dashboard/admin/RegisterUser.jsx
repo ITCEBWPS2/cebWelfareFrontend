@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { BASE_URL } from "@/constants";
 
-const RegisterMember = () => {
+const RegisterUser = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -350,7 +350,7 @@ const RegisterMember = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-cover bg-center">
       <div className="p-14 rounded-lg shadow-lg max-w-8xl w-full">
-        <h1 className="text-left text-2xl font-bold mb-8">Register Member</h1>
+        <h1 className="text-left text-2xl font-bold mb-8">Register User</h1>
         <form onSubmit={handleSubmit}>
           <div className=" grid grid-cols-3 gap-6">
             <div>
@@ -361,11 +361,12 @@ const RegisterMember = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
+                  placeholder="eg:- Presidant Mr. Samarasinghe"
                   className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   required
                 />
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Date of birth
                 </label>
@@ -377,9 +378,9 @@ const RegisterMember = () => {
                   className="appearance-none bg-transparent font-semibold border-b-2 border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   // required
                 />
-              </div>
+              </div> */}
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Date of joined
                 </label>
@@ -391,9 +392,9 @@ const RegisterMember = () => {
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   // required
                 />
-              </div>
+              </div> */}
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">Payroll</label>
                 {!customPayroll ? (
                   <select
@@ -478,8 +479,8 @@ const RegisterMember = () => {
                     required
                   />
                 )}
-              </div>
-
+              </div> */}
+              {/* 
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Division
@@ -571,11 +572,13 @@ const RegisterMember = () => {
                     style={{ maxHeight: "10rem", overflowY: "auto" }}
                   >
                     <option value="">Select Branch</option>
-                    <option value="Avissawella">
-                      Western Province South II
+                    <option value="Avissawella">Avissawella</option>
+                    <option value="Homagama">Homagama</option>
+                    <option value="Horana">Horana</option>
+                    <option value="Bandaragama">Bandaragama</option>
+                    <option value="Sri Jayawardhanapura">
+                      Sri Jayawardhanapura
                     </option>
-                    <option value="Homagama">Uva Province</option>
-                    <option value="Horana">Sabaragamuwa Province</option>
                     <option value="custom">Other Branch</option>
                   </select>
                 ) : (
@@ -593,9 +596,9 @@ const RegisterMember = () => {
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   />
                 )}
-              </div>
+              </div> */}
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">Unit</label>
                 {!customUnit ? (
                   <select
@@ -650,13 +653,6 @@ const RegisterMember = () => {
                     <option value="Additional Finance Manager">
                       Additional Finance Manager
                     </option>
-                    <option value="Avissawella">Avissawella</option>
-                    <option value="Homagama">Homagama</option>
-                    <option value="Horana">Horana</option>
-                    <option value="Bandaragama">Bandaragama</option>
-                    <option value="Sri Jayawardhanapura">
-                      Sri Jayawardhanapura
-                    </option>
                     <option value="Finance">Finance</option>
                     <option value="Meter Testing Lab">Meter Testing Lab</option>
                     <option value="custom">Other Unit</option>
@@ -676,9 +672,9 @@ const RegisterMember = () => {
                     className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                   />
                 )}
-              </div>
+              </div> */}
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Mobile number
                 </label>
@@ -701,8 +697,11 @@ const RegisterMember = () => {
                     {mobileMessage}
                   </p>
                 )}
-              </div>
-              <div className="mb-4">
+              </div> */}
+            </div>
+            {/* Second column */}
+            <div>
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   WhatsApp number
                 </label>
@@ -725,7 +724,7 @@ const RegisterMember = () => {
                     {whatsappMessage}
                   </p>
                 )}
-              </div>
+              </div> */}
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">EPF No</label>
                 <input
@@ -748,7 +747,7 @@ const RegisterMember = () => {
                 )}
               </div>
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Welfare Number
                 </label>
@@ -761,11 +760,9 @@ const RegisterMember = () => {
                   required
                   disabled
                 />
-              </div>
-            </div>
-            {/* Second column */}
-            <div>
-              <div className="mb-4">
+              </div> */}
+
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Spouse name
                 </label>
@@ -776,10 +773,10 @@ const RegisterMember = () => {
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
-              </div>
+              </div> */}
 
               <div className="mb-4">
-                <label className="block font-bold text-gray-950"></label>
+                <label className="block font-bold text-gray-950">Role</label>
                 <select
                   name="role"
                   value={formData.role}
@@ -800,8 +797,8 @@ const RegisterMember = () => {
                   style={{ maxHeight: "10rem", overflowY: "auto" }}
                 >
                   {/* <option value="">Select Role</option> */}
-                  <option value="member">Member</option>
-                  {/* <option value="president">President</option>
+                  <option value="member">Select Role</option>
+                  <option value="president">President</option>
                   <option value="vice_president">Vice President</option>
                   <option value="secretary">Secretary</option>
                   <option value="assistant_secretary">
@@ -811,12 +808,12 @@ const RegisterMember = () => {
                   <option value="assistant_treasurer">
                     Assistant Treasurer
                   </option>
-                  <option value="super_admin">Super Admin</option> */}
+                  {/* <option value="super_admin">Super Admin</option> */}
                 </select>
               </div>
 
               {/* Children Section */}
-              <div>
+              {/* <div>
                 <h2 className="text-xl font-semibold">Children</h2>
                 {formData.children.map((child, index) => (
                   <div key={index} className="border p-4 mb-4 space-y-2">
@@ -873,11 +870,11 @@ const RegisterMember = () => {
                 >
                   Add Child
                 </button>
-              </div>
-            </div>
+              </div>*/}
+              {/* </div>
 
-            <div>
-              <div className="mb-4">
+            <div> */}
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Mother's Name
                 </label>
@@ -974,7 +971,7 @@ const RegisterMember = () => {
                   onChange={handleChange}
                   className="appearance-none bg-transparent border-b-2 font-semibold border-black w-full text-gray-900 py-2 px-2 leading-tight focus:outline-none focus:border-red-500"
                 />
-              </div>
+              </div> */}
 
               <div className="mb-4">
                 <label className="block font-bold text-gray-950">Email</label>
@@ -1000,7 +997,7 @@ const RegisterMember = () => {
                   // required
                 />
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block font-bold text-gray-950">
                   Member fee
                 </label>
@@ -1013,7 +1010,7 @@ const RegisterMember = () => {
                   placeholder="Rs.300.00"
                   required
                 />
-              </div>
+              </div> */}
               <div className="flex justify-center mt-6">
                 <button
                   type="submit"
@@ -1030,4 +1027,4 @@ const RegisterMember = () => {
   );
 };
 
-export default RegisterMember;
+export default RegisterUser;

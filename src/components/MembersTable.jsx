@@ -23,6 +23,7 @@ const MembersTable = () => {
   const navigate = useNavigate();
   const memberRefs = useRef({});
   const { user } = useAuth();
+  const scrollPositionRef = useRef(0); // Ref to store scroll position
 
   useEffect(() => {
     fetchMembers();
@@ -43,16 +44,11 @@ const MembersTable = () => {
   };
 
   const formatDate = (dateString) => {
-    // Ensure the input is converted to a Date object
     const date = new Date(dateString);
-
-    // Check if the conversion results in an invalid date
     if (isNaN(date)) return "-";
-
     const day = date.getDate();
-    const month = date.getMonth() + 1; // Months are zero-indexed
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
-
     return `${month}/${day}/${year}`;
   };
 
@@ -65,7 +61,7 @@ const MembersTable = () => {
   };
 
   const handleDelete = async (memberId) => {
-    if (window.confirm("Are you sure you want to delete this member ?")) {
+    if (window.confirm("Are you sure you want to delete this member?")) {
       try {
         await axios.delete(`${BASE_URL}/api/members/${memberId}`, {
           withCredentials: true,
@@ -108,6 +104,21 @@ const MembersTable = () => {
     }
   }, [filteredMembers]);
 
+  const handleMemberClick = (epf) => {
+    // Save scroll position in ref
+    scrollPositionRef.current = window.scrollY;
+    navigate(`/dashboard/members/${epf}`, {
+      state: { scrollPosition: scrollPositionRef.current },
+    });
+  };
+
+  // Restore scroll position when component mounts
+  useEffect(() => {
+    if (scrollPositionRef.current) {
+      window.scrollTo(0, scrollPositionRef.current);
+    }
+  }, []);
+
   return (
     <div className="p-8 my-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
@@ -149,8 +160,7 @@ const MembersTable = () => {
               ].map((header) => (
                 <th
                   key={header}
-                  className="px-4 py-3 text-left font-semibold whitespace-nowrap"
-                >
+                  className="px-4 py-3 text-left font-semibold whitespace-nowrap">
                   {header}
                 </th>
               ))}
@@ -167,8 +177,7 @@ const MembersTable = () => {
                     : index % 2 === 0
                     ? "bg-yellow-50"
                     : "bg-red-50"
-                }`}
-              >
+                }`}>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {member.epf}
                 </td>
@@ -181,14 +190,12 @@ const MembersTable = () => {
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {formatDate(member.dateOfRegistered)}
                 </td>
-
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {formatDate(member.dateOfJoined)}
                 </td>
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {member.payroll}
                 </td>
-
                 <td className="border px-4 py-2 text-sm whitespace-nowrap flex space-x-2">
                   {isSecretaryOrAssistantSecretary(user) && (
                     <Dialog>
@@ -197,11 +204,9 @@ const MembersTable = () => {
                           <SquarePen className="p-0.5" />
                         </div>
                       </DialogTrigger>
-
                       <DialogContent
                         onClose={handleDialogClose}
-                        className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
-                      >
+                        className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                         <DialogHeader className="border-b pb-4">
                           <DialogTitle className="text-2xl font-bold">
                             {member.name}
@@ -210,37 +215,34 @@ const MembersTable = () => {
                             Update Member Details.
                           </DialogDescription>
                         </DialogHeader>
-                        <MemberUpdate memberId={member._id} />
+                        <MemberUpdate memberId={member} />
                       </DialogContent>
                     </Dialog>
                   )}
                   {isSuperAdmin(user) && (
                     <button
                       className="bg-red-500 hover:bg-red-700 text-white rounded-lg p-1"
-                      onClick={() => handleDelete(member._id)}
-                    >
+                      onClick={() => handleDelete(member._id)}>
                       <Trash2 className="p-0.5" />
                     </button>
                   )}
-                  <Link to={`/dashboard/members/${member._id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
-                      View Profile
-                    </button>
-                  </Link>
+                  <button
+                    onClick={() => handleMemberClick(member.epf)}
+                    className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
+                    View Profile
+                  </button>
                   <Dialog>
-                    <DialogTrigger>
+                    {/* <DialogTrigger>
                       <div
                         onClick={() => handleDialogOpen(member)}
-                        className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-3 py-1"
-                      >
+                        className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-3 py-1">
                         View Details
                       </div>
-                    </DialogTrigger>
+                    </DialogTrigger> */}
                     {selectedMember && (
                       <DialogContent
                         onClose={handleDialogClose}
-                        className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent"
-                      >
+                        className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                         <DialogHeader className="border-b pb-4">
                           <DialogTitle className="text-2xl font-bold">
                             {selectedMember.name}
@@ -322,7 +324,6 @@ const MembersTable = () => {
                               ? `$${selectedMember.memberFee}`
                               : "N/A"}
                           </p>
-                          {/* Children Details */}
                           {selectedMember.children?.length > 0 && (
                             <div>
                               <strong>Children:</strong>

@@ -13,19 +13,21 @@ import {
 import { BASE_URL } from "@/constants";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 
 const MemberProfile = () => {
-  const { memberId } = useParams();
+  const { epfnumber } = useParams();
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchMemberData = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/members/${memberId}`,
+          `${BASE_URL}/api/members/${epfnumber}`,
           {
             withCredentials: true,
           }
@@ -39,15 +41,17 @@ const MemberProfile = () => {
     };
 
     fetchMemberData();
-  }, [memberId]);
+  }, [epfnumber]);
 
-  const handleDelete = async (memberId) => {
+  const handleDelete = async (epfnumber) => {
     if (window.confirm("Are you sure you want to delete this member?")) {
       try {
-        await axios.delete(`${BASE_URL}/api/members/${memberId}`, {
+        await axios.delete(`${BASE_URL}/api/members/${epfnumber}`, {
           withCredentials: true,
         });
         alert("Member deleted successfully.");
+        // Navigate back to the member list after deletion
+        navigate("/dashboard/members");
       } catch (error) {
         console.error("Error deleting member:", error);
         alert("Failed to delete member!!!");
@@ -100,13 +104,23 @@ const MemberProfile = () => {
   } = member;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center relative">
       <img
         src={main_header_1}
         alt="Profile"
         className="w-full h-36 object-cover object-center"
       />
       <div className="max-w-4xl w-full -mt-14 px-4">
+        <button
+          onClick={() => {
+            navigate("/dashboard/members", {
+              state: { scrollPosition: location.state?.scrollPosition },
+            });
+          }}
+          className="absolute left-4 top-8 bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
+          Go to Member List
+        </button>
+
         <div className="flex flex-col items-left">
           <img
             src={profilePhoto}
@@ -115,7 +129,7 @@ const MemberProfile = () => {
           />
           <h2 className="text-2xl text-gray-800 font-bold">{name}</h2>
           <p className="text-gray-500">
-            {role === "super_admin" ? "Super Admin" : "User"}
+            {role === "super_admin" ? "Super Admin" : ""} 
           </p>
         </div>
 
@@ -140,8 +154,7 @@ const MemberProfile = () => {
               </p>
               <p>
                 <strong>Date of Registered:</strong>{" "}
-                {new Date(dateOfRegistered).toLocaleDateString("en-GB") ||
-                  "N/A"}
+                {new Date(dateOfRegistered).toLocaleDateString("en-GB") || "N/A"}
               </p>
               <p>
                 <strong>Welfare No:</strong> {welfareNo}
@@ -151,7 +164,7 @@ const MemberProfile = () => {
 
           {/* Work Information */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">Work Information</h3>
+            <h3 className="text-x1 font-semibold mb-4">Work Information</h3>
             <div className="space-y-2">
               <p>
                 <strong>Payroll:</strong> {payroll}
@@ -195,19 +208,19 @@ const MemberProfile = () => {
               )}
               <p>
                 <strong>Mother:</strong> {motherName || "N/A"}{" "}
-                {motherAge ? `(${motherAge} years)` : ""}
+                {motherAge ? `${motherAge} years` : ""}
               </p>
               <p>
                 <strong>Father:</strong> {fatherName || "N/A"}{" "}
-                {fatherAge ? `(${fatherAge} years)` : ""}
+                {fatherAge ? `${fatherAge} years` : ""}
               </p>
               <p>
                 <strong>Mother-in-Law:</strong> {motherInLawName || "N/A"}{" "}
-                {motherInLawAge ? `(${motherInLawAge} years)` : ""}
+                {motherInLawAge ? `${motherInLawAge} years` : ""}
               </p>
               <p>
                 <strong>Father-in-Law:</strong> {fatherInLawName || "N/A"}{" "}
-                {fatherInLawAge ? `(${fatherInLawAge} years)` : ""}
+                {fatherInLawAge ? `${fatherInLawAge} years` : ""}
               </p>
             </div>
           </div>
@@ -217,11 +230,11 @@ const MemberProfile = () => {
             <h3 className="text-xl font-semibold mb-4">Membership Details</h3>
             <div className="space-y-2">
               <p>
-                <strong>Membership Fee:</strong> ${memberFee}
+                <strong>Membership Fee:</strong> Rs.{memberFee}
               </p>
               <p>
                 <strong>Role:</strong>{" "}
-                {role === "super_admin" ? "Super Admin" : "User"}
+                {role === "super_admin" ? "Super Admin" : ""}
               </p>
             </div>
           </div>
@@ -229,12 +242,12 @@ const MemberProfile = () => {
       </div>
       <div className="flex items-center justify-center w-full my-8">
         <div className="flex flex-col max-w-4xl w-full gap-4 px-4 py-8 md:flex-row border-t">
-          <Link to={`/dashboard/members/${memberId}/loans`}>
+          <Link to={`/dashboard/members/${member._id}/loans`}>
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               Loans
             </button>
           </Link>
-          <Link to={`/dashboard/members/${memberId}/benefits`}>
+          <Link to={`/dashboard/members/${member._id}/benefits`}>
             <button className="bg-gray-800 hover:bg-gray-700 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200">
               Benefits
             </button>
@@ -247,7 +260,7 @@ const MemberProfile = () => {
                     Update Profile
                   </button>
                 </DialogTrigger>
-
+            
                 <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                   <DialogHeader className="border-b pb-4">
                     <DialogTitle className="text-2xl font-bold">
@@ -255,15 +268,14 @@ const MemberProfile = () => {
                     </DialogTitle>
                     <DialogDescription>Update User Details.</DialogDescription>
                   </DialogHeader>
-                  <MemberUpdate memberId={memberId} />
+                  <MemberUpdate memberId={epfnumber} />
                 </DialogContent>
               </Dialog>
 
               <button
                 className="bg-red-600 hover:bg-red-500 text-white font-semibold rounded-md px-4 py-2 transition-colors duration-200"
-                onClick={() => handleDelete(memberId)}
-              >
-                Remove User
+                onClick={() => handleDelete(epfnumber)}>
+                Remove
               </button>
             </>
           )}

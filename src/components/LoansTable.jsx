@@ -20,6 +20,7 @@ const LoansTable = ({ status }) => {
   const [loans, setLoans] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loanStatus, setLoanStatus] = useState("");
+  const [rejectionReason, setRejectionReason] = useState("");
   const [selectedLoanId, setSelectedLoanId] = useState(null);
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -33,29 +34,48 @@ const LoansTable = ({ status }) => {
   const fetchLoans = async () => {
     try {
       let url = `${BASE_URL}/api/loans/util/loans-by-status`;
-
-      // Append query parameters based on status
+  
       if (status && status !== "all") {
         url += `?status=${status}`;
       }
-
+  
       const response = await axios.get(url, {
         withCredentials: true,
       });
-
-      setLoans(response.data);
+  
+      // Filter only approved loans to count
+      const approvedLoans = response.data.filter(loan => loan.loanStatus === "approved");
+  
+      // Build EPF count map
+      const counts = {};
+      approvedLoans.forEach((loan) => {
+        counts[loan.epf] = (counts[loan.epf] || 0) + 1;
+      });
+  
+      // Map loans with count only for approved ones
+      const loansWithCount = response.data.map((loan) => ({
+        ...loan,
+        loancount: loan.loanStatus === "approved" ? counts[loan.epf] : "-",
+      }));
+  
+      setLoans(loansWithCount);
     } catch (error) {
       console.error("Error fetching loans:", error);
     }
   };
-
-  const fetchMemberId = async (epf) => {
+  
+  const fetchMemberId = async (epfnumber) => {
     setLoading(true);
     try {
-      const response = await axios.get(`${BASE_URL}/api/members/find/${epf}`, {
-        withCredentials: true,
-      });
-      navigate(`/dashboard/members/${response.data._id}`);
+      const response = await axios.get(
+        `${BASE_URL}/api/members/find/${epfnumber}`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+
+      navigate(`/dashboard/members/${response.data.epf}`);
     } catch (error) {
       console.error("Error fetching member data:", error);
     } finally {
@@ -66,30 +86,37 @@ const LoansTable = ({ status }) => {
   // Update loan status
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
+      const payload = { loanStatus };
+      if (loanStatus === "rejected") {
+        payload.rejectionReason = rejectionReason;
+      }
+  
       const response = await axios.put(
         `${BASE_URL}/api/loans/${selectedLoanId}/status`,
-        { loanStatus },
+        payload,
         {
           withCredentials: true,
         }
       );
-
+  
       setLoans((prevLoans) =>
         prevLoans.map((loan) =>
           loan._id === selectedLoanId ? { ...loan, loanStatus } : loan
         )
       );
-
+  
       toast.success(response.data.message);
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setSelectedLoanId(null);
+      setRejectionReason(""); // Clear rejection reason after submission
+      setLoanStatus("");      // Optionally reset loan status
     }
   };
-
+  
   const handleDelete = async (loanId) => {
     if (window.confirm("Are you sure you want to delete this loan?")) {
       try {
@@ -114,10 +141,11 @@ const LoansTable = ({ status }) => {
               {[
                 "EPF No",
                 "Loan Number",
-                "Name",
+                // "Name",
                 "Loan Amount",
                 "Status",
                 "Actions",
+                "Loans Count",
               ].map((header) => (
                 <th
                   key={header}
@@ -137,9 +165,9 @@ const LoansTable = ({ status }) => {
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.loanNumber}
                 </td>
-                <td className="border px-4 py-2 text-sm whitespace-nowrap">
+                {/* <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.name}
-                </td>
+                </td> */}
                 <td className="border px-4 py-2 text-sm whitespace-nowrap">
                   {loan.loanAmount}
                 </td>
@@ -156,35 +184,48 @@ const LoansTable = ({ status }) => {
                               setLoanStatus(loan.loanStatus);
                             }}
                           />
-                        </PopoverTrigger>
-                        <PopoverContent className="shadow-none">
-                          <form onSubmit={handleSubmit} className="space-y-4">
-                            <div>
-                              <label className="block text-sm font-medium">
-                                Loan Status
-                              </label>
-                              <select
-                                value={loanStatus}
-                                onChange={(e) => setLoanStatus(e.target.value)}
-                                className="w-full px-4 py-2 border rounded"
-                              >
-                                <option value="">Select Status</option>
-                                {allowedStatuses.map((status) => (
-                                  <option key={status} value={status}>
-                                    {status}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-                            <button
-                              type="submit"
-                              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
-                            >
-                              Update Status
-                            </button>
-                          </form>
-                        </PopoverContent>
-                      </Popover>
+                            </PopoverTrigger>
+                            <PopoverContent className="shadow-none">
+                              <form onSubmit={handleSubmit} className="space-y-4">
+                                <div>
+                                  <label className="block text-sm font-medium">Loan Status</label>
+                                  <select
+                                    value={loanStatus}
+                                    onChange={(e) => setLoanStatus(e.target.value)}
+                                    className="w-full px-4 py-2 border rounded"
+                                  >
+                                    <option value="">Select Status</option>
+                                    {allowedStatuses.map((status) => (
+                                      <option key={status} value={status}>
+                                        {status}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+
+                                {/* Conditional Reason Field for Rejection */}
+                                {loanStatus === "rejected" && (
+                                  <div>
+                                    <label className="block text-sm font-medium">Rejection Reason</label>
+                                    <textarea
+                                      value={rejectionReason}
+                                      onChange={(e) => setRejectionReason(e.target.value)}
+                                      className="w-full px-4 py-2 border rounded"
+                                      placeholder="Enter reason for rejection"
+                                      rows={3}
+                                      required
+                                    />
+                                  </div>
+                                )}
+                                <button
+                                  type="submit"
+                                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
+                                >
+                                  Update Status
+                                </button>
+                              </form>
+                            </PopoverContent>
+                            </Popover>
                     )}
                   </div>
                 </td>
@@ -219,11 +260,11 @@ const LoansTable = ({ status }) => {
                     </button>
                   )}
                   <Dialog>
-                    <DialogTrigger>
+                    {/* <DialogTrigger>
                       <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-lg px-3 py-1">
                         View Details
                       </button>
-                    </DialogTrigger>
+                    </DialogTrigger> */}
                     <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                       <DialogHeader className="border-b pb-4">
                         <DialogTitle className="text-2xl font-bold">
@@ -305,6 +346,9 @@ const LoansTable = ({ status }) => {
                     {loading ? "Loading..." : "View User"}
                   </button>
                 </td>
+                <td className="border px-4 py-2 text-sm whitespace-nowrap text-center align-middle">
+                  {loan.loancount}
+              </td>
               </tr>
             ))}
           </tbody>

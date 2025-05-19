@@ -35,12 +35,10 @@ const Home = () => {
       <div className="wrapper">
         <section
           id="about"
-          className="mt-14 flex flex-col md:flex-row items-center justify-between bg-soft-green rounded-xl gap-8 py-7 md:py-14 md:gap-28"
-        >
+          className="mt-14 flex flex-col md:flex-row items-center justify-between bg-soft-green rounded-xl gap-8 py-7 md:py-14 md:gap-28">
           <div
             className="flex-1 flex justify-center items-center"
-            data-aos="slide-in"
-          >
+            data-aos="slide-in">
             <img className="max-w-full rounded-lg" src={cover} alt="CEB" />
           </div>
           <div className="flex-1" data-aos="slide-in">
@@ -50,7 +48,7 @@ const Home = () => {
             <p className="text-base">
               Welcome to our organization! We are committed to providing the
               best services to our members. Our mission is to support and
-              enhance the well-being of our community through various programs
+              enhance the wewll-being of our community through various programs
               and initiatives. Our team is dedicated to ensuring that our
               members receive the highest level of service and support. We
               believe in the power of community and strive to foster a sense of
@@ -63,12 +61,12 @@ const Home = () => {
             </Link>
           </div>
         </section>
-
         <NewsSection />
         <Benefits />
         <Contact />
       </div>
       <LinksSection />
+
     </div>
   );
 };

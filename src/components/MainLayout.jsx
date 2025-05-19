@@ -8,7 +8,9 @@ import BottomToTop from "./BottomToTop";
 const MainLayout = () => {
   return (
     <div className="flex h-screen flex-col">
-      <Navbar />
+      <div className="fixed top-0 w-full z-50">
+        <Navbar />
+      </div>
       <main className="flex-1">
         <Outlet />
       </main>

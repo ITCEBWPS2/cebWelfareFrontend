@@ -15,7 +15,7 @@ const BottomBar = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-300"
               >
-                <i className="fab fa-facebook-f"></i>
+                <i className="fab fa-facebook-f text-2xl"></i>
               </a>
               <a
                 href="https://twitter.com"
@@ -23,7 +23,7 @@ const BottomBar = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-300"
               >
-                <i className="fab fa-twitter"></i>
+                <i className="fab fa-twitter text-2xl"></i>
               </a>
               <a
                 href="https://instagram.com"
@@ -31,7 +31,15 @@ const BottomBar = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-300"
               >
-                <i className="fab fa-instagram"></i>
+                <i className="fab fa-instagram text-2xl"></i>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-yellow-300"
+              >
+                <i className="fab fa-linkedin text-2xl"></i>
               </a>
             </div>
           </div>
