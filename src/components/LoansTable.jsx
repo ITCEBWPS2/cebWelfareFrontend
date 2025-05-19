@@ -63,8 +63,8 @@ const LoansTable = ({ status }) => {
       console.error("Error fetching loans:", error);
     }
   };
-  
-  const fetchMemberId = async (epfnumber) => {
+
+  const fetchMemberId = async (epf) => {
     setLoading(true);
     try {
       const response = await axios.get(

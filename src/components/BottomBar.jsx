@@ -9,7 +9,7 @@ const BottomBar = () => {
         <div className="wrapper flex justify-between items-center space-y-4 flex-col md:flex-row md:space-y-0">
           <div className="flex-1">
             <div className="flex justify-start space-x-6">
-              <a
+              {/* <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -31,7 +31,7 @@ const BottomBar = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-300"
               >
-                <i className="fab fa-instagram text-2xl"></i>
+                <i className="fab fa-instagram"></i>
               </a>
               <a
                 href="https://linkedin.com"
@@ -40,12 +40,12 @@ const BottomBar = () => {
                 className="text-white hover:text-yellow-300"
               >
                 <i className="fab fa-linkedin text-2xl"></i>
-              </a>
+              </a> */}
             </div>
           </div>
           <Link to="/">
             <p className="flex-1 text-[14px] text-center text-white hover:text-yellow-300">
-              © 2024 Welfare Society WPS II
+              © Welfare Society WPS II
             </p>
           </Link>
           <p className="flex-1 text-[14px] text-right text-white">

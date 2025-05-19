@@ -58,6 +58,8 @@ const LoanApplication = () => {
   useEffect(() => {
     fetchMembers();
     fetchLoanNumber();
+
+    console.log("Members fetched:", members); // Debugging
   }, []);
 
   const handleChange = (e) => {
@@ -179,6 +181,7 @@ const LoanApplication = () => {
             name="epf"
             placeholder="Enter EPF Number"
             value={formData.epf}
+            onInput={handleChange} // Handle both typing and autocomplete selection
             onChange={handleChange}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             autoComplete="off"
@@ -288,7 +291,7 @@ const LoanApplication = () => {
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
         </div>
-
+        {/* 
         <div>
           <label
             htmlFor="address"
@@ -437,7 +440,7 @@ const LoanApplication = () => {
             required
             className="appearance-none bg-transparent border-b-2 border-gray-300 w-full text-gray-900 p-3 leading-tight focus:outline-none focus:border-red-500"
           />
-        </div>
+        </div>*/}
 
         <div>
           <label
@@ -457,7 +460,7 @@ const LoanApplication = () => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <label
             htmlFor="retirementDate"
             className="block mb-2 text-sm font-medium text-gray-600"

@@ -51,8 +51,7 @@ const DeathFunds = () => {
               <DialogTrigger className="text-left m-0 p-0">
                 <div
                   key={benefit._id}
-                  className="bg-white shadow-md rounded-lg p-4 border hover:shadow-lg transition-shadow"
-                >
+                  className="bg-white shadow-md rounded-lg p-4 border hover:shadow-lg transition-shadow">
                   <h2 className="text-lg font-semibold mb-2">{benefit.date}</h2>
                   <p className="text-gray-700">
                     <span className="font-medium">Amount:</span> Rs.

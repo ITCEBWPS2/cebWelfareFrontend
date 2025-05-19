@@ -48,15 +48,15 @@ const Navbar = () => {
             <a href="#about" className="text-white hover:text-yellow-300">
               About
             </a>
-            <a href="#news" className="text-white hover:text-yellow-300">
+            {/* <a href="#news" className="text-white hover:text-yellow-300">
               Events
-            </a>
+            </a> */}
             <a href="#benefits" className="text-white hover:text-yellow-300">
               Benefits
             </a>
-            <a href="#contact" className="text-white hover:text-yellow-300">
+            {/* <a href="#contact" className="text-white hover:text-yellow-300">
               Contact
-            </a>
+            </a> */}
             {user ? (
               <>
                 <Link
