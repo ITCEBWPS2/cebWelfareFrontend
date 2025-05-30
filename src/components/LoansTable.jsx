@@ -58,7 +58,7 @@ const LoansTable = ({ status }) => {
         loancount: loan.loanStatus === "approved" ? counts[loan.epf] : "-",
       }));
   
-      setLoans(loansWithCount);
+      setLoans(loansWithCount); 
     } catch (error) {
       console.error("Error fetching loans:", error);
     }
