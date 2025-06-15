@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useAuth } from "@/api/authContext";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { API } from "../api/axiosInstance";
 import { BASE_URL } from "@/constants";
 import {
   Dialog,
@@ -31,7 +31,7 @@ const MembersTable = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/members`, {
+      const response = await API.get("/members", {
         withCredentials: true,
       });
       const sortedMembers = response.data.sort(

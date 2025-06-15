@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = async () => {
-        await api.post("/members/logout");
+        await API.post("/members/logout");
         setUser(null);
         localStorage.removeItem("token");
     };
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem("token");
         if (token) {
             try {
-                const { data } = await api.get("/admins/me", {
+                const { data } = await API.get("/admins/me", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setUser(data);

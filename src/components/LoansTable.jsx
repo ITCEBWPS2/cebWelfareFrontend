@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/api/authContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { API } from "../api/axiosInstance";
 import { BASE_URL } from "@/constants";
 import {
   Dialog,
@@ -39,7 +39,7 @@ const LoansTable = ({ status }) => {
         url += `?status=${status}`;
       }
 
-      const response = await axios.get(url, {
+      const response = await API.get(url, {
         withCredentials: true,
       });
 
@@ -52,7 +52,7 @@ const LoansTable = ({ status }) => {
   const fetchMemberId = async (epfnumber) => {
     setLoading(true);
     try {
-      const response = await axios.get(
+      const response = await API.get(
         `${BASE_URL}/api/members/find/${epfnumber}`,
         {
           withCredentials: true,
@@ -73,7 +73,7 @@ const LoansTable = ({ status }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(
+      const response = await API.put(
         `${BASE_URL}/api/loans/${selectedLoanId}/status`,
         { loanStatus },
         {
@@ -98,7 +98,7 @@ const LoansTable = ({ status }) => {
   const handleDelete = async (loanId) => {
     if (window.confirm("Are you sure you want to delete this loan?")) {
       try {
-        await axios.delete(`${BASE_URL}/api/loans/${loanId}`, {
+        await API.delete(`${BASE_URL}/api/loans/${loanId}`, {
           withCredentials: true,
         });
         setLoans(loans.filter((loan) => loan._id !== loanId));
