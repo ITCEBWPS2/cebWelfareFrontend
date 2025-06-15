@@ -42,10 +42,10 @@ const AuditLogsTable = () => {
                             <th className="px-4 py-3 font-semibold">Type</th>
                             <th className="px-4 py-3 font-semibold">Event</th>
                             <th className="px-4 py-3 font-semibold">Description</th>
-                            <th className="px-4 py-3 font-semibold">Target</th>
+                            {/* <th className="px-4 py-3 font-semibold">Target</th> */}
                             <th className="px-4 py-3 font-semibold">Time</th>
                             <th className="px-4 py-3 font-semibold">IP Address</th>
-                            <th className="px-4 py-3 font-semibold">Other</th>
+                            {/* <th className="px-4 py-3 font-semibold">Other</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@ const AuditLogsTable = () => {
                                 <td className="border px-4 py-2 text-sm">{log.type}</td>
                                 <td className="border px-4 py-2 text-sm">{log.event}</td>
                                 <td className="border px-4 py-2 text-sm">{log.message}</td>
-                                <td className="border px-4 py-2 text-sm">{log.target}</td>
+                                {/* <td className="border px-4 py-2 text-sm">{log.target}</td> */}
                                 <td className="border px-4 py-2 text-sm">{new Date(log.timestamp).toLocaleString()}</td>
                                 <td className="border px-4 py-2 text-sm">{JSON.stringify(log.data, null, 2)}</td>
                             </tr>
