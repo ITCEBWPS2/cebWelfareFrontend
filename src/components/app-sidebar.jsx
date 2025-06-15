@@ -38,6 +38,10 @@ const data = {
           title: "Dashboard",
           url: "/dashboard",
         },
+        {
+          title: "Audit Logs",
+          url: "/dashboard/auditLogs",
+        },
       ],
     },
   ],
