@@ -36,6 +36,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import MyLoans from "./pages/dashboard/MyLoans";
 import SecretaryRoute from "./components/SecretaryRoute";
+import AuditLogs from "./components/AuditLog";
 
 const App = () => {
   return (
@@ -68,6 +69,7 @@ const App = () => {
             <Route path="/dashboard/refunds" element={<Refunds />} />
             <Route path="/dashboard/retirements" element={<Retirements />} />
             <Route path="/dashboard/my-loans" element={<MyLoans />} />
+            <Route path="/dashboard/auditLogs" element={<AuditLogs />} />
             <Route
               path="/dashboard/members/:memberId/loans"
               element={<UserLoans />}
