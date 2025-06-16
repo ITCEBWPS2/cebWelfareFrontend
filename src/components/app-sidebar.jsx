@@ -92,33 +92,33 @@ const data = {
         },
       ],
     },
-    {
-      title: "Benefits",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Death Funds",
-          url: "/dashboard/benefits/deathfunds",
-        },
-        {
-          title: "Retirement Gifts",
-          url: "/dashboard/benefits/retirements",
-        },
-        {
-          title: "Grade 5 Scholarship",
-          url: "/dashboard/benefits/scholarships",
-        },
-        {
-          title: "Refund Member Fees",
-          url: "/dashboard/benefits/refunds",
-        },
-        {
-          title: "Medical",
-          url: "/dashboard/benefits/medicals",
-        },
-      ],
-    },
+    // {
+    //   title: "Benefits",
+    //   url: "#",
+    //   icon: BookOpen,
+    //   items: [
+    //     {
+    //       title: "Death Funds",
+    //       url: "/dashboard/benefits/deathfunds",
+    //     },
+    //     {
+    //       title: "Retirement Gifts",
+    //       url: "/dashboard/benefits/retirements",
+    //     },
+    //     {
+    //       title: "Grade 5 Scholarship",
+    //       url: "/dashboard/benefits/scholarships",
+    //     },
+    //     {
+    //       title: "Refund Member Fees",
+    //       url: "/dashboard/benefits/refunds",
+    //     },
+    //     {
+    //       title: "Medical",
+    //       url: "/dashboard/benefits/medicals",
+    //     },
+    //   ],
+    // },
   ],
 };
 
