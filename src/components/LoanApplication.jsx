@@ -78,7 +78,7 @@ const LoanApplication = () => {
       return 0;
     }
   };  
-  
+
   useEffect(() => {
     fetchMembers();
     fetchLoanNumber();
