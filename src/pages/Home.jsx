@@ -61,12 +61,12 @@ const Home = () => {
             </Link>
           </div>
         </section>
-
         <NewsSection />
         <Benefits />
         {/* <Contact /> */}
       </div>
       <LinksSection />
+
     </div>
   );
 };

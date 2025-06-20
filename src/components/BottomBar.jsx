@@ -31,7 +31,7 @@ const BottomBar = () => {
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-300"
               >
-                <i className="fab fa-instagram text-2xl"></i>
+                <i className="fab fa-instagram"></i>
               </a>
               <a
                 href="https://linkedin.com"

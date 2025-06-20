@@ -181,11 +181,11 @@ const BenefitsTable = ({ benefit, benefitName }) => {
                     </button>
                   )}
                   <Dialog>
-                    <DialogTrigger>
+                    {/* <DialogTrigger>
                       <button className="bg-yellow-500 hover:bg-yellow-700 text-white rounded-lg px-3 py-1">
                         View Details
                       </button>
-                    </DialogTrigger>
+                    </DialogTrigger> */}
                     <DialogContent className="max-w-lg mx-auto max-h-[600px] overflow-y-scroll border-none shadow-none scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                       <DialogHeader className="border-b pb-4">
                         <DialogTitle className="text-2xl font-bold">
