@@ -33,10 +33,10 @@ const LoansTable = ({ status }) => {
 
   const fetchLoans = async () => {
     try {
-      let url = ${BASE_URL}/api/loans/util/loans-by-status;
+      let url = `${BASE_URL}/api/loans/util/loans-by-status`;
   
       if (status && status !== "all") {
-        url += ?status=${status};
+        url += `?status=${status}`;
       }
   
       const response = await axios.get(url, {
@@ -68,14 +68,14 @@ const LoansTable = ({ status }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        ${BASE_URL}/api/members/find/${epfnumber},
+        `${BASE_URL}/api/members/find/${epfnumber}`,
         {
           withCredentials: true,
         }
       );
       console.log(response.data);
 
-      navigate(/dashboard/members/${response.data.epf});
+      navigate(`/dashboard/members/${response.data.epf}`);
     } catch (error) {
       console.error("Error fetching member data:", error);
     } finally {
@@ -94,7 +94,7 @@ const LoansTable = ({ status }) => {
       }
   
       const response = await axios.put(
-        ${BASE_URL}/api/loans/${selectedLoanId}/status,
+        `${BASE_URL}/api/loans/${selectedLoanId}/status`,
         payload,
         {
           withCredentials: true,
@@ -120,7 +120,7 @@ const LoansTable = ({ status }) => {
   const handleDelete = async (loanId) => {
     if (window.confirm("Are you sure you want to delete this loan?")) {
       try {
-        await axios.delete(${BASE_URL}/api/loans/${loanId}, {
+        await axios.delete(`${BASE_URL}/api/loans/${loanId}`, {
           withCredentials: true,
         });
         setLoans(loans.filter((loan) => loan._id !== loanId));
