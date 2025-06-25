@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { API } from "../api/axiosInstance";
-//import { BASE_URL } from "@/constants";
-//import api from "../api/axiosInstance";
 
 const AuditLogsTable = () => {
     const [logs, setLogs] = useState([]);
@@ -14,12 +12,12 @@ const AuditLogsTable = () => {
     const fetchAuditLogs = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem("token"); // ✅ retrieve from localStorage
-            console.log("Token:", token); // ✅ now this will work
+            const token = localStorage.getItem("token");
+            console.log("Token:", token);
 
             const response = await API.get("/logs", {
                 headers: {
-                    Authorization: `Bearer ${token}`, // ✅ attach token
+                    Authorization: `Bearer ${token}`,
                 },
             });
 
@@ -40,27 +38,29 @@ const AuditLogsTable = () => {
                         <tr>
                             <th className="px-4 py-3 font-semibold">User</th>
                             <th className="px-4 py-3 font-semibold">Type</th>
-                            {/* <th className="px-4 py-3 font-semibold">Event</th> */}
                             <th className="px-4 py-3 font-semibold">Description</th>
-                            {/* <th className="px-4 py-3 font-semibold">Target</th> */}
                             <th className="px-4 py-3 font-semibold">Time</th>
                             <th className="px-4 py-3 font-semibold">IP Address</th>
-                            {/* <th className="px-4 py-3 font-semibold">Other</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {logs.map((log) => (
-                            <tr key={log._id}>
-                                <td className="border px-4 py-2 text-sm">{log.user}</td>
-                                <td className="border px-4 py-2 text-sm">{log.type}</td>
-                                {/* <td className="border px-4 py-2 text-sm">{log.event}</td> */}
-                                <td className="border px-4 py-2 text-sm">{log.message}</td>
-                                {/* <td className="border px-4 py-2 text-sm">{log.target}</td> */}
-                                <td className="border px-4 py-2 text-sm">{new Date(log.timestamp).toLocaleString()}</td>
-                                <td className="border px-4 py-2 text-sm">{JSON.stringify(log.data, null, 2)}</td>
-                            </tr>
-                        ))}
-                    </tbody>
+    {logs.map((log) => {
+        console.log("log:", log); // Debug: Log the entire log object to inspect its structure
+        return (
+            <tr key={log._id}>
+                <td className="border px-4 py-2 text-sm">{log.user}</td>
+                <td className="border px-4 py-2 text-sm">{log.type}</td>
+                <td className="border px-4 py-2 text-sm">{log.message}</td>
+                <td className="border px-4 py-2 text-sm">
+                    {new Date(log.timestamp).toLocaleString()}
+                </td>
+                <td className="border px-4 py-2 text-sm">
+                    {log.ip || log.data?.ip || "N/A"} {/* Try log.ip first, then log.data?.ip */}
+                </td>
+            </tr>
+        );
+    })}
+</tbody>
                 </table>
             </div>
         </div>
